@@ -1,0 +1,57 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:1:1-19:12
+INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:1:1-19:12
+INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:1:1-19:12
+INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:1:1-19:12
+INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:1:1-19:12
+INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:1:1-19:12
+INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:1:1-19:12
+	package
+		ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:2:5-37
+		INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml
+		INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml
+		ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:1:1-19:12
+		INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml
+		ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:1:1-19:12
+		INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:1:11-69
+application
+ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:3:5-18:19
+meta-data#android.max_aspect
+ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:5:9-7:35
+	android:value
+		ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:7:13-32
+	android:name
+		ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:6:13-46
+meta-data#android.notch_support
+ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:10:9-12:36
+	android:value
+		ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:12:13-33
+	android:name
+		ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:11:13-49
+meta-data#notch.config
+ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:15:9-17:40
+	android:value
+		ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:17:13-37
+	android:name
+		ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml:16:13-40
+uses-sdk
+INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml
+INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml
+INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml
+INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml
+		ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml
+		INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml
+		ADDED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml
+		INJECTED from /Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/AndroidManifest.xml

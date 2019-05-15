@@ -1,0 +1,63 @@
+apply from:"../common_libary_build.gradle"
+
+
+
+dependencies{
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api (rootProject.ext.dependencies['support-v4']){
+        exclude module: 'support-annotations'
+    }
+    api(rootProject.ext.dependencies["appcompat-v7"]) {
+        exclude module: 'support-annotations'
+    }
+    api rootProject.ext.dependencies["design"]
+    api(rootProject.ext.dependencies["recyclerview-v7"]) {
+        exclude module: 'support-annotations'
+    }
+    api(rootProject.ext.dependencies["rxlifecycle2"]) {
+        exclude module: 'rxjava'
+        exclude module: 'jsr305'
+        exclude group: 'com.android.support'
+    }
+    api(rootProject.ext.dependencies["rxlifecycle2-android"]) {
+        exclude module: 'support-annotations'
+        exclude module: 'rxjava'
+        exclude module: 'rxandroid'
+        exclude module: 'rxlifecycle'
+        exclude group: 'com.android.support'
+    }
+    api(rootProject.ext.dependencies["rxlifecycle2-android-life"]) {
+        exclude module: 'support-annotations'
+        exclude module: 'rxjava'
+        exclude module: 'rxandroid'
+        exclude module: 'rxlifecycle'
+        exclude group: 'com.android.support'
+    }
+    api(rootProject.ext.dependencies["rxpermissions2"]) {//运行时权限
+        exclude module: 'rxjava'
+        exclude module: 'support-annotations'
+        exclude group: 'com.android.support'
+    }
+
+    api rootProject.ext.dependencies["rxjava2"]
+    api(rootProject.ext.dependencies['rxandroid2']){
+        exclude module: 'rxjava'
+    }
+    api rootProject.ext.dependencies["rxerrorhandler2"]//异常统一处理
+    api rootProject.ext.dependencies['timber']//日志打印
+    api rootProject.ext.dependencies['utilcode']//好用的工具库
+    api rootProject.ext.dependencies['multidex']
+    api (rootProject.ext.dependencies['arouter']){
+        exclude module: 'support-v4'
+        exclude module: 'support-annotations'
+    }
+    api (rootProject.ext.dependencies['glide']){
+        exclude group: 'com.android.support'
+    }
+    annotationProcessor(rootProject.ext.dependencies["glide-compiler"]) {
+        exclude module: 'jsr305'
+    }
+    api rootProject.ext.dependencies['gloading']//解耦不同状态页
+    api rootProject.ext.dependencies['immersionbar-base']//状态栏
+    api rootProject.ext.dependencies['immersionbar-components']
+}
