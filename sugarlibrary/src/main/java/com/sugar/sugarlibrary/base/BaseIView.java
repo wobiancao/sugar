@@ -27,5 +27,6 @@ public interface BaseIView {
     void showEmpty();
     void onLoadRetry();
     void showDialogLoading();
+    void showDialogLoading(String msg);
     void hideDialogLoading();
 }

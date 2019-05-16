@@ -15,6 +15,7 @@
  */
 package com.sugar.sugarlibrary.base;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,6 +26,7 @@ import android.view.inputmethod.InputMethodManager;
 import com.billy.android.loading.Gloading;
 import com.gyf.immersionbar.ImmersionBar;
 import com.gyf.immersionbar.OSUtils;
+import com.sugar.sugarlibrary.base.config.AppConfig;
 import com.sugar.sugarlibrary.base.presenter.BasePresenter;
 import com.sugar.sugarlibrary.base.presenter.PresenterDispatch;
 import com.sugar.sugarlibrary.base.presenter.PresenterProviders;
@@ -44,7 +46,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected Context mContext;
     private PresenterProviders mPresenterProviders;
     private PresenterDispatch mPresenterDispatch;
-
+    protected Dialog mDialog;
     protected abstract int getContentView();
 
 
@@ -129,12 +131,25 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     @Override
     public void showDialogLoading() {
+        showDialogLoading("");
+    }
 
+    @Override
+    public void showDialogLoading(String msg) {
+        if (null == mDialog){
+            mDialog = AppConfig.INSTANCE.getLoadingDialog(mContext, msg);
+        }
+        if (mDialog != null){
+            mDialog.show();
+        }
     }
 
     @Override
     public void hideDialogLoading() {
-
+        if (mDialog != null) {
+            mDialog.dismiss();
+            mDialog = null;
+        }
     }
 
 

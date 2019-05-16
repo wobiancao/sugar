@@ -16,6 +16,7 @@
 package com.sugar.sugarlibrary.base;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -29,6 +30,7 @@ import android.view.ViewGroup;
 import com.billy.android.loading.Gloading;
 import com.gyf.immersionbar.ImmersionBar;
 import com.gyf.immersionbar.components.SimpleImmersionFragment;
+import com.sugar.sugarlibrary.base.config.AppConfig;
 import com.sugar.sugarlibrary.base.presenter.BasePresenter;
 import com.sugar.sugarlibrary.base.presenter.PresenterDispatch;
 import com.sugar.sugarlibrary.base.presenter.PresenterProviders;
@@ -52,6 +54,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends SimpleImmers
     protected boolean isLazy;
     protected Context mContext;
     protected Activity mActivity;
+    protected Dialog mDialog;
     public abstract @LayoutRes int getLayoutId();
     @Override
     public void onAttach(Context context) {
@@ -218,11 +221,24 @@ public abstract class BaseFragment<P extends BasePresenter> extends SimpleImmers
 
     @Override
     public void showDialogLoading() {
+        showDialogLoading("");
+    }
 
+    @Override
+    public void showDialogLoading(String msg) {
+        if (null == mDialog){
+            mDialog = AppConfig.INSTANCE.getLoadingDialog(mContext, msg);
+        }
+        if (mDialog != null){
+            mDialog.show();
+        }
     }
 
     @Override
     public void hideDialogLoading() {
-
+        if (mDialog != null) {
+            mDialog.dismiss();
+            mDialog = null;
+        }
     }
 }

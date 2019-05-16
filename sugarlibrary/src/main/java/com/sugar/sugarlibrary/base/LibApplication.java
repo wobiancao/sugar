@@ -22,7 +22,9 @@ import android.support.multidex.MultiDex;
 import com.billy.android.loading.Gloading;
 import com.bumptech.glide.Glide;
 import com.sugar.sugarlibrary.base.config.AppConfig;
+import com.sugar.sugarlibrary.base.config.AppSetting;
 import com.sugar.sugarlibrary.router.ARouterUtils;
+import com.sugar.sugarlibrary.widget.BaseLoadingDialog;
 
 import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 import timber.log.Timber;
@@ -44,22 +46,16 @@ public abstract class LibApplication  extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        AppConfig.INSTANCE.initConfig(this, getResponesErrorListener(), getGloadingAdapter());
+        AppConfig.INSTANCE.initConfig(this, getSetting());
         initHttp();
 
     }
 
     /**
-     * 统一的rx error handler
-     *
+     * app统一配置
+     * @return
      */
-    protected abstract ResponseErrorListener getResponesErrorListener();
-
-    /**
-     * 获取统一的状态view适配器
-     * https://github.com/luckybilly/Gloading
-     */
-    protected abstract Gloading.Adapter getGloadingAdapter();
+    protected abstract AppSetting getSetting();
 
     /**
      *初始化网络配置

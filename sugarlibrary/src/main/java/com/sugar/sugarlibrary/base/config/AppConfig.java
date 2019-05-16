@@ -16,6 +16,8 @@
 package com.sugar.sugarlibrary.base.config;
 
 import android.app.Application;
+import android.app.Dialog;
+import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.billy.android.loading.Gloading;
@@ -28,7 +30,6 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
-import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 import timber.log.Timber;
 
 /**
@@ -39,8 +40,17 @@ import timber.log.Timber;
 public enum AppConfig {
     //对象
     INSTANCE;
-    private RxErrorHandler rxErrorHandler;
-    public void initConfig(Application application, ResponseErrorListener errorListener, Gloading.Adapter adapter){
+    private AppSetting mAppSetting;
+    /**
+     * 全局统一loading
+     */
+    public void initConfig(Application application, AppSetting mAppSetting){
+        if (null == application){
+            throw new IllegalStateException("Application is required");
+        }
+        if (null == mAppSetting){
+            throw new IllegalStateException("AppSetting is required");
+        }
         Utils.init(application);
         ActivityLifecycleCallback.getInstance().init(application);
         initARouter(application);
@@ -52,19 +62,35 @@ public enum AppConfig {
             Timber.plant(new CrashReportingTree());
         }
         //rx错误统一配置
-        rxErrorHandler = RxErrorHandler
-                .builder()
-                .with(application)
-                .responseErrorListener(errorListener)
-                .build();
-        Gloading.debug(BuildConfig.DEBUG);
-        Gloading.initDefault(adapter);
+        this.mAppSetting = mAppSetting;
+        if (mAppSetting.getAdapter() != null){
+            Gloading.debug(BuildConfig.DEBUG);
+            Gloading.initDefault(mAppSetting.getAdapter());
+        }
+
     }
 
+    public AppSetting getAppSetting() {
+        return mAppSetting;
+    }
 
+    /**
+     * 统一dialog
+     * @return
+     */
+    public Dialog getLoadingDialog(Context context, String msg) {
+        if (getAppSetting() == null || getAppSetting().getBaseLoadingDialog() == null){
+            return null;
+        }
+        return getAppSetting().getBaseLoadingDialog().createLoadingDialog(context, msg);
+    }
 
+    /**
+     * 统一异常获取处理
+     * @return
+     */
     public RxErrorHandler getRxErrorHandler() {
-        return rxErrorHandler;
+        return getAppSetting().getRxErrorHandler();
     }
 
     /**
