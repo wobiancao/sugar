@@ -26,9 +26,6 @@ import com.sugar.sugarlibrary.BuildConfig;
 import com.sugar.sugarlibrary.core.ActivityLifecycleCallback;
 import com.sugar.sugarlibrary.util.CrashReportingTree;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSession;
-
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import timber.log.Timber;
 
@@ -41,6 +38,7 @@ public enum AppConfig {
     //对象
     INSTANCE;
     private AppSetting mAppSetting;
+    private Application application;
     /**
      * 全局统一loading
      */
@@ -61,13 +59,17 @@ public enum AppConfig {
             //正式打印开关，同时gradle中的release的debuggable要设置为false
             Timber.plant(new CrashReportingTree());
         }
-        //rx错误统一配置
+        this.application = application;
         this.mAppSetting = mAppSetting;
         if (mAppSetting.getAdapter() != null){
             Gloading.debug(BuildConfig.DEBUG);
             Gloading.initDefault(mAppSetting.getAdapter());
         }
 
+    }
+
+    public Application getApplication() {
+        return application;
     }
 
     public AppSetting getAppSetting() {
@@ -107,32 +109,6 @@ public enum AppConfig {
         ARouter.init(application);
 
     }
-
-
-
-
-
-
-    public class UnSafeHostnameVerifier implements HostnameVerifier {
-        private String host;
-
-        public UnSafeHostnameVerifier(String host) {
-            this.host = host;
-            Timber.i("###############　UnSafeHostnameVerifier " + host);
-        }
-
-        @Override
-        public boolean verify(String hostname, SSLSession session) {
-            Timber.i("############### verify " + hostname + " " + this.host);
-            if (this.host == null || "".equals(this.host) || !this.host.contains(hostname)){
-                return false;
-            }else {
-                return true;
-            }
-        }
-    }
-
-
 
 
 }

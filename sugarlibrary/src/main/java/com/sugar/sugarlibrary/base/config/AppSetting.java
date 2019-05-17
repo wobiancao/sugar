@@ -31,12 +31,21 @@ public class AppSetting {
     private RxErrorHandler rxErrorHandler;
     private BaseLoadingDialog mBaseLoadingDialog;
     private Gloading.Adapter adapter;
+    private AppHttpSetting mAppHttpSetting;
     public AppSetting(Builder builder) {
         this.rxErrorHandler = builder.rxErrorHandler;
         this.mBaseLoadingDialog = builder.mBaseLoadingDialog;
         this.adapter = builder.adapter;
+        this.mAppHttpSetting = builder.mAppHttpSetting;
     }
 
+    /**
+     * 网络配置
+     * @return
+     */
+    public AppHttpSetting getHttpSetting() {
+        return mAppHttpSetting;
+    }
 
     public RxErrorHandler getRxErrorHandler() {
         return rxErrorHandler;
@@ -45,6 +54,7 @@ public class AppSetting {
     public BaseLoadingDialog getBaseLoadingDialog() {
         return mBaseLoadingDialog;
     }
+
 
     public Gloading.Adapter getAdapter() {
         return adapter;
@@ -59,12 +69,23 @@ public class AppSetting {
         BaseLoadingDialog mBaseLoadingDialog;
         RxErrorHandler rxErrorHandler;
         Gloading.Adapter adapter;
+        AppHttpSetting mAppHttpSetting;
         private Builder() {
         }
         public Builder with(Application application) {
             this.application = application;
             return this;
         }
+        /**
+         * 设置网络参数等
+         * @param mAppHttpSetting
+         * @return
+         */
+        public Builder setHttpSetting(AppHttpSetting mAppHttpSetting){
+            this.mAppHttpSetting = mAppHttpSetting;
+            return this;
+        }
+
 
         /**
          * 统一loading dialog
@@ -102,6 +123,9 @@ public class AppSetting {
             }
             if (null == rxErrorHandler){
                 throw new IllegalStateException("rxErrorHandler is required");
+            }
+            if (null == mAppHttpSetting){
+                throw new IllegalStateException("AppHttpSetting is required");
             }
             return new AppSetting(this);
         }

@@ -60,4 +60,35 @@ dependencies{
     api rootProject.ext.dependencies['gloading']//解耦不同状态页
     api rootProject.ext.dependencies['immersionbar-base']//状态栏
     api rootProject.ext.dependencies['immersionbar-components']
+    //retrofit http
+    implementation(rootProject.ext.dependencies["retrofit"]) {
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+    }
+    implementation(rootProject.ext.dependencies["retrofit-converter-gson"]) {
+        exclude module: 'gson'
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+        exclude module: 'retrofit'
+    }
+    implementation(rootProject.ext.dependencies["retrofit-adapter-rxjava2"]) {
+        exclude module: 'rxjava'
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+        exclude module: 'okio'
+    }
+    implementation(rootProject.ext.dependencies["logging-interceptor"]) {
+        exclude module: 'rxjava'
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+        exclude module: 'okio'
+    }
+    api rootProject.ext.dependencies["okhttp3"]
+    implementation rootProject.ext.dependencies["stetho"]
+    implementation(rootProject.ext.dependencies["stetho-okhttp3"]) {
+        exclude module: 'gson'
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+        exclude module: 'retrofit'
+    }
 }
