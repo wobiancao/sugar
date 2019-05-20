@@ -22,6 +22,7 @@ import android.content.Context;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.billy.android.loading.Gloading;
 import com.blankj.utilcode.util.Utils;
+import com.facebook.stetho.Stetho;
 import com.sugar.sugarlibrary.BuildConfig;
 import com.sugar.sugarlibrary.core.ActivityLifecycleCallback;
 import com.sugar.sugarlibrary.util.CrashReportingTree;
@@ -38,20 +39,17 @@ public enum AppConfig {
     //对象
     INSTANCE;
     private AppSetting mAppSetting;
-    private Application application;
     /**
      * 全局统一loading
      */
-    public void initConfig(Application application, AppSetting mAppSetting){
-        if (null == application){
-            throw new IllegalStateException("Application is required");
-        }
+    public void initConfig(AppSetting mAppSetting){
         if (null == mAppSetting){
             throw new IllegalStateException("AppSetting is required");
         }
-        Utils.init(application);
-        ActivityLifecycleCallback.getInstance().init(application);
-        initARouter(application);
+        this.mAppSetting = mAppSetting;
+        Utils.init(getAppSetting().getApplication());
+        ActivityLifecycleCallback.getInstance().init(getAppSetting().getApplication());
+        initARouter(getAppSetting().getApplication());
         if (BuildConfig.DEBUG) {
             //debug版本
             Timber.plant(new Timber.DebugTree());
@@ -59,17 +57,19 @@ public enum AppConfig {
             //正式打印开关，同时gradle中的release的debuggable要设置为false
             Timber.plant(new CrashReportingTree());
         }
-        this.application = application;
-        this.mAppSetting = mAppSetting;
+
         if (mAppSetting.getAdapter() != null){
             Gloading.debug(BuildConfig.DEBUG);
             Gloading.initDefault(mAppSetting.getAdapter());
         }
 
+        if (getAppSetting().getHttpSetting().isHttpMonitor()){
+            Stetho.initializeWithDefaults(getApplication());
+        }
     }
 
     public Application getApplication() {
-        return application;
+        return getAppSetting().getApplication();
     }
 
     public AppSetting getAppSetting() {
@@ -92,8 +92,13 @@ public enum AppConfig {
      * @return
      */
     public RxErrorHandler getRxErrorHandler() {
-        return getAppSetting().getRxErrorHandler();
+        return  RxErrorHandler
+                .builder()
+                .with(getAppSetting().getApplication())
+                .responseErrorListener(getAppSetting().getResponseErrorListener())
+                .build();
     }
+
 
     /**
      * 路由

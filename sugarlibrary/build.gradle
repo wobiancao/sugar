@@ -91,4 +91,6 @@ dependencies{
         exclude module: 'okio'
         exclude module: 'retrofit'
     }
+    api rootProject.ext.dependencies["retorfitUrlManager"]
+
 }

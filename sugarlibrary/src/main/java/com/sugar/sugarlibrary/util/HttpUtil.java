@@ -25,12 +25,24 @@ import java.util.Map;
  */
 public class HttpUtil {
   public static final Charset UTF8 = Charset.forName("UTF-8");
+
+    /**
+     * 检查是否为空
+     * @param t
+     * @param message
+     * @param <T>
+     * @return
+     */
     public static <T> T checkNotNull(T t, String message) {
         if (t == null) {
             throw new NullPointerException(message);
         }
         return t;
     }
+
+    /**
+     * 参数拼接url
+     */
     public static String createUrlFromParams(String url, Map<String, String> params) {
         try {
             StringBuilder sb = new StringBuilder();

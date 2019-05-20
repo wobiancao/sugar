@@ -15,12 +15,21 @@
  */
 package com.sugar.sugarlibrary.base.config;
 
-import android.app.Application;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.sugar.sugarlibrary.http.interceptor.SugarCustomHeaderInterceptor;
+import com.sugar.sugarlibrary.http.interceptor.SugarExceptionInterceptor;
+import com.sugar.sugarlibrary.http.interceptor.SugarHeaderInterceptor;
 
-import com.sugar.sugarlibrary.http.interceptor.AppExceptionInterceptor;
-import com.sugar.sugarlibrary.http.interceptor.CustomHeaderInterceptor;
-import com.sugar.sugarlibrary.http.interceptor.HttpHeaderInterceptor;
-import com.sugar.sugarlibrary.http.interceptor.OtherInterceptor;
+import java.io.File;
+import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
+import okhttp3.Cache;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * @author wobiancao
@@ -28,103 +37,106 @@ import com.sugar.sugarlibrary.http.interceptor.OtherInterceptor;
  * desc :网络配置
  */
 public class AppHttpSetting {
-    private long connectTimeout;
-    private long readTimeout;
-    private long writeTimeout;
     private int cacheTime;
     private boolean httpMonitor;
     private boolean httpLog;
     private String baseUrl;
-    private HttpHeaderInterceptor headerInterceptor;
-    private AppExceptionInterceptor exceptionInterceptor;
-    private CustomHeaderInterceptor customHeaderInterceptor;
-    private OtherInterceptor otherInterceptor;
+    private OkHttpClient.Builder okHttpBuilder;
     public AppHttpSetting(Builder builder) {
-        this.connectTimeout = builder.connectTimeout;
-        this.readTimeout = builder.readTimeout;
         this.httpMonitor = builder.httpMonitor;
         this.httpLog = builder.httpLog;
-        this.headerInterceptor = builder.headerInterceptor;
         this.baseUrl = builder.baseUrl;
-        this.writeTimeout = builder.writeTimeout;
         this.cacheTime = builder.cacheTime;
-        this.exceptionInterceptor = builder.exceptionInterceptor;
-        this.customHeaderInterceptor = builder.customHeaderInterceptor;
-        this.otherInterceptor = builder.otherInterceptor;
+        this.okHttpBuilder = builder.okHttpBuilder;
+    }
+
+    public OkHttpClient.Builder getOkHttpBuilder() {
+        return okHttpBuilder;
+    }
+
+    /**
+     * 自定义okHttpBuilder
+     * @param okHttpBuilder
+     */
+    public void setOkHttpBuilder(OkHttpClient.Builder okHttpBuilder) {
+        this.okHttpBuilder = okHttpBuilder;
     }
 
     public int getCacheTime() {
         return cacheTime;
     }
 
-    public long getWriteTimeout() {
-        return writeTimeout;
-    }
-
-    public long getConnectTimeout() {
-        return connectTimeout;
-    }
-
-    public long getReadTimeout() {
-        return readTimeout;
+    public boolean isHttpLog() {
+        return httpLog;
     }
 
     public boolean isHttpMonitor() {
         return httpMonitor;
     }
 
-    public boolean isHttpLog() {
-        return httpLog;
-    }
 
-    public HttpHeaderInterceptor getHeaderInterceptor() {
-        return headerInterceptor;
-    }
-
-
-    public OtherInterceptor getOtherInterceptor() {
-        return otherInterceptor;
-    }
-
-    public AppExceptionInterceptor getExceptionInterceptor() {
-        return exceptionInterceptor;
-    }
-
-    public CustomHeaderInterceptor getCustomHeaderInterceptor() {
-        return customHeaderInterceptor;
-    }
 
     public String getBaseUrl() {
         return baseUrl;
     }
 
+    public static AppHttpSetting.Builder builder() {
+        return new AppHttpSetting.Builder();
+    }
+
     public static final class Builder {
-        Application application;
         String baseUrl;
-        long connectTimeout = 20 * 1000;
-        long readTimeout = 20 * 1000;
-        long writeTimeout = 20 * 1000;
         int cacheTime = 60;
         boolean httpMonitor;
+        OkHttpClient.Builder okHttpBuilder;
         boolean httpLog;
-        HttpHeaderInterceptor headerInterceptor;
-        AppExceptionInterceptor exceptionInterceptor;
-        CustomHeaderInterceptor customHeaderInterceptor;
-        OtherInterceptor otherInterceptor;
         private Builder() {
+            okHttpBuilder = new OkHttpClient().newBuilder();
+            okHttpBuilder.connectTimeout(20, TimeUnit.SECONDS);
+            okHttpBuilder.readTimeout(20, TimeUnit.SECONDS);
+            okHttpBuilder.writeTimeout(20, TimeUnit.SECONDS);
+            final File httpCacheDirectory = new File(AppConfig.INSTANCE.getApplication().getCacheDir(), "sugarHttpCache");
+            //设置缓存 10M
+            int cacheSize = 10 * 1024 * 1024;
+            Cache cache = new Cache(httpCacheDirectory, cacheSize);
+            okHttpBuilder.cache(cache);
+            okHttpBuilder.hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
         }
 
-        public AppHttpSetting.Builder with(Application application) {
-            this.application = application;
+        public AppHttpSetting.Builder with() {
+            return this;
+        }
+
+        /**
+         * 设置缓存
+         * @param cache
+         * @return
+         */
+        public AppHttpSetting.Builder cache(Cache cache){
+            this.okHttpBuilder.cache(cache);
             return this;
         }
         /**
-         * 设置其它需要添加的拦截
-         * @param otherInterceptor
+         * add需要添加的拦截
+         * @param networkInterceptor
          * @return
          */
-        public AppHttpSetting.Builder setOtherInterceptor(OtherInterceptor otherInterceptor){
-            this.otherInterceptor = otherInterceptor;
+        public AppHttpSetting.Builder addNetworkInterceptor(Interceptor networkInterceptor){
+            this.okHttpBuilder.addNetworkInterceptor(networkInterceptor);
+            return this;
+        }
+        /**
+         * add需要添加的拦截
+         * @param interceptor
+         * @return
+         */
+        public AppHttpSetting.Builder addInterceptor(Interceptor interceptor){
+            this.okHttpBuilder.addInterceptor(interceptor);
             return this;
         }
         /**
@@ -132,8 +144,8 @@ public class AppHttpSetting {
          * @param customHeaderInterceptor
          * @return
          */
-        public AppHttpSetting.Builder setCustomHeaderInterceptor(CustomHeaderInterceptor customHeaderInterceptor){
-            this.customHeaderInterceptor = customHeaderInterceptor;
+        public AppHttpSetting.Builder addCustomHeaderInterceptor(SugarCustomHeaderInterceptor customHeaderInterceptor){
+            this.okHttpBuilder.addInterceptor(customHeaderInterceptor);
             return this;
         }
         /**
@@ -141,8 +153,8 @@ public class AppHttpSetting {
          * @param exceptionInterceptor
          * @return
          */
-        public AppHttpSetting.Builder setExceptionInterceptor(AppExceptionInterceptor exceptionInterceptor){
-            this.exceptionInterceptor = exceptionInterceptor;
+        public AppHttpSetting.Builder addExceptionInterceptor(SugarExceptionInterceptor exceptionInterceptor){
+            this.okHttpBuilder.addInterceptor(exceptionInterceptor);
             return this;
         }
         /**
@@ -150,8 +162,8 @@ public class AppHttpSetting {
          * @param headerInterceptor
          * @return
          */
-        public AppHttpSetting.Builder setHeaderInterceptor(HttpHeaderInterceptor headerInterceptor){
-            this.headerInterceptor = headerInterceptor;
+        public AppHttpSetting.Builder addHeaderInterceptor(SugarHeaderInterceptor headerInterceptor){
+            this.okHttpBuilder.addInterceptor(headerInterceptor);
             return this;
         }
         /**
@@ -161,6 +173,11 @@ public class AppHttpSetting {
          */
         public AppHttpSetting.Builder setHttpLog(boolean httpLog){
             this.httpLog = httpLog;
+            if (httpLog) {
+                HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+                httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+                okHttpBuilder.addInterceptor(httpLoggingInterceptor);
+            }
             return this;
         }
 
@@ -170,7 +187,10 @@ public class AppHttpSetting {
          * @return
          */
         public AppHttpSetting.Builder setHttpMoniter(boolean httpMonitor){
-            this.httpMonitor = httpMonitor;
+            //是否可以监听网络使用facebook库
+            if (httpMonitor){
+                okHttpBuilder.addNetworkInterceptor(new StethoInterceptor());
+            }
             return this;
         }
         /**
@@ -187,8 +207,8 @@ public class AppHttpSetting {
          * @param writeTimeout
          * @return
          */
-        public AppHttpSetting.Builder setWriteTimeout(long writeTimeout){
-            this.writeTimeout = writeTimeout;
+        public AppHttpSetting.Builder writeTimeout(int writeTimeout){
+            okHttpBuilder.writeTimeout(writeTimeout, TimeUnit.SECONDS);
             return this;
         }
         /**
@@ -196,8 +216,8 @@ public class AppHttpSetting {
          * @param connectTimeout
          * @return
          */
-        public AppHttpSetting.Builder setConnectTimeout(long connectTimeout){
-            this.connectTimeout = connectTimeout;
+        public AppHttpSetting.Builder connectTimeout(int connectTimeout){
+            okHttpBuilder.connectTimeout(connectTimeout, TimeUnit.SECONDS);
             return this;
         }
 
@@ -206,8 +226,8 @@ public class AppHttpSetting {
          * @param readTimeout
          * @return
          */
-        public AppHttpSetting.Builder setReadTimeout(long readTimeout){
-            this.readTimeout = readTimeout;
+        public AppHttpSetting.Builder readTimeout(int readTimeout){
+            okHttpBuilder.readTimeout(readTimeout, TimeUnit.SECONDS);
             return this;
         }
 
@@ -220,5 +240,9 @@ public class AppHttpSetting {
             this.baseUrl = baseUrl;
             return this;
         }
+        public AppHttpSetting build() {
+            return new AppHttpSetting(this);
+        }
+
     }
 }

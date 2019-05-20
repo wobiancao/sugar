@@ -42,6 +42,7 @@
                 "rxrelay"                  : "com.jakewharton.rxrelay2:rxrelay:2.0.0",
                 "stetho"                    : 'com.facebook.stetho:stetho:1.5.0',
                 "stetho-okhttp3"            : 'com.facebook.stetho:stetho-okhttp3:1.5.0',
+                "retorfitUrlManager"        : 'me.jessyan:retrofit-url-manager:1.4.0',
                 //rx2
                 "rxandroid2"               : "io.reactivex.rxjava2:rxandroid:2.1.0",
                 "rxjava2"                  : "io.reactivex.rxjava2:rxjava:2.2.3",

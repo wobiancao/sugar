@@ -45,7 +45,7 @@ import static com.sugar.sugarlibrary.util.HttpUtil.UTF8;
  * @date 2019/5/17
  * desc :公共头 所有请求都需要添加的明文参数
  */
-public abstract class CustomHeaderInterceptor implements Interceptor {
+public abstract class SugarCustomHeaderInterceptor implements Interceptor {
     private HttpUrl httpUrl;
     final static String GET = "GET";
     final static String POST = "POST";

@@ -22,9 +22,9 @@ import android.support.multidex.MultiDex;
 import com.billy.android.loading.Gloading;
 import com.bumptech.glide.Glide;
 import com.sugar.sugarlibrary.base.config.AppConfig;
+import com.sugar.sugarlibrary.base.config.AppHttpSetting;
 import com.sugar.sugarlibrary.base.config.AppSetting;
 import com.sugar.sugarlibrary.router.ARouterUtils;
-import com.sugar.sugarlibrary.widget.BaseLoadingDialog;
 
 import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 import timber.log.Timber;
@@ -46,10 +46,14 @@ public abstract class LibApplication  extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        AppConfig.INSTANCE.initConfig(this, getSetting());
-        initHttp();
-
+        AppConfig.INSTANCE.initConfig(getSetting());
+        init();
     }
+
+    /**
+     * 初始化一些操作
+     */
+    protected abstract void init();
 
     /**
      * app统一配置
@@ -60,7 +64,16 @@ public abstract class LibApplication  extends Application {
     /**
      *初始化网络配置
      */
-    protected abstract void initHttp();
+    protected abstract AppHttpSetting getHttpSetting();
+
+    /**
+     * 统一异常配置
+     * @return
+     */
+    protected abstract ResponseErrorListener getResponseErrorListener();
+
+
+    protected abstract Gloading.Adapter getAdapter();
 
     /**
      * 程序终止的时候执行

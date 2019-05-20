@@ -37,7 +37,7 @@ import static com.sugar.sugarlibrary.util.HttpUtil.UTF8;
  * desc :请求成功但是有异常状态code 比如token过期 签名sign错误 等等
  * 用的时候较少 一般服务器直接返回401异常处理就行了
  */
-public abstract class AppExceptionInterceptor implements Interceptor {
+public abstract class SugarExceptionInterceptor implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {

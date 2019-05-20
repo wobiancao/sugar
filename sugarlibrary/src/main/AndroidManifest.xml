@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sugar.sugarlibrary" >
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <application>
         <!--允许绘制到oppo、vivo刘海屏机型的刘海区域 -->
         <meta-data

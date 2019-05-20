@@ -15,12 +15,8 @@
  */
 package com.sugar.sugarlibrary.http.interceptor;
 
-import com.sugar.sugarlibrary.base.config.AppConfig;
-
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
-import okhttp3.CacheControl;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -31,21 +27,20 @@ import okhttp3.Response;
  * @date 2019/5/17
  * desc :获取公共请求Headers
  */
-public abstract class HttpHeaderInterceptor implements Interceptor {
+public abstract class SugarHeaderInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
-        CacheControl cacheControl = new CacheControl.Builder()
-                .noTransform()
-                //缓存有效期时长
-                .maxAge(AppConfig.INSTANCE.getAppSetting().getHttpSetting().getCacheTime(), TimeUnit.SECONDS)
-                .build();
         Request request = chain.request()
                 .newBuilder()
                 .headers(getHeaders(chain))
-                .cacheControl(cacheControl)
                 .build();
         return chain.proceed(request);
     }
 
+    /**
+     * 配置headers
+     * @param chain
+     * @return
+     */
     protected abstract Headers getHeaders(Chain chain);
 }

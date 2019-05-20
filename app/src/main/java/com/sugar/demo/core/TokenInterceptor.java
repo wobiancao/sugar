@@ -13,14 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sugar.sugarlibrary.http.interceptor;
+package com.sugar.demo.core;
 
-import okhttp3.Interceptor;
+import com.sugar.sugarlibrary.http.interceptor.SugarExceptionInterceptor;
+
+import okhttp3.Response;
 
 /**
  * @author wobiancao
  * @date 2019/5/17
- * desc :用于其它还需要添加拦截处理的备用拦截器
+ * desc :
  */
-public abstract class OtherInterceptor implements Interceptor {
+public class TokenInterceptor extends SugarExceptionInterceptor {
+    @Override
+    public boolean isResponseExpired(Response response, String bodyString) {
+        return false;
+    }
+
+    @Override
+    public Response responseExpired(Chain chain, String bodyString) {
+        return null;
+    }
 }

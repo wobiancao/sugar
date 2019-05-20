@@ -20,7 +20,7 @@ import android.app.Application;
 import com.billy.android.loading.Gloading;
 import com.sugar.sugarlibrary.widget.BaseLoadingDialog;
 
-import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 
 /**
  * @author wobiancao
@@ -28,15 +28,21 @@ import me.jessyan.rxerrorhandler.core.RxErrorHandler;
  * desc :
  */
 public class AppSetting {
-    private RxErrorHandler rxErrorHandler;
+    private ResponseErrorListener responseErrorListener;
     private BaseLoadingDialog mBaseLoadingDialog;
     private Gloading.Adapter adapter;
     private AppHttpSetting mAppHttpSetting;
+    private Application application;
     public AppSetting(Builder builder) {
-        this.rxErrorHandler = builder.rxErrorHandler;
+        this.responseErrorListener = builder.responseErrorListener;
         this.mBaseLoadingDialog = builder.mBaseLoadingDialog;
         this.adapter = builder.adapter;
         this.mAppHttpSetting = builder.mAppHttpSetting;
+        this.application = builder.application;
+    }
+
+    public Application getApplication() {
+        return application;
     }
 
     /**
@@ -47,8 +53,8 @@ public class AppSetting {
         return mAppHttpSetting;
     }
 
-    public RxErrorHandler getRxErrorHandler() {
-        return rxErrorHandler;
+    public ResponseErrorListener getResponseErrorListener() {
+        return responseErrorListener;
     }
 
     public BaseLoadingDialog getBaseLoadingDialog() {
@@ -67,7 +73,7 @@ public class AppSetting {
     public static final class Builder {
         Application application;
         BaseLoadingDialog mBaseLoadingDialog;
-        RxErrorHandler rxErrorHandler;
+        ResponseErrorListener responseErrorListener;
         Gloading.Adapter adapter;
         AppHttpSetting mAppHttpSetting;
         private Builder() {
@@ -99,11 +105,11 @@ public class AppSetting {
 
         /**
          * 统一异常处理
-         * @param rxErrorHandler
+         * @param responseErrorListener
          * @return
          */
-        public Builder setErrorHandler(RxErrorHandler rxErrorHandler) {
-            this.rxErrorHandler = rxErrorHandler;
+        public Builder setResponseErrorListener(ResponseErrorListener responseErrorListener) {
+            this.responseErrorListener = responseErrorListener;
             return this;
         }
 
@@ -121,8 +127,8 @@ public class AppSetting {
             if (null == application){
                 throw new IllegalStateException("application is required");
             }
-            if (null == rxErrorHandler){
-                throw new IllegalStateException("rxErrorHandler is required");
+            if (null == responseErrorListener){
+                throw new IllegalStateException("responseErrorListener is required");
             }
             if (null == mAppHttpSetting){
                 throw new IllegalStateException("AppHttpSetting is required");
