@@ -13,53 +13,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sugar.demo.core;
+package com.sugar.demo.config;
 
-import com.billy.android.loading.Gloading;
-import com.sugar.demo.api.GirlsApi;
-import com.sugar.demo.custom.SugarLoadingDialog;
-import com.sugar.sugarlibrary.base.LibApplication;
+import android.app.Application;
+import android.content.Context;
+
+import com.blankj.utilcode.util.LogUtils;
+import com.sugar.demo.http.api.Gank;
 import com.sugar.sugarlibrary.base.config.AppHttpSetting;
-import com.sugar.sugarlibrary.base.config.AppSetting;
+import com.sugar.sugarlibrary.base.config.SugarConfigure;
 
-import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 
 /**
  * @author wobiancao
- * @date 2019/5/17
+ * @date 2019/5/20
  * desc :
  */
-public class SugarApplication extends LibApplication {
-
-    @Override
-    protected void init() {
-
+public class DemoConfigure extends SugarConfigure {
+    public DemoConfigure() {
     }
 
     @Override
-    protected AppSetting getSetting() {
-
-        return AppSetting
-                .builder()
-                .with(this)
-                //网络配置 具体配置看下面
-                .setHttpSetting(getHttpSetting())
-                //rxjava异常统一抓取 https://github.com/JessYanCoding/RxErrorHandler
-                .setErrorHandler(getRxErrorHandler())
-                //全局不同状态页解耦
-                .setGloadingAdapter(getAdapter())
-                //统一弹窗loading
-                .setLoadingDialog(new SugarLoadingDialog())
-                .build();
+    public ResponseErrorListener getErrorResponse() {
+        return new ResponseErrorListener() {
+            @Override
+            public void handleResponseError(Context context, Throwable t) {
+                LogUtils.i("捕获异常---" + t.getMessage());
+            }
+        };
     }
 
     @Override
-    protected AppHttpSetting getHttpSetting() {
+    public AppHttpSetting getHttpSetting(Application application) {
         return AppHttpSetting
                 .builder()
-                .with()
+                .with(application)
                 //设置初始的host可以动态修改baseUrl 具体看https://github.com/JessYanCoding/RetrofitUrlManager
-                .setBaseUrl(GirlsApi.HOST)
+                .setBaseUrl(Gank.HOST)
                 //是否打印网络请求日志 默认否
                 .setHttpLog(true)
                 //百度Stetho即可 网络监测等 默认否
@@ -73,24 +64,18 @@ public class SugarApplication extends LibApplication {
                 //设置写入超时 默认20s
                 .writeTimeout(20)
                 //请求header
-                .addHeaderInterceptor(new HeaderInterceptor())
+                .addHeaderInterceptor(getHeader())
                 //添加请求明文公共参数
-                .addCustomHeaderInterceptor(new CustonHeaderInterceptorSugar())
+                .addCustomHeaderInterceptor(getCustomHeader())
                 //token过期等请求成功处理 一般不需要处理
-                .addExceptionInterceptor(new TokenInterceptor())
-                //其它拦截头
-//                .setOtherInterceptor()
+//                .addExceptionInterceptor(getExceptionInterceptor())
+                //其它拦截
+//                .addInterceptor(xx)
+//                .addNetworkInterceptor(xxx)
+//                配置自己的缓存
+//                .cache(xx)
+                //甚至另外写一套自己的okhttp builder 也行
+//                .setOkHttpBuilder(xxx)
                 .build();
     }
-
-    @Override
-    protected RxErrorHandler getRxErrorHandler() {
-        return null;
-    }
-
-    @Override
-    protected Gloading.Adapter getAdapter() {
-        return null;
-    }
-
 }

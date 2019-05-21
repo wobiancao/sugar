@@ -13,13 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sugar.demo.api;
+package com.sugar.demo.bean;
 
 /**
  * @author wobiancao
- * @date 2019/5/17
+ * @date 2019-05-21
  * desc :
  */
-public interface GirlsApi {
-    String HOST = "http://gank.io";
+public class GirlsData {
+    public String _id;
+    public String createdAt;
+    public String desc;
+    public String publishedAt;
+    public String source;
+    public String type;
+    public String url;
+    public boolean used;
+    public String who;
 }

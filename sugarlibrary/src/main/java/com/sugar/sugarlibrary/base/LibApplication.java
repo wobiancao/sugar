@@ -19,14 +19,11 @@ import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 
-import com.billy.android.loading.Gloading;
 import com.bumptech.glide.Glide;
 import com.sugar.sugarlibrary.base.config.AppConfig;
-import com.sugar.sugarlibrary.base.config.AppHttpSetting;
 import com.sugar.sugarlibrary.base.config.AppSetting;
 import com.sugar.sugarlibrary.router.ARouterUtils;
 
-import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 import timber.log.Timber;
 
 /**
@@ -61,19 +58,6 @@ public abstract class LibApplication  extends Application {
      */
     protected abstract AppSetting getSetting();
 
-    /**
-     *初始化网络配置
-     */
-    protected abstract AppHttpSetting getHttpSetting();
-
-    /**
-     * 统一异常配置
-     * @return
-     */
-    protected abstract ResponseErrorListener getResponseErrorListener();
-
-
-    protected abstract Gloading.Adapter getAdapter();
 
     /**
      * 程序终止的时候执行

@@ -13,25 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sugar.demo.core;
+package com.sugar.demo.http.api;
 
-import com.sugar.sugarlibrary.http.interceptor.SugarExceptionInterceptor;
+import com.sugar.demo.bean.GirlsData;
+import com.sugar.demo.bean.GirlsResult;
 
-import okhttp3.Response;
+import java.util.List;
+
+import io.reactivex.Observable;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 /**
  * @author wobiancao
- * @date 2019/5/17
+ * @date 2019/5/20
  * desc :
  */
-public class TokenInterceptor extends SugarExceptionInterceptor {
-    @Override
-    public boolean isResponseExpired(Response response, String bodyString) {
-        return false;
-    }
+public interface Gank {
+    String HOST = "http://gank.io/";
 
-    @Override
-    public Response responseExpired(Chain chain, String bodyString) {
-        return null;
-    }
+    @GET("api/data/福利/{size}/{index}")
+    Observable<GirlsResult<List<GirlsData>>> getFuliData(@Path("size") String size, @Path("index") String index);
 }

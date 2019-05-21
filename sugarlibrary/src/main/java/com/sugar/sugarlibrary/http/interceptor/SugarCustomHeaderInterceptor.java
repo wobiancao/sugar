@@ -15,7 +15,6 @@
  */
 package com.sugar.sugarlibrary.http.interceptor;
 
-import com.apkfuns.logutils.utils.Utils;
 import com.sugar.sugarlibrary.base.config.AppConfig;
 import com.sugar.sugarlibrary.util.HttpUtil;
 

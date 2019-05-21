@@ -82,7 +82,7 @@
                 "smartRefresh"             : 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14',
                 "smartHeader"              : 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14',
                 "basePopup"                : 'com.github.razerdp:BasePopup:2.1.9',
-
+                "loadingBall"              : 'com.github.glomadrian:loadingballs:1.1@aar',
                 //immersionbar
                 "immersionbar-base"        : 'com.gyf.immersionbar:immersionbar:3.0.0-beta01',
                 "immersionbar-components"  : 'com.gyf.immersionbar:immersionbar-components:3.0.0-beta01',

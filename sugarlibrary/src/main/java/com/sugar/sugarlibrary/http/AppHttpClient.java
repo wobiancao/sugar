@@ -30,7 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * desc :
  */
 public class AppHttpClient {
-    private static <T> T initService(Class<T> clazz) {
+    public static <T> T initService(Class<T> clazz) {
         return getRetrofitInstance().create(clazz);
     }
     /**单例retrofit*/

@@ -8,6 +8,8 @@
         android:minSdkVersion="17"
         android:targetSdkVersion="28" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application>
 
         <!-- 允许绘制到oppo、vivo刘海屏机型的刘海区域 -->

@@ -61,7 +61,7 @@ dependencies{
     api rootProject.ext.dependencies['immersionbar-base']//状态栏
     api rootProject.ext.dependencies['immersionbar-components']
     //retrofit http
-    implementation(rootProject.ext.dependencies["retrofit"]) {
+    api(rootProject.ext.dependencies["retrofit"]) {
         exclude module: 'okhttp'
         exclude module: 'okio'
     }
@@ -92,5 +92,6 @@ dependencies{
         exclude module: 'retrofit'
     }
     api rootProject.ext.dependencies["retorfitUrlManager"]
+    implementation rootProject.ext.dependencies["loadingBall"]
 
 }

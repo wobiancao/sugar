@@ -15,10 +15,13 @@
  */
 package com.sugar.sugarlibrary.base.config;
 
+import android.app.Application;
+
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarCustomHeaderInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarExceptionInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarHeaderInterceptor;
+import com.sugar.sugarlibrary.http.interceptor.SugarNormalChaceInterceptor;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -54,13 +57,6 @@ public class AppHttpSetting {
         return okHttpBuilder;
     }
 
-    /**
-     * 自定义okHttpBuilder
-     * @param okHttpBuilder
-     */
-    public void setOkHttpBuilder(OkHttpClient.Builder okHttpBuilder) {
-        this.okHttpBuilder = okHttpBuilder;
-    }
 
     public int getCacheTime() {
         return cacheTime;
@@ -89,17 +85,16 @@ public class AppHttpSetting {
         int cacheTime = 60;
         boolean httpMonitor;
         OkHttpClient.Builder okHttpBuilder;
+        ;
         boolean httpLog;
         private Builder() {
             okHttpBuilder = new OkHttpClient().newBuilder();
             okHttpBuilder.connectTimeout(20, TimeUnit.SECONDS);
             okHttpBuilder.readTimeout(20, TimeUnit.SECONDS);
             okHttpBuilder.writeTimeout(20, TimeUnit.SECONDS);
-            final File httpCacheDirectory = new File(AppConfig.INSTANCE.getApplication().getCacheDir(), "sugarHttpCache");
-            //设置缓存 10M
-            int cacheSize = 10 * 1024 * 1024;
-            Cache cache = new Cache(httpCacheDirectory, cacheSize);
-            okHttpBuilder.cache(cache);
+
+            okHttpBuilder.addNetworkInterceptor(new SugarNormalChaceInterceptor());
+
             okHttpBuilder.hostnameVerifier(new HostnameVerifier() {
                 @Override
                 public boolean verify(String hostname, SSLSession session) {
@@ -108,9 +103,23 @@ public class AppHttpSetting {
             });
         }
 
-        public AppHttpSetting.Builder with() {
+        public AppHttpSetting.Builder with(Application application) {
+            final File httpCacheDirectory = new File(application.getCacheDir(), "sugarHttpCache");
+            //设置缓存 10M
+            int cacheSize = 10 * 1024 * 1024;
+            Cache cache = new Cache(httpCacheDirectory, cacheSize);
+            okHttpBuilder.cache(cache);
             return this;
         }
+
+        /**
+         * 自定义okHttpBuilder
+         * @param okHttpBuilder
+         */
+        public void setOkHttpBuilder(OkHttpClient.Builder okHttpBuilder) {
+            this.okHttpBuilder = okHttpBuilder;
+        }
+
 
         /**
          * 设置缓存

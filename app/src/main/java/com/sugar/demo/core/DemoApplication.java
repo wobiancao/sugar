@@ -13,14 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sugar.demo.custom;
+package com.sugar.demo.core;
 
-import com.sugar.sugarlibrary.widget.BaseLoadingDialog;
+import com.sugar.demo.config.DemoConfigure;
+import com.sugar.sugarlibrary.base.LibApplication;
+import com.sugar.sugarlibrary.base.config.AppSetting;
 
 /**
  * @author wobiancao
  * @date 2019/5/17
  * desc :
  */
-public class SugarLoadingDialog extends BaseLoadingDialog {
+public class DemoApplication extends LibApplication {
+
+    @Override
+    protected void init() {
+
+    }
+
+    @Override
+    protected AppSetting getSetting() {
+        return new DemoConfigure().getAppSetting(this);
+    }
+
+
+
 }

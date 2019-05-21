@@ -5,6 +5,9 @@ buildscript {
         google()
         jcenter()
         maven { url "https://jitpack.io" }
+        maven {
+            url "http://dl.bintray.com/glomadrian/maven"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.2'
@@ -19,6 +22,9 @@ allprojects {
         google()
         jcenter()
         maven { url "https://jitpack.io" }
+        maven {
+            url "http://dl.bintray.com/glomadrian/maven"
+        }
     }
 }
 

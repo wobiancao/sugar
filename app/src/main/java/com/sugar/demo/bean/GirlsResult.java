@@ -13,23 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sugar.demo.core;
-
-import com.sugar.sugarlibrary.http.interceptor.SugarHeaderInterceptor;
-
-import okhttp3.Headers;
+package com.sugar.demo.bean;
 
 /**
  * @author wobiancao
- * @date 2019/5/17
- * desc :统一请求header
+ * @date 2019-05-21
+ * desc :
  */
-public class HeaderInterceptor extends SugarHeaderInterceptor {
-    @Override
-    protected Headers getHeaders(Chain chain) {
-        Headers.Builder headrBuilder = new Headers.Builder();
-        headrBuilder.add("header", "test");
-
-        return headrBuilder.build();
-    }
+public class GirlsResult<T> {
+    public boolean error;
+    public T results;
 }

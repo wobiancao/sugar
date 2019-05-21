@@ -1,15 +1,33 @@
 package com.sugar.demo.ui;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
-import com.sugar.lib.R;
+import com.sugar.demo.R;
+import com.sugar.sugarlibrary.base.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int getContentView() {
+        return R.layout.activity_main;
+    }
+
+
+
+    @Override
+    public void init(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public void loadData() {
+
+    }
+
+    public void Gank(View view) {
+        startActivity(new Intent(MainActivity.this, GankActivity.class));
     }
 }

@@ -21,6 +21,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.sugar.sugarlibrary.base.BaseIView;
+import com.sugar.sugarlibrary.base.config.AppConfig;
+import com.sugar.sugarlibrary.http.SugarModel;
 import com.sugar.sugarlibrary.rx.RxEventBus;
 import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
 import com.trello.rxlifecycle2.LifecycleProvider;
@@ -28,6 +30,7 @@ import com.trello.rxlifecycle2.LifecycleProvider;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
 
@@ -37,16 +40,25 @@ import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
  * @date 2019/5/13
  * desc :
  */
-public class BasePresenter <V extends BaseIView>{
+public abstract class BasePresenter <V extends BaseIView, M extends SugarModel>{
+    protected RxErrorHandler rxErrorHandler;
     protected AppCompatActivity mContext;
     protected V mView;
+    protected M mModel;
     protected LifecycleProvider<Lifecycle.Event> provider;
     protected void attachView(AppCompatActivity activity, V view) {
         this.mContext = activity;
         this.mView = view;
         provider = AndroidLifecycle.createLifecycleProvider(activity);
+        rxErrorHandler = AppConfig.INSTANCE.getRxErrorHandler();
+        initRepository();
         handleEvent();
     }
+
+    /**
+     * 初始化相关数据仓库
+     */
+    protected abstract void initRepository();
 
     protected void detachView() {
         this.mView = null;
@@ -66,9 +78,8 @@ public class BasePresenter <V extends BaseIView>{
         observable.subscribeOn(Schedulers.io())
                 //遇到错误时重试,第一个参数为重试几次,第二个参数为重试的间隔
                 .retryWhen(new RetryWithDelay(3, 2))
-                .doOnSubscribe(disposable -> {
-                    mView.showDialogLoading();
-                }).subscribeOn(AndroidSchedulers.mainThread())
+//
+                .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doFinally(() -> {
                     mView.hideDialogLoading();
