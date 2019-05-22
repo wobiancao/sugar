@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sugar.demo.ui.mvp;
+package com.sugar.demo.ui.mvp.gank;
 
-import com.sugar.demo.bean.GirlsResult;
-import com.sugar.demo.bean.GirlsData;
+import com.sugar.demo.bean.gank.GirlsData;
+import com.sugar.demo.bean.gank.GirlsResult;
+import com.sugar.demo.http.api.Gank;
 import com.sugar.sugarlibrary.base.BaseIView;
 
 import java.util.List;
@@ -30,22 +31,9 @@ import io.reactivex.ObservableTransformer;
  * desc :
  */
 public class GankContract {
-
-    public interface Model {
-        /**
-         * Transformer 处理api返回值包装
-         * @param <T>
-         * @return
-         */
-        <T> ObservableTransformer<GirlsResult<T>, T> gankTransformer();
-
-        Observable<List<GirlsData>> getFuliDataRepository(String size, String index);
-    }
-
-
     public interface PView{
         /**
-         * 获取福利数据
+         * 请求数据
          * @param size
          * @param index
          */
@@ -53,6 +41,7 @@ public class GankContract {
     }
 
     public interface IView extends BaseIView {
+
         void bindData(List<GirlsData> data);
     }
 

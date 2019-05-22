@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.GankActivity" />
+        <activity android:name=".ui.WanActivity" />
     </application>
 
 </manifest>

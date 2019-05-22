@@ -22,6 +22,7 @@ import android.support.multidex.MultiDex;
 import com.bumptech.glide.Glide;
 import com.sugar.sugarlibrary.base.config.AppConfig;
 import com.sugar.sugarlibrary.base.config.AppSetting;
+import com.sugar.sugarlibrary.base.config.SugarConfigure;
 import com.sugar.sugarlibrary.router.ARouterUtils;
 
 import timber.log.Timber;
@@ -31,8 +32,8 @@ import timber.log.Timber;
  * @date 2019/5/15
  * desc :
  */
-public abstract class LibApplication  extends Application {
-
+public abstract class LibApplication<S extends SugarConfigure>  extends Application {
+    protected S mConfigure;
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
@@ -43,20 +44,23 @@ public abstract class LibApplication  extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        AppConfig.INSTANCE.initConfig(getSetting());
+        initConfigure();
+        if (mConfigure == null){
+            throw new IllegalStateException("SugarConfigure is not init");
+        }
+        AppConfig.INSTANCE.initConfig(mConfigure);
         init();
     }
+
+    /**
+     * 初始化app相关配置
+     */
+    protected abstract void initConfigure();
 
     /**
      * 初始化一些操作
      */
     protected abstract void init();
-
-    /**
-     * app统一配置
-     * @return
-     */
-    protected abstract AppSetting getSetting();
 
 
     /**

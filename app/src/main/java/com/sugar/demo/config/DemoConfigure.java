@@ -19,7 +19,9 @@ import android.app.Application;
 import android.content.Context;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.sugar.demo.R;
 import com.sugar.demo.http.api.Gank;
+import com.sugar.demo.http.api.Wan;
 import com.sugar.sugarlibrary.base.config.AppHttpSetting;
 import com.sugar.sugarlibrary.base.config.SugarConfigure;
 
@@ -31,7 +33,10 @@ import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
  * desc :
  */
 public class DemoConfigure extends SugarConfigure {
-    public DemoConfigure() {
+
+
+    public DemoConfigure(Application application) {
+        super(application);
     }
 
     @Override
@@ -45,12 +50,19 @@ public class DemoConfigure extends SugarConfigure {
     }
 
     @Override
-    public AppHttpSetting getHttpSetting(Application application) {
+    public int getStatusColor() {
+        return R.color.colorPrimary;
+    }
+
+    @Override
+    public AppHttpSetting getHttpSetting() {
         return AppHttpSetting
                 .builder()
-                .with(application)
-                //设置初始的host可以动态修改baseUrl 具体看https://github.com/JessYanCoding/RetrofitUrlManager
+                .with(mApplication)
+                //设置初始的baseUrl host
                 .setBaseUrl(Gank.HOST)
+                //动态修改baseUrl 具体看https://github.com/JessYanCoding/RetrofitUrlManager
+                .putDomain(Wan.DOMAN, Wan.HOST)
                 //是否打印网络请求日志 默认否
                 .setHttpLog(true)
                 //百度Stetho即可 网络监测等 默认否

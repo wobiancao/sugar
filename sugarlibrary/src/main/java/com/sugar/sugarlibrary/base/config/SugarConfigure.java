@@ -36,6 +36,12 @@ import okhttp3.Response;
  */
 public abstract class SugarConfigure implements AppConfigureDelegate {
 
+    protected  Application mApplication;
+
+
+    public SugarConfigure(Application application) {
+        mApplication = application;
+    }
 
     @Override
     public SugarExceptionInterceptor getExceptionInterceptor() {
@@ -93,12 +99,12 @@ public abstract class SugarConfigure implements AppConfigureDelegate {
 
 
     @Override
-    public AppSetting getAppSetting(Application application) {
+    public AppSetting getAppSetting() {
         return AppSetting
                 .builder()
-                .with(application)
+                .with(mApplication)
                 //网络配置 具体配置看下面
-                .setHttpSetting(getHttpSetting(application))
+                .setHttpSetting(getHttpSetting())
                 //rxjava异常统一抓取 https://github.com/JessYanCoding/RxErrorHandler
                 .setResponseErrorListener(getErrorResponse())
                 //全局不同状态页解耦
@@ -109,10 +115,15 @@ public abstract class SugarConfigure implements AppConfigureDelegate {
     }
 
     @Override
-    public AppHttpSetting getHttpSetting(Application application) {
+    public AppHttpSetting getHttpSetting() {
         return AppHttpSetting
                 .builder()
-                .with(application)
+                .with(mApplication)
                 .build();
+    }
+
+    @Override
+    public Application getApplication() {
+        return mApplication;
     }
 }

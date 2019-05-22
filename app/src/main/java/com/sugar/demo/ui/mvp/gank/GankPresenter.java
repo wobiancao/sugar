@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sugar.demo.ui.mvp;
+package com.sugar.demo.ui.mvp.gank;
 
-import com.sugar.demo.bean.GirlsData;
+import com.sugar.demo.bean.gank.GirlsData;
+import com.sugar.demo.http.repository.GankRepository;
 import com.sugar.sugarlibrary.base.presenter.BasePresenter;
 
 import java.util.List;
@@ -27,11 +28,11 @@ import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
  * @date 2019/5/20
  * desc :
  */
-public class GankPresenter extends BasePresenter<GankContract.IView, GankModel> implements GankContract.PView {
+public class GankPresenter extends BasePresenter<GankContract.IView, GankRepository> implements GankContract.PView {
 
     @Override
     protected void initRepository() {
-        mModel = new GankModel(provider);
+        mModel = new GankRepository(provider);
     }
 
     @Override

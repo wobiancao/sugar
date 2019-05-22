@@ -13,14 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sugar.demo.bean;
+package com.sugar.demo.ui.mvp.wan;
+
+import com.sugar.demo.bean.wan.WanData;
+import com.sugar.sugarlibrary.base.BaseIView;
 
 /**
  * @author wobiancao
  * @date 2019-05-21
  * desc :
  */
-public class GirlsResult<T> {
-    public boolean error;
-    public T results;
+public class WanContract {
+    public interface PView{
+
+        void getWanArticleList(String index);
+    }
+
+    public interface IView extends BaseIView {
+        /**
+         * 绑定列表数据
+         * @param data
+         */
+        void bindData(WanData data);
+    }
 }

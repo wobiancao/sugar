@@ -13,30 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sugar.demo.core;
-
-import com.sugar.demo.config.DemoConfigure;
-import com.sugar.sugarlibrary.base.LibApplication;
+package com.sugar.demo.bean.gank;
 
 /**
  * @author wobiancao
- * @date 2019/5/17
+ * @date 2019-05-21
  * desc :
  */
-public class DemoApplication extends LibApplication<DemoConfigure> {
-
-    @Override
-    protected void initConfigure() {
-        mConfigure = new DemoConfigure(this);
-    }
-
-    @Override
-    protected void init() {
-
-    }
-
-
-
-
-
+public class GirlsData {
+    public String _id;
+    public String createdAt;
+    public String desc;
+    public String publishedAt;
+    public String source;
+    public String type;
+    public String url;
+    public boolean used;
+    public String who;
 }

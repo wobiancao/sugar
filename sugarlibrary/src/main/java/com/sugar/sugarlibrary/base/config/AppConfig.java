@@ -39,14 +39,13 @@ public enum AppConfig {
     //对象
     INSTANCE;
     private AppSetting mAppSetting;
+    private SugarConfigure mSugarConfigure;
     /**
      * 全局统一loading
      */
-    public void initConfig(AppSetting mAppSetting){
-        if (null == mAppSetting){
-            throw new IllegalStateException("AppSetting is required");
-        }
-        this.mAppSetting = mAppSetting;
+    public void initConfig(SugarConfigure sugarConfigure){
+        this.mSugarConfigure = sugarConfigure;
+        this.mAppSetting = sugarConfigure.getAppSetting();
         Utils.init(getAppSetting().getApplication());
         ActivityLifecycleCallback.getInstance().init(getAppSetting().getApplication());
         initARouter(getAppSetting().getApplication());
@@ -115,5 +114,12 @@ public enum AppConfig {
 
     }
 
+    /**
+     * 统一的配置
+     * @return
+     */
+    public SugarConfigure getSugarConfigure() {
+        return mSugarConfigure;
+    }
 
 }

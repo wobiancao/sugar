@@ -30,4 +30,8 @@ public class MainActivity extends BaseActivity {
     public void Gank(View view) {
         startActivity(new Intent(MainActivity.this, GankActivity.class));
     }
+
+    public void Wan(View view) {
+        startActivity(new Intent(MainActivity.this, WanActivity.class));
+    }
 }

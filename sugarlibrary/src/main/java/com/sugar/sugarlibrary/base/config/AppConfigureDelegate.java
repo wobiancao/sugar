@@ -69,12 +69,23 @@ public interface AppConfigureDelegate {
     /**
      * 网络配置
      */
-    AppHttpSetting getHttpSetting(Application application);
+    AppHttpSetting getHttpSetting();
 
     /**
      * app配置
      */
-    AppSetting getAppSetting(Application application);
+    AppSetting getAppSetting();
 
 
+    /**
+     * 设置状态栏颜色
+     * @return
+     */
+    int getStatusColor();
+
+    /**
+     * 获取全局的application
+     * @return
+     */
+    Application getApplication();
 }

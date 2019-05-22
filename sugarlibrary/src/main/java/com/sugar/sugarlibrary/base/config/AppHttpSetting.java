@@ -29,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
+import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -85,10 +86,9 @@ public class AppHttpSetting {
         int cacheTime = 60;
         boolean httpMonitor;
         OkHttpClient.Builder okHttpBuilder;
-        ;
         boolean httpLog;
         private Builder() {
-            okHttpBuilder = new OkHttpClient().newBuilder();
+            okHttpBuilder = RetrofitUrlManager.getInstance().with(new OkHttpClient.Builder());
             okHttpBuilder.connectTimeout(20, TimeUnit.SECONDS);
             okHttpBuilder.readTimeout(20, TimeUnit.SECONDS);
             okHttpBuilder.writeTimeout(20, TimeUnit.SECONDS);
@@ -249,6 +249,18 @@ public class AppHttpSetting {
             this.baseUrl = baseUrl;
             return this;
         }
+
+        /**
+         * 添加url host域名
+         * @param domanName
+         * @param domanHost
+         * @return
+         */
+        public AppHttpSetting.Builder putDomain(String domanName, String domanHost){
+            RetrofitUrlManager.getInstance().putDomain(domanName, domanHost);
+            return this;
+        }
+
         public AppHttpSetting build() {
             return new AppHttpSetting(this);
         }

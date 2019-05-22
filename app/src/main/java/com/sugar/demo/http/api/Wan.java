@@ -13,30 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sugar.demo.core;
+package com.sugar.demo.http.api;
 
-import com.sugar.demo.config.DemoConfigure;
-import com.sugar.sugarlibrary.base.LibApplication;
+import com.sugar.demo.bean.wan.WanData;
+import com.sugar.demo.bean.wan.WanResult;
+
+import io.reactivex.Observable;
+import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.Path;
+
+import static me.jessyan.retrofiturlmanager.RetrofitUrlManager.DOMAIN_NAME_HEADER;
 
 /**
  * @author wobiancao
- * @date 2019/5/17
+ * @date 2019-05-21
  * desc :
  */
-public class DemoApplication extends LibApplication<DemoConfigure> {
+public interface Wan {
+    String DOMAN = "wan-android";
+    String HOST = "https://www.wanandroid.com/";
 
-    @Override
-    protected void initConfigure() {
-        mConfigure = new DemoConfigure(this);
-    }
-
-    @Override
-    protected void init() {
-
-    }
-
-
-
-
-
+    @Headers({DOMAIN_NAME_HEADER + DOMAN})
+    @GET("article/list/{index}/json")
+    Observable<WanResult<WanData>> getWanArticleList(@Path("index") String index);
 }

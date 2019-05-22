@@ -29,11 +29,11 @@ import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
  * @date 2019/5/20
  * desc :
  */
-public abstract class SugarModel<T> {
-    protected abstract T getService();
+public  class SugarRepository {
+
     protected LifecycleProvider<Lifecycle.Event> mLifecycleProvider;
 
-    public SugarModel(LifecycleProvider<Lifecycle.Event> provider) {
+    public SugarRepository(LifecycleProvider<Lifecycle.Event> provider) {
         this.mLifecycleProvider = provider;
     }
 
@@ -45,5 +45,6 @@ public abstract class SugarModel<T> {
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
 
 }

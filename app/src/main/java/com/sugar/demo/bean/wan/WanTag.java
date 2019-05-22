@@ -13,30 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sugar.demo.core;
-
-import com.sugar.demo.config.DemoConfigure;
-import com.sugar.sugarlibrary.base.LibApplication;
+package com.sugar.demo.bean.wan;
 
 /**
  * @author wobiancao
- * @date 2019/5/17
+ * @date 2019-05-21
  * desc :
  */
-public class DemoApplication extends LibApplication<DemoConfigure> {
+public class WanTag {
 
-    @Override
-    protected void initConfigure() {
-        mConfigure = new DemoConfigure(this);
-    }
+    /**
+     * name : 公众号
+     * url : /wxarticle/list/411/1
+     */
 
-    @Override
-    protected void init() {
-
-    }
-
-
-
+    public String name;
+    public String url;
 
 
 }

@@ -30,40 +30,30 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * desc :
  */
 public class AppHttpClient {
-    public static <T> T initService(Class<T> clazz) {
-        return getRetrofitInstance().create(clazz);
-    }
-    /**单例retrofit*/
-    private static Retrofit retrofitInstance;
-    private static Retrofit getRetrofitInstance(){
-        if (retrofitInstance == null) {
-            synchronized (AppHttpClient.class) {
-                if (retrofitInstance == null) {
-                    AppHttpSetting httpSetting = AppConfig.INSTANCE.getAppSetting().getHttpSetting();
-                    retrofitInstance = new Retrofit.Builder()
-                            .baseUrl(httpSetting.getBaseUrl())
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                            .client(getOkHttpClientInstance())
-                            .build();
-                }
-            }
-        }
-        return retrofitInstance;
+    private OkHttpClient mOkHttpClient;
+    private Retrofit mRetrofit;
+
+    private static class AppHttpClientHolder{
+        private static final AppHttpClient INSTANCE = new AppHttpClient();
     }
 
-    /**单例OkHttpClient*/
-    private static OkHttpClient okHttpClientInstance;
-    private static OkHttpClient getOkHttpClientInstance(){
-        if (okHttpClientInstance == null) {
-            synchronized (AppHttpClient.class) {
-                if (okHttpClientInstance == null) {
-                    AppHttpSetting httpSetting = AppConfig.INSTANCE.getAppSetting().getHttpSetting();
-                    OkHttpClient.Builder builder = httpSetting.getOkHttpBuilder();
-                    okHttpClientInstance = RetrofitUrlManager.getInstance().with(builder).build();
-                }
-            }
-        }
-        return okHttpClientInstance;
+    public static final AppHttpClient getInstance(){
+        return AppHttpClientHolder.INSTANCE;
     }
+
+    public  <T> T initService(Class<T> clazz) {
+        return this.mRetrofit.create(clazz);
+    }
+
+    public AppHttpClient() {
+        AppHttpSetting httpSetting = AppConfig.INSTANCE.getAppSetting().getHttpSetting();
+        this.mOkHttpClient  = httpSetting.getOkHttpBuilder().build();
+        this.mRetrofit = new Retrofit.Builder()
+                .baseUrl(httpSetting.getBaseUrl())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(mOkHttpClient)
+                .build();
+    }
+
 }

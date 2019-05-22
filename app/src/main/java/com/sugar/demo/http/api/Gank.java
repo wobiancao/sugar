@@ -15,8 +15,8 @@
  */
 package com.sugar.demo.http.api;
 
-import com.sugar.demo.bean.GirlsData;
-import com.sugar.demo.bean.GirlsResult;
+import com.sugar.demo.bean.gank.GirlsData;
+import com.sugar.demo.bean.gank.GirlsResult;
 
 import java.util.List;
 

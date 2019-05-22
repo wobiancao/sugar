@@ -13,21 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sugar.demo.bean;
+package com.sugar.demo.bean.wan;
+
+import java.util.List;
 
 /**
  * @author wobiancao
- * @date 2019-05-21
+ * @date 2019-05-22
  * desc :
  */
-public class GirlsData {
-    public String _id;
-    public String createdAt;
-    public String desc;
-    public String publishedAt;
-    public String source;
-    public String type;
-    public String url;
-    public boolean used;
-    public String who;
+public class WanData {
+    public List<WanArticle> datas;
+//    public int curPage;
+//    public boolean over;
+//    public int pageCount;
+//    public int size;
+//    public int total;
 }

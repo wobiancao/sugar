@@ -22,7 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.sugar.sugarlibrary.base.BaseIView;
 import com.sugar.sugarlibrary.base.config.AppConfig;
-import com.sugar.sugarlibrary.http.SugarModel;
+import com.sugar.sugarlibrary.http.SugarRepository;
 import com.sugar.sugarlibrary.rx.RxEventBus;
 import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
 import com.trello.rxlifecycle2.LifecycleProvider;
@@ -40,7 +40,7 @@ import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
  * @date 2019/5/13
  * desc :
  */
-public abstract class BasePresenter <V extends BaseIView, M extends SugarModel>{
+public abstract class BasePresenter <V extends BaseIView, M extends SugarRepository>{
     protected RxErrorHandler rxErrorHandler;
     protected AppCompatActivity mContext;
     protected V mView;
@@ -50,6 +50,7 @@ public abstract class BasePresenter <V extends BaseIView, M extends SugarModel>{
         this.mContext = activity;
         this.mView = view;
         provider = AndroidLifecycle.createLifecycleProvider(activity);
+        mModel = (M) new SugarRepository(provider);
         rxErrorHandler = AppConfig.INSTANCE.getRxErrorHandler();
         initRepository();
         handleEvent();

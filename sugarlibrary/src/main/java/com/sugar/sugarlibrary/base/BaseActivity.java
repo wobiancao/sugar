@@ -27,9 +27,11 @@ import com.billy.android.loading.Gloading;
 import com.gyf.immersionbar.ImmersionBar;
 import com.gyf.immersionbar.OSUtils;
 import com.sugar.sugarlibrary.base.config.AppConfig;
+import com.sugar.sugarlibrary.base.config.AppSetting;
 import com.sugar.sugarlibrary.base.presenter.BasePresenter;
 import com.sugar.sugarlibrary.base.presenter.PresenterDispatch;
 import com.sugar.sugarlibrary.base.presenter.PresenterProviders;
+import com.sugar.sugarlibrary.util.ThemeUtil;
 
 /**
  * @author wobiancao
@@ -78,7 +80,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
                 .keyboardEnable(true)
                 //原理：如果当前设备支持状态栏字体变色，会设置状态栏字体为黑色，如果当前设备不支持状态栏字体变色，会使当前状态栏加上透明度，否则不执行透明度
                 .statusBarDarkFont(true, 0.2f)
-                .statusBarColor("#ffffff")
+                .statusBarColor(AppConfig.INSTANCE.getSugarConfigure().getStatusColor())
                 .init();
     }
 

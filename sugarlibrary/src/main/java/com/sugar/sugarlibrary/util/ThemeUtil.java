@@ -13,30 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sugar.demo.core;
+package com.sugar.sugarlibrary.util;
 
-import com.sugar.demo.config.DemoConfigure;
-import com.sugar.sugarlibrary.base.LibApplication;
+import android.content.Context;
+import android.util.TypedValue;
+
+import com.sugar.sugarlibrary.R;
 
 /**
  * @author wobiancao
- * @date 2019/5/17
+ * @date 2019-05-21
  * desc :
  */
-public class DemoApplication extends LibApplication<DemoConfigure> {
-
-    @Override
-    protected void initConfigure() {
-        mConfigure = new DemoConfigure(this);
+public class ThemeUtil {
+    public static int getColorPrimary(Context context){
+        TypedValue typedValue = new  TypedValue();
+        context.getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+        return typedValue.data;
     }
-
-    @Override
-    protected void init() {
-
-    }
-
-
-
-
 
 }
