@@ -22,7 +22,9 @@ import android.os.Handler;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.sugar.demo.R;
+import com.sugar.demo.router.RouterPageContant;
 import com.sugar.sugarlibrary.base.BaseActivity;
+import com.sugar.sugarlibrary.router.ARouterUtils;
 
 /**
  * @author wobiancao
@@ -50,8 +52,7 @@ public class StartActivity extends BaseActivity {
             @Override
             public void onAnimationEnd(Animator animator) {
                 if (!isDestroyed()){
-                    startActivity(new Intent(StartActivity.this, MainActivity.class));
-                    finish();
+                    ARouterUtils.navigation(RouterPageContant.MAIN_PAGE);
                 }
             }
 

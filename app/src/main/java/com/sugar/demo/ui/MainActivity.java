@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.sugar.demo.R;
+import com.sugar.demo.router.RouterPageContant;
 import com.sugar.sugarlibrary.base.BaseActivity;
 
-
+@Route(path = RouterPageContant.MAIN_PAGE)
 public class MainActivity extends BaseActivity {
 
     @Override

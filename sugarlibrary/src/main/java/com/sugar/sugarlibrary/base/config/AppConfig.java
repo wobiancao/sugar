@@ -23,6 +23,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.billy.android.loading.Gloading;
 import com.blankj.utilcode.util.Utils;
 import com.facebook.stetho.Stetho;
+import com.hjq.toast.ToastUtils;
 import com.sugar.sugarlibrary.BuildConfig;
 import com.sugar.sugarlibrary.core.ActivityLifecycleCallback;
 import com.sugar.sugarlibrary.util.CrashReportingTree;
@@ -46,9 +47,18 @@ public enum AppConfig {
     public void initConfig(SugarConfigure sugarConfigure){
         this.mSugarConfigure = sugarConfigure;
         this.mAppSetting = sugarConfigure.getAppSetting();
+        //常用工具盒
         Utils.init(getAppSetting().getApplication());
+        //生命周期监控
         ActivityLifecycleCallback.getInstance().init(getAppSetting().getApplication());
+        //阿里路由
         initARouter(getAppSetting().getApplication());
+        //toast初始化
+        ToastUtils.init(sugarConfigure.mApplication);
+        //toast样式设置
+        if (sugarConfigure.getToastStyle() != null){
+            ToastUtils.initStyle(sugarConfigure.getToastStyle());
+        }
         if (BuildConfig.DEBUG) {
             //debug版本
             Timber.plant(new Timber.DebugTree());
@@ -56,12 +66,12 @@ public enum AppConfig {
             //正式打印开关，同时gradle中的release的debuggable要设置为false
             Timber.plant(new CrashReportingTree());
         }
-
+        //多状态页切换
         if (mAppSetting.getAdapter() != null){
             Gloading.debug(BuildConfig.DEBUG);
             Gloading.initDefault(mAppSetting.getAdapter());
         }
-
+        //是否使用facebook网络监控
         if (getAppSetting().getHttpSetting().isHttpMonitor()){
             Stetho.initializeWithDefaults(getApplication());
         }

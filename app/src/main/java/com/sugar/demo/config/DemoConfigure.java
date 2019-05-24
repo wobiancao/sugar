@@ -19,9 +19,12 @@ import android.app.Application;
 import android.content.Context;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.hjq.toast.IToastStyle;
+import com.hjq.toast.ToastUtils;
 import com.sugar.demo.R;
 import com.sugar.demo.http.api.Gank;
 import com.sugar.demo.http.api.Wan;
+import com.sugar.demo.ui.widget.ToastStyle;
 import com.sugar.sugarlibrary.base.config.AppHttpSetting;
 import com.sugar.sugarlibrary.base.config.SugarConfigure;
 
@@ -45,6 +48,7 @@ public class DemoConfigure extends SugarConfigure {
             @Override
             public void handleResponseError(Context context, Throwable t) {
                 LogUtils.i("捕获异常---" + t.getMessage());
+                ToastUtils.show("发生异常---" + t.getMessage());
             }
         };
     }
@@ -89,5 +93,10 @@ public class DemoConfigure extends SugarConfigure {
                 //甚至另外写一套自己的okhttp builder 也行
 //                .setOkHttpBuilder(xxx)
                 .build();
+    }
+
+    @Override
+    public IToastStyle getToastStyle() {
+        return new ToastStyle();
     }
 }

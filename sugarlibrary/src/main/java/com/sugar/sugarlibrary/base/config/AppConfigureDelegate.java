@@ -18,6 +18,8 @@ package com.sugar.sugarlibrary.base.config;
 import android.app.Application;
 
 import com.billy.android.loading.Gloading;
+import com.hjq.toast.IToastStyle;
+import com.hjq.toast.ToastUtils;
 import com.sugar.sugarlibrary.http.interceptor.SugarCustomHeaderInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarExceptionInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarHeaderInterceptor;
@@ -88,4 +90,9 @@ public interface AppConfigureDelegate {
      * @return
      */
     Application getApplication();
+
+    /**
+     * toast样式 https://github.com/getActivity/ToastUtils
+     */
+    IToastStyle getToastStyle();
 }

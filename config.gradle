@@ -87,8 +87,7 @@
                 "immersionbar-base"        : 'com.gyf.immersionbar:immersionbar:3.0.0-beta01',
                 "immersionbar-components"  : 'com.gyf.immersionbar:immersionbar-components:3.0.0-beta01',
                 "immersionbar-ktx"         : 'com.gyf.immersionbar:immersionbar-ktx:3.0.0-beta01',
-
-
+                "toast"                    : 'com.hjq:toast:6.0',
 
                 //engine
                 "weex"                       : "com.taobao.android:weex_sdk:0.20.0.2@aar",

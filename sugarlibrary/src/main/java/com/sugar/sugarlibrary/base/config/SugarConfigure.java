@@ -19,6 +19,7 @@ import android.app.Application;
 import android.view.View;
 
 import com.billy.android.loading.Gloading;
+import com.hjq.toast.IToastStyle;
 import com.sugar.sugarlibrary.http.interceptor.SugarCustomHeaderInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarExceptionInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarHeaderInterceptor;
@@ -121,5 +122,10 @@ public abstract class SugarConfigure implements AppConfigureDelegate {
     @Override
     public Application getApplication() {
         return mApplication;
+    }
+
+    @Override
+    public IToastStyle getToastStyle() {
+        return null;
     }
 }
