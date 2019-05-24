@@ -28,19 +28,14 @@ public class BaseLoadingDialog {
      * @return
      */
     public Dialog createLoadingDialog(Context context, String msg) {
-
-        // 首先得到整个View
-        View view = LayoutInflater.from(context).inflate(R.layout.lib_loading_dialog_view, null);
-        // 获取整个布局
-        LinearLayout layout = (LinearLayout) view.findViewById(R.id.lib_dialog_view);
-
+        LoadingStatusView loadingStatusView = new LoadingStatusView(context, msg);
         // 创建自定义样式的Dialog
         Dialog loadingDialog = new Dialog(context, R.style.lib_loading_dialog);
         // 设置返回键返回
         loadingDialog.setCancelable(true);
         //点击空白取消
         loadingDialog.setCanceledOnTouchOutside(false);
-        loadingDialog.setContentView(layout, new LinearLayout.LayoutParams(
+        loadingDialog.setContentView(loadingStatusView, new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
         return loadingDialog;

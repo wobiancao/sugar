@@ -15,15 +15,13 @@
  */
 package com.sugar.demo.http.repository;
 
-import android.arch.lifecycle.Lifecycle;
-
 import com.sugar.demo.bean.gank.GirlsData;
 import com.sugar.demo.bean.gank.GirlsResult;
 import com.sugar.demo.core.HttpException;
 import com.sugar.demo.http.api.Gank;
+import com.sugar.sugarlibrary.base.BaseIView;
 import com.sugar.sugarlibrary.http.AppHttpClient;
 import com.sugar.sugarlibrary.http.SugarRepository;
-import com.trello.rxlifecycle2.LifecycleProvider;
 
 import java.util.List;
 
@@ -40,8 +38,8 @@ import io.reactivex.functions.Function;
 public class GankRepository extends SugarRepository implements RepositoryContract.GankModel {
 
 
-    public GankRepository(LifecycleProvider<Lifecycle.Event> provider) {
-        super(provider);
+    public GankRepository(BaseIView IView) {
+        super(IView);
     }
 
     @Override
@@ -69,9 +67,9 @@ public class GankRepository extends SugarRepository implements RepositoryContrac
 
     @Override
     public Observable<List<GirlsData>> getFuliDataRepository(String size, String index) {
-        return setUpObservable(getService()
+        return addObservable(getService()
                 .getFuliData(size, index)
-                .compose(gankTransformer()));
+                .compose(gankTransformer()), LOADING_TYPE_PAGE);
     }
 
 }

@@ -16,6 +16,7 @@
 package com.sugar.sugarlibrary.base;
 
 import android.app.Dialog;
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.billy.android.loading.Gloading;
+import com.blankj.utilcode.util.NetworkUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.gyf.immersionbar.OSUtils;
 import com.sugar.sugarlibrary.base.config.AppConfig;
@@ -32,6 +34,9 @@ import com.sugar.sugarlibrary.base.presenter.BasePresenter;
 import com.sugar.sugarlibrary.base.presenter.PresenterDispatch;
 import com.sugar.sugarlibrary.base.presenter.PresenterProviders;
 import com.sugar.sugarlibrary.util.ThemeUtil;
+import com.sugar.sugarlibrary.widget.gloading.StatusConstant;
+import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
+import com.trello.rxlifecycle2.LifecycleProvider;
 
 /**
  * @author wobiancao
@@ -51,7 +56,10 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected Dialog mDialog;
     protected abstract int getContentView();
 
-
+    @Override
+    public LifecycleProvider<Lifecycle.Event> getProvider() {
+        return AndroidLifecycle.createLifecycleProvider(this);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,7 +87,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
                 //解决软键盘与底部输入框冲突问题
                 .keyboardEnable(true)
                 //原理：如果当前设备支持状态栏字体变色，会设置状态栏字体为黑色，如果当前设备不支持状态栏字体变色，会使当前状态栏加上透明度，否则不执行透明度
-                .statusBarDarkFont(true, 0.2f)
+//                .statusBarDarkFont(true, 0.2f)
                 .statusBarColor(AppConfig.INSTANCE.getSugarConfigure().getStatusColor())
                 .init();
     }
@@ -117,7 +125,18 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     public void showLoadFailed() {
         initLoadingStatusViewIfNeed();
-        mHolder.showLoadFailed();
+        if(NetworkUtils.isConnected()){
+            mHolder.showLoadFailed();
+        }else {
+            showNetWorkError();
+        }
+
+    }
+
+    @Override
+    public void showNetWorkError() {
+        initLoadingStatusViewIfNeed();
+        mHolder.showLoadingStatus(StatusConstant.STATUS_NETWORK_ERROR);
     }
 
     @Override

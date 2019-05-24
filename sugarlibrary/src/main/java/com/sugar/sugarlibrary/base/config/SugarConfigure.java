@@ -23,6 +23,7 @@ import com.sugar.sugarlibrary.http.interceptor.SugarCustomHeaderInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarExceptionInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarHeaderInterceptor;
 import com.sugar.sugarlibrary.widget.BaseLoadingDialog;
+import com.sugar.sugarlibrary.widget.gloading.SugarGloadAdapter;
 
 import java.util.TreeMap;
 
@@ -88,12 +89,7 @@ public abstract class SugarConfigure implements AppConfigureDelegate {
 
     @Override
     public Gloading.Adapter getGloadingAdapter() {
-        return new Gloading.Adapter() {
-            @Override
-            public View getView(Gloading.Holder holder, View convertView, int status) {
-                return null;
-            }
-        };
+        return new SugarGloadAdapter();
     }
 
 

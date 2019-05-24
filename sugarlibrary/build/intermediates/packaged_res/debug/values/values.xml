@@ -10,6 +10,7 @@
     <color name="ball2">#FFEB3B</color>
     <color name="ball3">#FF06CB7E</color>
     <color name="ball4">#FFF55122</color>
+    <color name="libColorGray">#FF999999</color>
     <color name="libColorTransparent">#00000000</color>
     <string name="app_name">SugarLibrary</string>
     <style name="lib_loading_dialog" parent="android:style/Theme.Dialog">

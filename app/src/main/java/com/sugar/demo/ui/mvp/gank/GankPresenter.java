@@ -32,25 +32,20 @@ public class GankPresenter extends BasePresenter<GankContract.IView, GankReposit
 
     @Override
     protected void initRepository() {
-        mModel = new GankRepository(provider);
+        mModel = new GankRepository(mView);
     }
 
     @Override
     public void getFuliDataRepository(String size, String index) {
 
         mModel.getFuliDataRepository(size, index)
-                .doOnSubscribe(disposable -> {
-                    mView.showDialogLoading();
-                })
-                .doFinally(() -> {
-                    mView.hideDialogLoading();
-                })
                 .subscribe(new ErrorHandleSubscriber<List<GirlsData>>(rxErrorHandler) {
                     @Override
                     public void onNext(List<GirlsData> girlsResults) {
                         mView.bindData(girlsResults);
                     }
-                });
+                })
+                ;
     }
 
 

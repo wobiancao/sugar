@@ -30,18 +30,12 @@ public class WanPresenter extends BasePresenter<WanContract.IView, WanRepository
 
     @Override
     protected void initRepository() {
-        mModel = new WanRepository(provider);
+        mModel = new WanRepository(mView);
     }
 
     @Override
     public void getWanArticleList(String index) {
         mModel.getWanArticleList(index)
-                .doOnSubscribe(disposable -> {
-                    mView.showDialogLoading();
-                })
-                .doFinally(() -> {
-                    mView.hideDialogLoading();
-                })
                 .subscribe(new ErrorHandleSubscriber<WanData>(rxErrorHandler) {
                     @Override
                     public void onNext(WanData wanData) {

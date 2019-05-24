@@ -9,18 +9,26 @@
     >
 
     <com.github.glomadrian.loadingballs.BallView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         lib:balls="3"
-        lib:movement_cycle_time="1500"
-        lib:size_cycle_time="500"
-        lib:enable_size_animation="false"
+        lib:movement_cycle_time="1000"
+        lib:size_cycle_time="300"
+        lib:enable_size_animation="true"
         lib:ball_colors="@array/colors"
-        lib:path="triangle"
-        lib:ball_size="5dp"
-        lib:min_ball_size="5dp"
-        lib:max_ball_size="5dp"
+        lib:path="circle"
+        lib:ball_size="6dp"
+        lib:min_ball_size="3.5dp"
+        lib:max_ball_size="6dp"
         android:layout_gravity="center"
         />
+    <TextView
+        android:id="@+id/lib_loading_msg"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_gravity="bottom"
+        android:textSize="13sp"
+        android:textColor="@color/libColorGray"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

@@ -24,8 +24,8 @@ import com.sugar.demo.bean.wan.WanData;
 import com.sugar.demo.ui.mvp.wan.WanContract;
 import com.sugar.demo.ui.mvp.wan.WanPresenter;
 import com.sugar.sugarlibrary.base.BaseActivity;
-import com.sugar.sugarlibrary.base.presenter.anno.CreatePresenter;
-import com.sugar.sugarlibrary.base.presenter.anno.PresenterVariable;
+import com.sugar.sugarlibrary.base.anno.CreatePresenter;
+import com.sugar.sugarlibrary.base.anno.PresenterVariable;
 
 /**
  * @author wobiancao

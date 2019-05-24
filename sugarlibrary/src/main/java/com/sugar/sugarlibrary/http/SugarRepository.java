@@ -15,9 +15,8 @@
  */
 package com.sugar.sugarlibrary.http;
 
-import android.arch.lifecycle.Lifecycle;
-
-import com.trello.rxlifecycle2.LifecycleProvider;
+import com.blankj.utilcode.util.LogUtils;
+import com.sugar.sugarlibrary.base.BaseIView;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -29,22 +28,70 @@ import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
  * @date 2019/5/20
  * desc :
  */
-public  class SugarRepository {
+public class SugarRepository {
+    /**
+     * 0 没loading 1 dialog形式  2page形式
+     */
+    protected final static int LOADING_TYPE_NULL = 0;
+    /**
+     * 0 没loading 1 dialog形式  2page形式
+     */
+    protected final static int LOADING_TYPE_DIALOG = 1;
+    /**
+     * 0 没loading 1 dialog形式  2page形式
+     */
+    protected final static int LOADING_TYPE_PAGE = 2;
+    protected BaseIView mIView;
 
-    protected LifecycleProvider<Lifecycle.Event> mLifecycleProvider;
-
-    public SugarRepository(LifecycleProvider<Lifecycle.Event> provider) {
-        this.mLifecycleProvider = provider;
+    public SugarRepository(BaseIView IView) {
+        mIView = IView;
     }
 
-    protected Observable setUpObservable(Observable observable){
+    protected Observable addObservable(Observable observable) {
+        if (mIView == null) {
+            return null;
+        }
+        return customObservable(observable);
+    }
 
-       return observable.compose(mLifecycleProvider.bindToLifecycle())
+    protected Observable addObservable(Observable observable, int loadingType) {
+        if (mIView == null) {
+            return null;
+        }
+        return customObservable(observable)
+                .doOnSubscribe(disposable -> {
+                    if (loadingType > 0) {
+                        if (loadingType == LOADING_TYPE_DIALOG) {
+                            mIView.showDialogLoading();
+                        } else {
+                            mIView.showLoading();
+                        }
+                    }
+                });
+    }
+
+    private Observable customObservable(Observable observable) {
+        return observable
+                .compose(mIView.getProvider().bindToLifecycle())
                 .retryWhen(new RetryWithDelay(3, 2))
                 .subscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread())
+                .doFinally(() -> {
+                    if (mIView != null) {
+                        mIView.hideDialogLoading();
+                    }
+                })
+                .doOnNext(o -> {
+                    if (mIView != null) {
+                        mIView.showLoadSuccess();
+                    }
+                })
+                .doOnError(throwable -> {
+                    LogUtils.e("Repository------" + throwable);
+                    if (mIView != null) {
+                        mIView.showLoadFailed();
+                    }
+                });
     }
-
-
 }

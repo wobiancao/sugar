@@ -21,8 +21,8 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 
 
-import com.sugar.sugarlibrary.base.presenter.anno.CreatePresenter;
-import com.sugar.sugarlibrary.base.presenter.anno.PresenterVariable;
+import com.sugar.sugarlibrary.base.anno.CreatePresenter;
+import com.sugar.sugarlibrary.base.anno.PresenterVariable;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

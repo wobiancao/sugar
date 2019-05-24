@@ -324,6 +324,18 @@ attr listPreferredItemPaddingLeft
 attr listPreferredItemPaddingRight
 attr logo
 attr logoDescription
+attr lottie_autoPlay
+attr lottie_colorFilter
+attr lottie_enableMergePathsForKitKatAndAbove
+attr lottie_fileName
+attr lottie_imageAssetsFolder
+attr lottie_loop
+attr lottie_progress
+attr lottie_rawRes
+attr lottie_repeatCount
+attr lottie_repeatMode
+attr lottie_scale
+attr lottie_url
 attr materialButtonStyle
 attr materialCardViewStyle
 attr maxActionInlineWidth
@@ -585,6 +597,7 @@ color dim_foreground_disabled_material_dark
 color dim_foreground_disabled_material_light
 color dim_foreground_material_dark
 color dim_foreground_material_light
+color error_color_material
 color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
@@ -593,6 +606,7 @@ color highlighted_text_material_dark
 color highlighted_text_material_light
 color hint_foreground_material_dark
 color hint_foreground_material_light
+color libColorGray
 color libColorTransparent
 color material_blue_grey_800
 color material_blue_grey_900
@@ -1057,6 +1071,7 @@ id disableHome
 id edit_query
 id end
 id end_padder
+id error_retry
 id expand_activities_button
 id expanded_menu
 id fill
@@ -1081,10 +1096,12 @@ id labeled
 id largeLabel
 id left
 id lib_dialog_view
+id lib_loading_msg
 id line1
 id line3
 id listMode
 id list_item
+id lottie_layer_name
 id masked
 id media_actions
 id message
@@ -1108,6 +1125,8 @@ id pin
 id progress_circular
 id progress_horizontal
 id radio
+id restart
+id reverse
 id right
 id right_icon
 id right_side
@@ -1243,7 +1262,12 @@ layout design_navigation_item_subheader
 layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
+layout lib_empty_page_view
+layout lib_error_page_view
 layout lib_loading_dialog_view
+layout lib_loading_page_view
+layout lib_offilne_page_view
+layout lib_success_page_view
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout notification_action
@@ -1886,6 +1910,7 @@ styleable LinearLayoutCompat android_baselineAligned android_baselineAlignedChil
 styleable LinearLayoutCompat_Layout android_layout_gravity android_layout_height android_layout_weight android_layout_width
 styleable ListPopupWindow android_dropDownHorizontalOffset android_dropDownVerticalOffset
 styleable LoadingBalls ball_colors ball_size balls enable_size_animation max_ball_size min_ball_size movement_cycle_time path size_cycle_time
+styleable LottieAnimationView lottie_autoPlay lottie_colorFilter lottie_enableMergePathsForKitKatAndAbove lottie_fileName lottie_imageAssetsFolder lottie_loop lottie_progress lottie_rawRes lottie_repeatCount lottie_repeatMode lottie_scale lottie_url
 styleable MaterialButton android_insetBottom android_insetLeft android_insetRight android_insetTop backgroundTint backgroundTintMode cornerRadius icon iconGravity iconPadding iconSize iconTint iconTintMode rippleColor strokeColor strokeWidth
 styleable MaterialCardView strokeColor strokeWidth
 styleable MaterialComponentsTheme bottomSheetDialogTheme bottomSheetStyle chipGroupStyle chipStandaloneStyle chipStyle colorAccent colorBackgroundFloating colorPrimary colorPrimaryDark colorSecondary editTextStyle floatingActionButtonStyle materialButtonStyle materialCardViewStyle navigationViewStyle scrimBackground snackbarButtonStyle tabStyle textAppearanceBody1 textAppearanceBody2 textAppearanceButton textAppearanceCaption textAppearanceHeadline1 textAppearanceHeadline2 textAppearanceHeadline3 textAppearanceHeadline4 textAppearanceHeadline5 textAppearanceHeadline6 textAppearanceOverline textAppearanceSubtitle1 textAppearanceSubtitle2 textInputStyle

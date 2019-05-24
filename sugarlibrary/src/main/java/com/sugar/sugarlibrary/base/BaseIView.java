@@ -15,6 +15,10 @@
  */
 package com.sugar.sugarlibrary.base;
 
+import android.arch.lifecycle.Lifecycle;
+
+import com.trello.rxlifecycle2.LifecycleProvider;
+
 /**
  * @author wobiancao
  * @date 2019/5/13
@@ -29,4 +33,6 @@ public interface BaseIView {
     void showDialogLoading();
     void showDialogLoading(String msg);
     void hideDialogLoading();
+    void showNetWorkError();
+    LifecycleProvider<Lifecycle.Event> getProvider();
 }

@@ -15,7 +15,6 @@
  */
 package com.sugar.sugarlibrary.base.presenter;
 
-import android.arch.lifecycle.Lifecycle;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -24,8 +23,6 @@ import com.sugar.sugarlibrary.base.BaseIView;
 import com.sugar.sugarlibrary.base.config.AppConfig;
 import com.sugar.sugarlibrary.http.SugarRepository;
 import com.sugar.sugarlibrary.rx.RxEventBus;
-import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
-import com.trello.rxlifecycle2.LifecycleProvider;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -45,16 +42,16 @@ public abstract class BasePresenter <V extends BaseIView, M extends SugarReposit
     protected AppCompatActivity mContext;
     protected V mView;
     protected M mModel;
-    protected LifecycleProvider<Lifecycle.Event> provider;
     protected void attachView(AppCompatActivity activity, V view) {
         this.mContext = activity;
         this.mView = view;
-        provider = AndroidLifecycle.createLifecycleProvider(activity);
-        mModel = (M) new SugarRepository(provider);
+        mModel = (M) new SugarRepository(mView);
         rxErrorHandler = AppConfig.INSTANCE.getRxErrorHandler();
         initRepository();
         handleEvent();
     }
+
+
 
     /**
      * 初始化相关数据仓库
@@ -63,7 +60,6 @@ public abstract class BasePresenter <V extends BaseIView, M extends SugarReposit
 
     protected void detachView() {
         this.mView = null;
-        this.provider = null;
     }
 
     protected boolean isAttachView() {
@@ -74,34 +70,19 @@ public abstract class BasePresenter <V extends BaseIView, M extends SugarReposit
 
     }
 
-    protected void subscribe(final Observable observable, ErrorHandleSubscriber subscriber) {
-        if (mView == null || provider == null) {return;}
-        observable.subscribeOn(Schedulers.io())
-                //遇到错误时重试,第一个参数为重试几次,第二个参数为重试的间隔
-                .retryWhen(new RetryWithDelay(3, 2))
-//
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doFinally(() -> {
-                    mView.hideDialogLoading();
-                })
-                //使用 Rxlifecycle,使 Disposable 和 Activity 一起销毁
-                .compose(provider.bindToLifecycle())
-                .subscribe(subscriber);
-    }
 
     protected void subscribeEvent(final Class<?> eventType, ErrorHandleSubscriber subscriber){
-        if (mView == null || provider == null) {return;}
+        if (mView == null) {return;}
         RxEventBus.getInstance().toObservable(eventType)
-                .compose(provider.bindToLifecycle())
+                .compose(mView.getProvider().bindToLifecycle())
                 .subscribe(subscriber);
     }
 
 
     protected void subscribeStickyEvent(final Class<?> eventType, ErrorHandleSubscriber subscriber){
-        if (mView == null || provider == null) {return;}
+        if (mView == null) {return;}
         RxEventBus.getInstance().toObservableSticky(eventType)
-                .compose(provider.bindToLifecycle())
+                .compose(mView.getProvider().bindToLifecycle())
                 .subscribe(subscriber);
     }
 

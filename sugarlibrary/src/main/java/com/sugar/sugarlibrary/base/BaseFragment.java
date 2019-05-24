@@ -17,6 +17,7 @@ package com.sugar.sugarlibrary.base;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -34,6 +35,8 @@ import com.sugar.sugarlibrary.base.config.AppConfig;
 import com.sugar.sugarlibrary.base.presenter.BasePresenter;
 import com.sugar.sugarlibrary.base.presenter.PresenterDispatch;
 import com.sugar.sugarlibrary.base.presenter.PresenterProviders;
+import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
+import com.trello.rxlifecycle2.LifecycleProvider;
 
 /**
  * @author wobiancao
@@ -61,6 +64,11 @@ public abstract class BaseFragment<P extends BasePresenter> extends SimpleImmers
         mActivity = (Activity) context;
         mContext = context;
         super.onAttach(context);
+    }
+
+    @Override
+    public LifecycleProvider<Lifecycle.Event> getProvider() {
+        return AndroidLifecycle.createLifecycleProvider(this);
     }
 
     @Nullable

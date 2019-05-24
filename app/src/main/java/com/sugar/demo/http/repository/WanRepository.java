@@ -15,18 +15,13 @@
  */
 package com.sugar.demo.http.repository;
 
-import android.arch.lifecycle.Lifecycle;
-
-import com.sugar.demo.bean.wan.WanArticle;
 import com.sugar.demo.bean.wan.WanData;
 import com.sugar.demo.bean.wan.WanResult;
 import com.sugar.demo.core.HttpException;
 import com.sugar.demo.http.api.Wan;
+import com.sugar.sugarlibrary.base.BaseIView;
 import com.sugar.sugarlibrary.http.AppHttpClient;
 import com.sugar.sugarlibrary.http.SugarRepository;
-import com.trello.rxlifecycle2.LifecycleProvider;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -39,8 +34,9 @@ import io.reactivex.functions.Function;
  * desc :
  */
 public class WanRepository extends SugarRepository implements RepositoryContract.WanModel {
-    public WanRepository(LifecycleProvider<Lifecycle.Event> provider) {
-        super(provider);
+
+    public WanRepository(BaseIView IView) {
+        super(IView);
     }
 
     @Override
@@ -65,9 +61,9 @@ public class WanRepository extends SugarRepository implements RepositoryContract
 
     @Override
     public Observable<WanData> getWanArticleList(String index) {
-        return setUpObservable(getService()
+        return addObservable(getService()
                 .getWanArticleList(index)
-                .compose(wanTransformer()));
+                .compose(wanTransformer()), LOADING_TYPE_DIALOG);
     }
 
 

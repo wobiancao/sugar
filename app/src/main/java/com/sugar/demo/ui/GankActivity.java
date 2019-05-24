@@ -24,8 +24,8 @@ import com.sugar.demo.bean.gank.GirlsData;
 import com.sugar.demo.ui.mvp.gank.GankContract;
 import com.sugar.demo.ui.mvp.gank.GankPresenter;
 import com.sugar.sugarlibrary.base.BaseActivity;
-import com.sugar.sugarlibrary.base.presenter.anno.CreatePresenter;
-import com.sugar.sugarlibrary.base.presenter.anno.PresenterVariable;
+import com.sugar.sugarlibrary.base.anno.CreatePresenter;
+import com.sugar.sugarlibrary.base.anno.PresenterVariable;
 
 import java.util.List;
 

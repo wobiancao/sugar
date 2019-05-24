@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_height="match_parent">
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:lottie_autoPlay="true"
+        android:layout_gravity="center"
+        app:lottie_loop="true"
+        android:scaleType="centerCrop"
+        app:lottie_fileName="boy_network_offonlie.json"
+        />
+
+    <TextView
+        android:id="@+id/error_retry"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="16sp"
+        android:textColor="@color/libColorGray"
+        android:text="请检查网络设置"
+        android:padding="20dp"
+        android:layout_height="wrap_content" />
+</LinearLayout>
