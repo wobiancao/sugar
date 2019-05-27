@@ -8,7 +8,7 @@
     android:orientation="vertical"
     >
 
-    <com.github.glomadrian.loadingballs.BallView
+    <com.sugar.sugarlibrary.widget.loadingballs.BallView
         android:layout_width="50dp"
         android:layout_height="50dp"
         lib:balls="3"

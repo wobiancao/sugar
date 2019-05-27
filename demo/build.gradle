@@ -28,4 +28,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation project(':sugarlibrary')
 //    api rootProject.ext.dependencies["sugar"]
+//    api rootProject.ext.dependencies["gson"]
 }

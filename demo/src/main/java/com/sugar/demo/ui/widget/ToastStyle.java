@@ -37,7 +37,7 @@ public class ToastStyle implements IToastStyle {
 
     @Override
     public int getBackgroundColor() {
-        return 0XFF512DA8;
+        return 0XFFEB9D3E;
     }
 
     @Override

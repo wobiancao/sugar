@@ -4,7 +4,17 @@
         <item>@color/ball2</item>
         <item>@color/ball3</item>
         <item>@color/ball4</item>
-    </integer-array></file><file path="/Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/res/values/colors.xml" qualifiers=""><color name="libColorTransparent">#00000000</color><color name="libColorGray">#FF999999</color></file><file path="/Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/res/values/strings.xml" qualifiers=""><string name="app_name">SugarLibrary</string></file><file path="/Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/res/values/styles.xml" qualifiers=""><style name="lib_loading_dialog" parent="android:style/Theme.Dialog">
+    </integer-array><declare-styleable name="LoadingBalls">
+        <attr format="integer" name="balls"/>
+        <attr format="integer" name="movement_cycle_time"/>
+        <attr format="integer" name="size_cycle_time"/>
+        <attr format="reference" name="ball_colors"/>
+        <attr format="dimension" name="ball_size"/>
+        <attr format="boolean" name="enable_size_animation"/>
+        <attr format="dimension" name="min_ball_size"/>
+        <attr format="dimension" name="max_ball_size"/>
+        <attr format="string" name="path"/>
+    </declare-styleable></file><file path="/Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/res/values/colors.xml" qualifiers=""><color name="libColorTransparent">#00000000</color><color name="libColorGray">#FF999999</color></file><file path="/Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/res/values/strings.xml" qualifiers=""><string name="app_name">SugarLibrary</string></file><file path="/Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/main/res/values/styles.xml" qualifiers=""><style name="lib_loading_dialog" parent="android:style/Theme.Dialog">
         
         <item name="android:windowFrame">@null</item>
         
@@ -19,4 +29,14 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         
         <item name="android:backgroundDimEnabled">false</item>
-    </style></file></source><source path="/Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/build/generated/res/rs/debug"/><source path="/Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/debug/res"/></dataSet><mergedItems/></merger>
+    </style></file></source><source path="/Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/build/generated/res/rs/debug"/><source path="/Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/xiaoyuwang/Desktop/code/Sugar/sugarlibrary/src/debug/res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="LoadingBalls">
+        <attr format="integer" name="balls"/>
+        <attr format="integer" name="movement_cycle_time"/>
+        <attr format="integer" name="size_cycle_time"/>
+        <attr format="reference" name="ball_colors"/>
+        <attr format="dimension" name="ball_size"/>
+        <attr format="boolean" name="enable_size_animation"/>
+        <attr format="dimension" name="min_ball_size"/>
+        <attr format="dimension" name="max_ball_size"/>
+        <attr format="string" name="path"/>
+    </declare-styleable></configuration></mergedItems></merger>

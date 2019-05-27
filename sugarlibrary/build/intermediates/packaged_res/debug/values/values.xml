@@ -14,19 +14,30 @@
     <color name="libColorTransparent">#00000000</color>
     <string name="app_name">SugarLibrary</string>
     <style name="lib_loading_dialog" parent="android:style/Theme.Dialog">
-        <!-- 是否有边框 -->
+        
         <item name="android:windowFrame">@null</item>
-        <!--是否在悬浮Activity之上  -->
+        
         <item name="android:windowIsFloating">true</item>
-        <!--标题  -->
+        
         <item name="android:windowNoTitle">true</item>
-        <!--阴影  -->
+        
         <item name="android:windowIsTranslucent">true</item>
-        <!--透明背景-->
+        
         <item name="android:background">@android:color/transparent</item>
-        <!--窗口背景透明-->
+        
         <item name="android:windowBackground">@android:color/transparent</item>
-        <!--弹窗背景是否变暗-->
+        
         <item name="android:backgroundDimEnabled">false</item>
     </style>
+    <declare-styleable name="LoadingBalls">
+        <attr format="integer" name="balls"/>
+        <attr format="integer" name="movement_cycle_time"/>
+        <attr format="integer" name="size_cycle_time"/>
+        <attr format="reference" name="ball_colors"/>
+        <attr format="dimension" name="ball_size"/>
+        <attr format="boolean" name="enable_size_animation"/>
+        <attr format="dimension" name="min_ball_size"/>
+        <attr format="dimension" name="max_ball_size"/>
+        <attr format="string" name="path"/>
+    </declare-styleable>
 </resources>
