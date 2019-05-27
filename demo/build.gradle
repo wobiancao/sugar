@@ -4,7 +4,7 @@ apply from:"../common_app_build.gradle"
 android {
 
     defaultConfig {
-        applicationId "com.sugar.lib"
+        applicationId "com.sugar.demo"
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]

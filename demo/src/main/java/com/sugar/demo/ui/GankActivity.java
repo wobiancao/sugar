@@ -16,46 +16,73 @@
 package com.sugar.demo.ui;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.sugar.demo.R;
-import com.sugar.demo.bean.wan.WanData;
-import com.sugar.demo.ui.mvp.wan.WanContract;
-import com.sugar.demo.ui.mvp.wan.WanPresenter;
+import com.sugar.demo.bean.gank.GirlsData;
+import com.sugar.demo.ui.mvp.gank.GankContract;
+import com.sugar.demo.ui.mvp.gank.GankPresenter;
 import com.sugar.sugarlibrary.base.BaseActivity;
 import com.sugar.sugarlibrary.base.anno.CreatePresenter;
 import com.sugar.sugarlibrary.base.anno.PresenterVariable;
+
+import java.util.List;
 
 /**
  * @author wobiancao
  * @date 2019-05-21
  * desc :
  */
-@CreatePresenter(presenter = WanPresenter.class)
-public class WanActivity extends BaseActivity<WanPresenter> implements WanContract.IView {
-    @PresenterVariable
-    WanPresenter mPresenter;
-    TextView mInfoView;
+@CreatePresenter(presenter = GankPresenter.class)
+public class GankActivity extends BaseActivity<GankPresenter> implements GankContract.IView {
 
+    @PresenterVariable
+    GankPresenter mPresenter;
+
+    TextView mInfoView;
+    Toolbar mToolbar;
     @Override
     protected int getContentView() {
         return R.layout.gank_activity_list;
     }
 
+
+
     @Override
     public void init(Bundle savedInstanceState) {
         mInfoView = findViewById(R.id.tv_info);
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle("Gank.io");
+        }
     }
 
     @Override
     public void loadData() {
-        mPresenter.getWanArticleList("1");
+        mPresenter.getFuliDataRepository("10", "1");
     }
 
     @Override
-    public void bindData(WanData data) {
+    public void bindData(List<GirlsData> data) {
         String jsonStr = new Gson().toJson(data);
         mInfoView.setText(jsonStr);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

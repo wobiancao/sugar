@@ -23,34 +23,28 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.sugar.demo.R;
-import com.sugar.demo.bean.gank.GirlsData;
-import com.sugar.demo.ui.mvp.gank.GankContract;
-import com.sugar.demo.ui.mvp.gank.GankPresenter;
+import com.sugar.demo.bean.wan.WanData;
+import com.sugar.demo.ui.mvp.wan.WanContract;
+import com.sugar.demo.ui.mvp.wan.WanPresenter;
 import com.sugar.sugarlibrary.base.BaseActivity;
 import com.sugar.sugarlibrary.base.anno.CreatePresenter;
 import com.sugar.sugarlibrary.base.anno.PresenterVariable;
-
-import java.util.List;
 
 /**
  * @author wobiancao
  * @date 2019-05-21
  * desc :
  */
-@CreatePresenter(presenter = GankPresenter.class)
-public class GankActivity extends BaseActivity<GankPresenter> implements GankContract.IView {
-
+@CreatePresenter(presenter = WanPresenter.class)
+public class WanActivity extends BaseActivity<WanPresenter> implements WanContract.IView {
     @PresenterVariable
-    GankPresenter mPresenter;
-
+    WanPresenter mPresenter;
     TextView mInfoView;
     Toolbar mToolbar;
     @Override
     protected int getContentView() {
         return R.layout.gank_activity_list;
     }
-
-
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -60,22 +54,21 @@ public class GankActivity extends BaseActivity<GankPresenter> implements GankCon
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Gank.io");
+            actionBar.setTitle("WanAndroid");
         }
     }
 
     @Override
     public void loadData() {
-        mPresenter.getFuliDataRepository("10", "1");
+        mPresenter.getWanArticleList("1");
     }
 
     @Override
-    public void bindData(List<GirlsData> data) {
+    public void bindData(WanData data) {
         String jsonStr = new Gson().toJson(data);
         mInfoView.setText(jsonStr);
     }
 
-    //菜单
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();

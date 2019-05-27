@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.gyf.immersionbar.ImmersionBar;
 import com.sugar.demo.R;
 import com.sugar.demo.router.RouterPageContant;
 import com.sugar.sugarlibrary.base.BaseActivity;
@@ -18,6 +19,13 @@ public class MainActivity extends BaseActivity {
     }
 
 
+    @Override
+    protected void initImmersionBar() {
+        ImmersionBar.with(this)
+                .transparentStatusBar()
+                .statusBarDarkFont(true, 0.2f)
+                .init();
+    }
 
     @Override
     public void init(Bundle savedInstanceState) {

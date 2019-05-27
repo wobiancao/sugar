@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.gyf.immersionbar.ImmersionBar;
 import com.sugar.demo.R;
 import com.sugar.demo.router.RouterPageContant;
 import com.sugar.sugarlibrary.base.BaseActivity;
@@ -33,6 +34,14 @@ import com.sugar.sugarlibrary.router.ARouterUtils;
  */
 public class StartActivity extends BaseActivity {
     LottieAnimationView mAnimationView;
+
+    @Override
+    protected void initImmersionBar() {
+        ImmersionBar.with(this)
+                .transparentStatusBar()
+                .statusBarDarkFont(true, 0.2f)
+                .init();
+    }
 
     @Override
     protected int getContentView() {
@@ -51,7 +60,7 @@ public class StartActivity extends BaseActivity {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                if (!isDestroyed()){
+                if (!isDestroyed()) {
                     ARouterUtils.navigation(RouterPageContant.MAIN_PAGE);
                     finish();
                 }
