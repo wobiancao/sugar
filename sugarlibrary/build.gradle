@@ -92,7 +92,7 @@ dependencies{
         exclude module: 'retrofit'
     }
     api rootProject.ext.dependencies["retorfitUrlManager"]
-    implementation rootProject.ext.dependencies["loadingBall"]
+    api rootProject.ext.dependencies["loadingBall"]
     api rootProject.ext.dependencies["lottie"]
     api rootProject.ext.dependencies["toast"]
 }
