@@ -2,13 +2,7 @@ package com.sugar.sugarlibrary.widget;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.sugar.sugarlibrary.R;
 

@@ -16,7 +16,6 @@
 package com.sugar.sugarlibrary.base.config;
 
 import android.app.Application;
-import android.view.View;
 
 import com.billy.android.loading.Gloading;
 import com.hjq.toast.IToastStyle;

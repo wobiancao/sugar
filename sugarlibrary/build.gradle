@@ -1,7 +1,12 @@
 apply from:"../common_libary_build.gradle"
 apply from: '../bintray_publish.gradle'
 
-
+android{
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
 dependencies{
     api fileTree(dir: 'libs', include: ['*.jar'])
     api (rootProject.ext.dependencies['support-v4']){
@@ -92,7 +97,7 @@ dependencies{
         exclude module: 'retrofit'
     }
     api rootProject.ext.dependencies["retorfitUrlManager"]
-    api rootProject.ext.dependencies["loadingBall"]
+    implementation rootProject.ext.dependencies["loadingBall"]
     api rootProject.ext.dependencies["lottie"]
     api rootProject.ext.dependencies["toast"]
 }
