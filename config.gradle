@@ -7,7 +7,7 @@
                 minSdkVersion           : 17,
                 targetSdkVersion        : 28,
                 versionCode             : 21,
-                versionName             : "1.0.1.1"    //必须是int或者float，否则影响线上升级
+                versionName             : "1.0.1.2"    //必须是int或者float，否则影响线上升级
         ]
         version = [
                     androidSupportSdkVersion: "28.0.0",
@@ -104,7 +104,7 @@
                 //cache
                 "disklru"                  : 'com.jakewharton:disklrucache:2.0.2',
                 //sugar
-                "sugar"                    : 'com.wobiancao:sugarlibrary:1.0.3@aar'
+                "sugar"                    : 'com.github.wobiancao:sugar:1.0.1.1'
 
 
 
