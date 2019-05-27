@@ -23,6 +23,7 @@ import com.sugar.sugarlibrary.base.BaseIView;
 import com.sugar.sugarlibrary.base.config.AppConfig;
 import com.sugar.sugarlibrary.http.SugarRepository;
 import com.sugar.sugarlibrary.rx.RxEventBus;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -42,16 +43,20 @@ public abstract class BasePresenter <V extends BaseIView, M extends SugarReposit
     protected AppCompatActivity mContext;
     protected V mView;
     protected M mModel;
+    private RxPermissions mRxPermissions;
     protected void attachView(AppCompatActivity activity, V view) {
         this.mContext = activity;
         this.mView = view;
         mModel = (M) new SugarRepository(mView);
         rxErrorHandler = AppConfig.INSTANCE.getRxErrorHandler();
+        mRxPermissions = new RxPermissions(activity);
         initRepository();
         handleEvent();
     }
 
-
+    public RxPermissions getRxPermissions() {
+        return mRxPermissions;
+    }
 
     /**
      * 初始化相关数据仓库

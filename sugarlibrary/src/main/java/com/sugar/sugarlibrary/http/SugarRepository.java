@@ -73,7 +73,7 @@ public class SugarRepository {
     private Observable customObservable(Observable observable) {
         return observable
                 .compose(mIView.getProvider().bindToLifecycle())
-                .retryWhen(new RetryWithDelay(3, 2))
+                .retryWhen(new RetryWithDelay(2, 2))
                 .subscribeOn(Schedulers.io())
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())

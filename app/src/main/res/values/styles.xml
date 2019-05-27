@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -12,5 +12,21 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="overlapAnchor">false</item>
+        <item name="colorAccent">@color/colorWhite</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="popupTheme">@style/AppTheme.PopupOverlay</item>
+        <item name="theme">@style/ToolbarTheme</item>
+        <item name="titleTextColor">@color/colorWhite</item>
+    </style>
+
+    <!--设置按钮颜色-->
+    <style name="ToolbarTheme">
+        <item name="colorControlNormal">@color/colorWhite</item>
     </style>
 </resources>

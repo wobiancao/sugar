@@ -23,7 +23,7 @@ public class SugarGloadAdapter implements Gloading.Adapter {
                 convertView = new GlobalEmptyView(holder.getContext());
                 break;
             case StatusConstant.STATUS_LOAD_SUCCESS:
-//                convertView = new GlobalSuccessViewView(holder.getContext());
+                convertView = new GlobalSuccessViewView(holder.getContext());
                 break;
             case StatusConstant.STATUS_NETWORK_ERROR:
                 convertView = new GlobalNetworkErrorViewView(holder.getContext(), holder.getRetryTask());

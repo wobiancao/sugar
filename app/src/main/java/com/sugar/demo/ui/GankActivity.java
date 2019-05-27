@@ -16,6 +16,9 @@
 package com.sugar.demo.ui;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -41,7 +44,7 @@ public class GankActivity extends BaseActivity<GankPresenter> implements GankCon
     GankPresenter mPresenter;
 
     TextView mInfoView;
-
+    Toolbar mToolbar;
     @Override
     protected int getContentView() {
         return R.layout.gank_activity_list;
@@ -52,7 +55,13 @@ public class GankActivity extends BaseActivity<GankPresenter> implements GankCon
     @Override
     public void init(Bundle savedInstanceState) {
         mInfoView = findViewById(R.id.tv_info);
-
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle("Gank.io");
+        }
     }
 
     @Override
@@ -64,5 +73,17 @@ public class GankActivity extends BaseActivity<GankPresenter> implements GankCon
     public void bindData(List<GirlsData> data) {
         String jsonStr = new Gson().toJson(data);
         mInfoView.setText(jsonStr);
+    }
+
+    //菜单
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

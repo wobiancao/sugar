@@ -15,5 +15,6 @@ public class GlobalSuccessViewView extends LinearLayout {
     public GlobalSuccessViewView(Context context) {
         super(context);
         LayoutInflater.from(context).inflate(R.layout.lib_success_page_view, this, true);
+        setVisibility(GONE);
     }
 }
