@@ -53,6 +53,7 @@ public class StartActivity extends BaseActivity {
             public void onAnimationEnd(Animator animator) {
                 if (!isDestroyed()){
                     ARouterUtils.navigation(RouterPageContant.MAIN_PAGE);
+                    finish();
                 }
             }
 
