@@ -29,14 +29,14 @@ import com.blankj.utilcode.util.NetworkUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.gyf.immersionbar.OSUtils;
 import com.sugar.sugarlibrary.base.config.AppConfig;
-import com.sugar.sugarlibrary.base.config.AppSetting;
 import com.sugar.sugarlibrary.base.presenter.BasePresenter;
 import com.sugar.sugarlibrary.base.presenter.PresenterDispatch;
 import com.sugar.sugarlibrary.base.presenter.PresenterProviders;
-import com.sugar.sugarlibrary.util.ThemeUtil;
 import com.sugar.sugarlibrary.widget.gloading.StatusConstant;
 import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
 import com.trello.rxlifecycle2.LifecycleProvider;
+
+import static com.sugar.sugarlibrary.util.Constant.USE_SELEF_VIEW;
 
 /**
  * @author wobiancao
@@ -64,7 +64,10 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getContentView());
+        if (getContentView() != USE_SELEF_VIEW){
+            setContentView(getContentView());
+        }
+        preInit(savedInstanceState);
         mContext = this;
         mPresenterProviders = PresenterProviders.inject(this);
         mPresenterDispatch = new PresenterDispatch(mPresenterProviders);
@@ -73,6 +76,14 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         init(savedInstanceState);
         initImmersionBar();
         loadData();
+    }
+
+    /**
+     * 在init方法之前 用于getContentView == -1的情况
+     * @param savedInstanceState
+     */
+    protected void preInit(Bundle savedInstanceState) {
+
     }
 
     public abstract void init(Bundle savedInstanceState);

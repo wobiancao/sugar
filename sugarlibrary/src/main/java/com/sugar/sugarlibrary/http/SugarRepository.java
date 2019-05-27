@@ -83,12 +83,13 @@ public class SugarRepository {
                     }
                 })
                 .doOnNext(o -> {
+                    LogUtils.e("doOnNext------" + o);
                     if (mIView != null) {
                         mIView.showLoadSuccess();
                     }
                 })
                 .doOnError(throwable -> {
-                    LogUtils.e("Repository------" + throwable);
+                    LogUtils.e("doOnError------" + throwable);
                     if (mIView != null) {
                         mIView.showLoadFailed();
                     }

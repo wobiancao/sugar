@@ -38,12 +38,15 @@ import com.sugar.sugarlibrary.base.presenter.PresenterProviders;
 import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
 import com.trello.rxlifecycle2.LifecycleProvider;
 
+import static com.sugar.sugarlibrary.util.Constant.USE_SELEF_VIEW;
+
 /**
  * @author wobiancao
  * @date 2019/5/15
  * desc :
  */
 public abstract class BaseFragment<P extends BasePresenter> extends SimpleImmersionFragment implements BaseIView{
+
     protected Gloading.Holder mHolder;
     private PresenterProviders mPresenterProviders;
     private PresenterDispatch mPresenterDispatch;
@@ -81,12 +84,25 @@ public abstract class BaseFragment<P extends BasePresenter> extends SimpleImmers
             }
 
         } else {
-            mRootView = inflater.inflate(getLayoutId(), container, false);
+            if (getLayoutId() == USE_SELEF_VIEW){
+                mRootView = getPageView();
+            }else {
+                mRootView = inflater.inflate(getLayoutId(), container, false);
+            }
+
             mActivity = getActivity();
             mContext = mActivity;
             this.inflater = inflater;
         }
         return mRootView;
+    }
+
+    /**
+     * getLayoutId() == -1的情况
+     * @return
+     */
+    protected View getPageView() {
+        return null;
     }
 
     @Override
