@@ -27,7 +27,7 @@
 [`Gloading 深度解耦Android App中全局加载中、加载失败及空数据视图`](https://github.com/luckybilly/Gloading)
 
 [`RxJava 不解释`](https://github.com/ReactiveX/RxJava)
- 
+
 [`RxAndroid 不解释`](https://github.com/ReactiveX/RxAndroid)
 
 [`RxPermissions Android runtime permissions powered by RxJava2`](https://github.com/tbruyelle/RxPermissions)
@@ -40,15 +40,21 @@
 
 [`ARouter 阿里出的路由库`](https://github.com/alibaba/ARouter)
 
+[`lottie`](https://github.com/airbnb/lottie-android)
+
 [`...以及忘了加上的`]()
 
-![](https://user-gold-cdn.xitu.io/2019/5/27/16af993985230c82?w=48&h=48&f=png&s=64)
+### 使用效果
+
+![](https://user-gold-cdn.xitu.io/2019/5/28/16afcdd70255ad14?w=327&h=599&f=gif&s=708012)
+`图片有压缩,可以下载demo apk进行体验`
+[demo-debug.apk](https://github.com/wobiancao/sugar/blob/master/demo-debug.apk)
 ### 安装和依赖
 3种选择
 ```
 1、 git clone https://github.com/wobiancao/sugar.git
     implementation project(':sugarlibrary')
-    
+
 2、 implementation 'com.wobiancao:sugarlibrary:{version}'
 
 3、 allprojects {
@@ -66,7 +72,7 @@ implementation 'com.github.wobiancao:sugar:{version}'
 - 状态栏默认颜色[`ImmersionBar`](https://github.com/gyf-dev/ImmersionBar)
 - toast样式[`ToastUtils`](https://github.com/getActivity/ToastUtils)你可以不用设置，有默认的
 - [`RxErroHandler rxjava异常获取`](https://github.com/JessYanCoding/RxErrorHandler)
--  网络设置直接见代码即可，跟retrofit一样的配置,写了一些默认的拦截器可继承后使用也可自己写,host可以动态配置[`RetrofitUrlManager`](https://github.com/JessYanCoding/RetrofitUrlManager) 
+-  网络设置直接见代码即可，跟retrofit一样的配置,写了一些默认的拦截器可继承后使用也可自己写,host可以动态配置[`RetrofitUrlManager`](https://github.com/JessYanCoding/RetrofitUrlManager)
 -  解耦页面状态切换[`Gloading` ](https://github.com/luckybilly/Gloading)你可以不用设置，有默认的
 -  默认等待框[`BaseLoadingDialog`](https://github.com/wobiancao/sugar/blob/master/sugarlibrary/src/main/java/com/sugar/sugarlibrary/widget/BaseLoadingDialog.java)你可以不用设置，有默认的
 - 更多详见[`AppConfigureDelegate`](https://github.com/wobiancao/sugar/blob/master/sugarlibrary/src/main/java/com/sugar/sugarlibrary/base/config/AppConfigureDelegate.java)
@@ -237,7 +243,7 @@ public class SugarRepository {
 ```
  - addObservable(Observable observable)不会使用任何loading效果，
  addObservable(Observable observable, int loadingType) loadingType : 0 没loading 、1 dialog形式 、2 page形式
- 
+
  -  Repository首先有个契约类，[`RepositoryContract`](https://github.com/wobiancao/sugar/blob/master/demo/src/main/java/com/sugar/demo/http/repository/RepositoryContract.java)
  xxxModel为需要增加的一个域名接口，统一配置apiService、请求函数、相应的transformer
  ```
@@ -338,12 +344,12 @@ public class GankRepository extends SugarRepository implements RepositoryContrac
 
 
 ![](https://user-gold-cdn.xitu.io/2019/5/28/16afc95055a35ffc?w=198&h=198&f=png&s=34998)
- 
+
 
 
 
 - =。=假的，接下来看代码
- 
+
 `WanContract`
 ```
 /**
@@ -456,7 +462,7 @@ public class WanActivity extends BaseActivity<WanPresenter> implements WanContra
 
 ```
 @CreatePresenter(presenter = WanPresenter.class)
-public class WanActivity extends BaseActivity<WanPresenter> implements WanContract.IView 
+public class WanActivity extends BaseActivity<WanPresenter> implements WanContract.IView
 ```
 获取presenter变量两种方式
 
@@ -485,23 +491,22 @@ xxPresenter2 mPresenter2;
 ```
 
 
-### [`本库github地址 sugar 简单便捷 快速开发Android项目，集合流行框架封装mvp + rxjava2 + retrofit2 + rxlifecycle2 + arouter...`](https://github.com/wobiancao/sugar)
 
 License
 --------
 ```
-Copyright 2019, wobiancao       
-  
+Copyright 2019, wobiancao
+
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at 
- 
-       http://www.apache.org/licenses/LICENSE-2.0 
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
 
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-   
+
 ```
