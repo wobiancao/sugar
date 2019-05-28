@@ -1,7 +1,6 @@
 
 
 ![](https://user-gold-cdn.xitu.io/2019/5/27/16af991f7c7f0d50?w=1280&h=640&f=png&s=32575)
-
 [![](https://user-gold-cdn.xitu.io/2019/5/27/16af979e91c88ca9?w=101&h=20&f=svg&s=897)](https://jitpack.io/#wobiancao/sugar)[![Download](https://user-gold-cdn.xitu.io/2019/5/27/16af97c5ad40fd57?w=114&h=20&f=svg&s=963) ](https://bintray.com/a420245103/maven/sugar/1.0.1.1/link)
 
 需求：新项目只需5分钟接入，之后直接开撸，不用关心网络、图片、模式、稳定等问题，支持mvp一个activity对应多个presenter。
@@ -490,6 +489,15 @@ xxPresenter1 mPresenter1;
 xxPresenter2 mPresenter2;
 ```
 
+
+
+About me
+--------
+* **Email**: <a420245103@gmail.com>
+* **掘金**: <https://juejin.im/user/568be89760b24d71fed19d2b>
+* **简书**: <https://www.jianshu.com/u/114bbbfb977f>
+* **apkbus**: <http://www.apkbus.com/?496060>
+* **github**: <https://github.com/wobiancao>
 
 
 License
