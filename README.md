@@ -1,4 +1,3 @@
-
 # 🍯 Sugar
 
 ![](https://user-gold-cdn.xitu.io/2019/5/27/16af991f7c7f0d50?w=1280&h=640&f=png&s=32575)
@@ -6,6 +5,8 @@
 
 需求：新项目只需5分钟接入，之后直接开撸，不用关心网络、图片、模式、稳定等问题，支持mvp一个activity对应多个presenter。
 适用自己的才是最好的！
+
+`最新，新鲜temeple出炉，请拉到最后看效果`
 
 ### 实用到的库(排名不分先后)
 [`Retrofit你懂的`](https://github.com/square/retrofit)
@@ -333,7 +334,7 @@ public class GankRepository extends SugarRepository implements RepositoryContrac
 }
 
  ```
- ### 最后mvp创建（`之后会写相应的Template`）
+ ### 最后mvp创建（`之后会写相应的Template` ⬅️已写好）
  - 以[`WanActivity`](https://github.com/wobiancao/sugar/blob/master/demo/src/main/java/com/sugar/demo/ui/WanActivity.java)举例
  - 构成为 [`WanContract契约`](https://github.com/wobiancao/sugar/blob/master/demo/src/main/java/com/sugar/demo/ui/mvp/wan/WanContract.java)、[`WanPresenter`](https://github.com/wobiancao/sugar/blob/master/demo/src/main/java/com/sugar/demo/ui/mvp/wan/WanPresenter.java)
  好了，完了，结束。
@@ -491,6 +492,30 @@ xxPresenter2 mPresenter2;
 ```
 
 
+
+### mvp Template完成
+- 效果图
+
+![](https://user-gold-cdn.xitu.io/2019/5/30/16b0662a93e257ce?w=419&h=286&f=gif&s=1173861)
+- 使用见图解
+![](https://user-gold-cdn.xitu.io/2019/5/30/16b065ee6afcd298?w=1602&h=1346&f=png&s=227964)
+![](https://user-gold-cdn.xitu.io/2019/5/30/16b065e960f6c8b9?w=1600&h=1344&f=png&s=221002)
+
+#### 使用步骤：
+1. 下载源码目录在 Sugar/SugarMvpTemplate
+
+![](https://user-gold-cdn.xitu.io/2019/5/30/16b0665b9d53c841?w=838&h=404&f=png&s=62417)
+
+2. 把两个文件夹放入`{Android Studio installation dir}\plugins\android\lib\templates\activities\`路径下
+
+3. 重启Android studio即可使用
+
+To do
+--------
+- kotlin 全面支持
+- 图片加载库更换策略，或者为了方便使用直接用一套写好的放入
+- 常用控件（刷新，标题等等）
+- more...
 
 About me
 --------
