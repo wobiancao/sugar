@@ -500,6 +500,7 @@ xxPresenter2 mPresenter2;
 - 效果图
 
 ![](https://user-gold-cdn.xitu.io/2019/5/30/16b0662a93e257ce?w=419&h=286&f=gif&s=1173861)
+![](https://user-gold-cdn.xitu.io/2019/5/30/16b0682d74244bc2?w=1918&h=1634&f=png&s=504133)
 - 使用见图解
 ![](https://user-gold-cdn.xitu.io/2019/5/30/16b065ee6afcd298?w=1602&h=1346&f=png&s=227964)
 ![](https://user-gold-cdn.xitu.io/2019/5/30/16b065e960f6c8b9?w=1600&h=1344&f=png&s=221002)
