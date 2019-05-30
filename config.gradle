@@ -6,7 +6,7 @@
                 buildToolsVersion       : "28.0.3",
                 minSdkVersion           : 17,
                 targetSdkVersion        : 28,
-                versionCode             : 21,
+                versionCode             : 22,
                 versionName             : "1.0.1.2"    //必须是int或者float，否则影响线上升级
         ]
         version = [
