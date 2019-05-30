@@ -1,7 +1,10 @@
 # 🍯 Sugar
 
 ![](https://user-gold-cdn.xitu.io/2019/5/27/16af991f7c7f0d50?w=1280&h=640&f=png&s=32575)
-[![](https://user-gold-cdn.xitu.io/2019/5/27/16af979e91c88ca9?w=101&h=20&f=svg&s=897)](https://jitpack.io/#wobiancao/sugar)[![Download](https://user-gold-cdn.xitu.io/2019/5/27/16af97c5ad40fd57?w=114&h=20&f=svg&s=963) ](https://bintray.com/a420245103/maven/sugar/1.0.1.1/link)
+
+[![](https://jitpack.io/v/wobiancao/sugar.svg)](https://jitpack.io/#wobiancao/sugar)
+[![Download](https://api.bintray.com/packages/a420245103/maven/sugar/images/download.svg?version=1.0.1.2) ](https://bintray.com/a420245103/maven/sugar/1.0.1.2/link)
+
 
 需求：新项目只需5分钟接入，之后直接开撸，不用关心网络、图片、模式、稳定等问题，支持mvp一个activity对应多个presenter。
 适用自己的才是最好的！
