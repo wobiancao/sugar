@@ -29,12 +29,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.billy.android.loading.Gloading;
+import com.blankj.utilcode.util.NetworkUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.gyf.immersionbar.components.SimpleImmersionFragment;
 import com.sugar.sugarlibrary.base.config.AppConfig;
 import com.sugar.sugarlibrary.base.presenter.BasePresenter;
 import com.sugar.sugarlibrary.base.presenter.PresenterDispatch;
 import com.sugar.sugarlibrary.base.presenter.PresenterProviders;
+import com.sugar.sugarlibrary.widget.gloading.StatusConstant;
 import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
 import com.trello.rxlifecycle2.LifecycleProvider;
 
@@ -212,7 +214,17 @@ public abstract class BaseFragment<P extends BasePresenter> extends SimpleImmers
     @Override
     public void showLoadFailed() {
         initLoadingStatusViewIfNeed();
-        mHolder.showLoadFailed();
+        if(NetworkUtils.isConnected()){
+            mHolder.showLoadFailed();
+        }else {
+            showNetWorkError();
+        }
+    }
+
+    @Override
+    public void showNetWorkError() {
+        initLoadingStatusViewIfNeed();
+        mHolder.showLoadingStatus(StatusConstant.STATUS_NETWORK_ERROR);
     }
 
     @Override

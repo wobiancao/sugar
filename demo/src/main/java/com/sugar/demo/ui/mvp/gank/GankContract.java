@@ -16,14 +16,9 @@
 package com.sugar.demo.ui.mvp.gank;
 
 import com.sugar.demo.bean.gank.GirlsData;
-import com.sugar.demo.bean.gank.GirlsResult;
-import com.sugar.demo.http.api.Gank;
 import com.sugar.sugarlibrary.base.BaseIView;
 
 import java.util.List;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableTransformer;
 
 /**
  * @author wobiancao

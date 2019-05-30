@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="5"
+    name="Sugar Mvp Fragment"
+    description="Creates a new Sugar Mvp Fragment"
+    minApi="7"
+    minBuildApi="14"
+>
+
+    <category value="Sugar"/>
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="fragmentName"
+        name="Fragment Name"
+        type="string"
+        constraints="class|nonempty"
+        help="default End of __Fragment" />
+    <parameter
+        id="fragmentLayout"
+        name="Fragment Layout Name"
+        type="string"
+        constraints="layout|nonempty"
+        suggest="fragment_${classToResource(fragmentName)}"
+        help="The name of the layout to create for the fragment" />
+    <parameter
+        id="contractName"
+        name="Contract Name"
+        type="string"
+        constraints="class|nonempty"
+        suggest="${fragmentName}"
+        help="default End of __Contract" />
+    <parameter
+        id="presenterName"
+        name="Presenter Name"
+        type="string"
+        suggest="${fragmentName}"
+        constraints="class|nonempty"
+        help="default End of __Presenter" />
+    <parameter
+        id="repositoryName"
+        name="Repository Name"
+        type="string"
+        constraints="nonempty"
+        help="default End of __Repository" />
+
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package"
+        default="com.sugar.demo" />
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_sugar_mvp.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl"/>
+    <execute file="recipe.xml.ftl"/>
+
+</template>
