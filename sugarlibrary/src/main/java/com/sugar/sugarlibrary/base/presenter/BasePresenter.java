@@ -16,8 +16,9 @@
 package com.sugar.sugarlibrary.base.presenter;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.sugar.sugarlibrary.base.BaseIView;
 import com.sugar.sugarlibrary.base.config.AppConfig;
@@ -25,12 +26,8 @@ import com.sugar.sugarlibrary.http.SugarRepository;
 import com.sugar.sugarlibrary.rx.RxEventBus;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
-import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
 
 
 /**

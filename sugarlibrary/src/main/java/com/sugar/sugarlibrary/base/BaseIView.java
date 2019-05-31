@@ -15,9 +15,10 @@
  */
 package com.sugar.sugarlibrary.base;
 
-import android.arch.lifecycle.Lifecycle;
 
-import com.trello.rxlifecycle2.LifecycleProvider;
+import androidx.lifecycle.Lifecycle;
+
+import com.trello.rxlifecycle3.LifecycleProvider;
 
 /**
  * @author wobiancao

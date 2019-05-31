@@ -7,9 +7,10 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.Point;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.RequiresApi;
 
 import com.sugar.sugarlibrary.R;
 import com.sugar.sugarlibrary.widget.loadingballs.animator.AbstractBallAnimator;

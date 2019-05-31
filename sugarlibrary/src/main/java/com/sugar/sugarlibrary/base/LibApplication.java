@@ -17,11 +17,10 @@ package com.sugar.sugarlibrary.base;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.multidex.MultiDex;
 
-import com.bumptech.glide.Glide;
+import androidx.multidex.MultiDex;
+
 import com.sugar.sugarlibrary.base.config.AppConfig;
-import com.sugar.sugarlibrary.base.config.AppSetting;
 import com.sugar.sugarlibrary.base.config.SugarConfigure;
 import com.sugar.sugarlibrary.router.ARouterUtils;
 
@@ -80,7 +79,6 @@ public abstract class LibApplication<S extends SugarConfigure>  extends Applicat
     public void onLowMemory() {
         Timber.i("onLowMemory");
         super.onLowMemory();
-        Glide.get(this).clearMemory();
     }
 
     /**
@@ -91,10 +89,7 @@ public abstract class LibApplication<S extends SugarConfigure>  extends Applicat
     public void onTrimMemory(int level) {
         Timber.i("onTrimMemory");
         super.onTrimMemory(level);
-        if (level == TRIM_MEMORY_UI_HIDDEN){
-            Glide.get(this).clearMemory();
-        }
-        Glide.get(this).trimMemory(level);
+
     }
 
 

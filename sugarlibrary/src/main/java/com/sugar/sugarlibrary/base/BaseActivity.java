@@ -16,13 +16,14 @@
 package com.sugar.sugarlibrary.base;
 
 import android.app.Dialog;
-import android.arch.lifecycle.Lifecycle;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Lifecycle;
 
 import com.billy.android.loading.Gloading;
 import com.blankj.utilcode.util.NetworkUtils;
@@ -34,7 +35,7 @@ import com.sugar.sugarlibrary.base.presenter.PresenterDispatch;
 import com.sugar.sugarlibrary.base.presenter.PresenterProviders;
 import com.sugar.sugarlibrary.widget.gloading.StatusConstant;
 import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
-import com.trello.rxlifecycle2.LifecycleProvider;
+import com.trello.rxlifecycle3.LifecycleProvider;
 
 import static com.sugar.sugarlibrary.util.Constant.USE_SELEF_VIEW;
 
@@ -58,6 +59,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     @Override
     public LifecycleProvider<Lifecycle.Event> getProvider() {
+
         return AndroidLifecycle.createLifecycleProvider(this);
     }
 
