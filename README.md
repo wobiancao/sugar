@@ -69,6 +69,16 @@
 	}
 implementation 'com.github.wobiancao:sugar:{version}'
 ```
+
+### androidX
+```
+如果你想用x，请在`gradle.properties`配置如下
+
+android.enableJetifier=true
+android.useAndroidX=true
+
+```
+
 ### 统一配置
 
 #### 创建DemoConfigure 继承于SugarConfigure 重载相关方法即可：

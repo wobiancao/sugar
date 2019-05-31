@@ -16,9 +16,7 @@
 package com.sugar.demo.ui;
 
 import android.animation.Animator;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.gyf.immersionbar.ImmersionBar;
