@@ -3,13 +3,25 @@
 ![](https://user-gold-cdn.xitu.io/2019/5/27/16af991f7c7f0d50?w=1280&h=640&f=png&s=32575)
 
 [![](https://jitpack.io/v/wobiancao/sugar.svg)](https://jitpack.io/#wobiancao/sugar)
-[![Download](https://api.bintray.com/packages/a420245103/maven/sugar/images/download.svg?version=1.0.1.2) ](https://bintray.com/a420245103/maven/sugar/1.0.1.2/link)
+[![Download](https://api.bintray.com/packages/a420245103/maven/sugar/images/download.svg?version=1.0.1.3) ](https://bintray.com/a420245103/maven/sugar/1.0.1.3/link)
 
 
 需求：新项目只需5分钟接入，之后直接开撸，不用关心网络、图片、模式、稳定等问题，支持mvp一个activity对应多个presenter。
 适用自己的才是最好的！
 
-`最新，新鲜temeple出炉，请拉到最后看效果`
+更新日志
+-------
+
+- 2019-05-29 最新，新鲜temeple出炉，请拉到最后看效果
+- 2019-05-31 更新 1.0.1.3升级到androidx
+- ...
+
+To do
+--------
+- kotlin 全面支持
+- 图片加载库更换策略，或者为了方便使用直接用一套写好的放入
+- 常用控件（刷新，标题等等）
+- more...
 
 ### 实用到的库(排名不分先后)
 [`Retrofit你懂的`](https://github.com/square/retrofit)
@@ -70,14 +82,7 @@
 implementation 'com.github.wobiancao:sugar:{version}'
 ```
 
-### androidX
-```
-如果你想用x，请在`gradle.properties`配置如下
 
-android.enableJetifier=true
-android.useAndroidX=true
-
-```
 
 ### 统一配置
 
@@ -524,12 +529,7 @@ xxPresenter2 mPresenter2;
 
 3. 重启Android studio即可使用
 
-To do
---------
-- kotlin 全面支持
-- 图片加载库更换策略，或者为了方便使用直接用一套写好的放入
-- 常用控件（刷新，标题等等）
-- more...
+
 
 About me
 --------
