@@ -22,9 +22,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.gson.Gson;
 import com.sugar.demo.R;
 import com.sugar.demo.bean.wan.WanData;
+import com.sugar.demo.router.RouterPageContant;
 import com.sugar.demo.ui.mvp.wan.WanContract;
 import com.sugar.demo.ui.mvp.wan.WanPresenter;
 import com.sugar.sugarlibrary.base.BaseActivity;
@@ -36,6 +38,7 @@ import com.sugar.sugarlibrary.base.anno.PresenterVariable;
  * @date 2019-05-21
  * desc :
  */
+@Route(path = RouterPageContant.WAN_HOME)
 @CreatePresenter(presenter = WanPresenter.class)
 public class WanActivity extends BaseActivity<WanPresenter> implements WanContract.IView {
     @PresenterVariable

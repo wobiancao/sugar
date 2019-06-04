@@ -9,5 +9,6 @@ public interface RouterPageContant {
     String ACTIVITY = "/activity";
     String FRAGMENT = "/fragment";
     String MAIN_PAGE = ACTIVITY + "/main_page";
-
+    String GANK_HOME = ACTIVITY + "/gank_home";
+    String WAN_HOME = ACTIVITY + "/wan_home";
 }

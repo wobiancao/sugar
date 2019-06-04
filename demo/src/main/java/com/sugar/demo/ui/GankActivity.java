@@ -22,9 +22,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.gson.Gson;
 import com.sugar.demo.R;
 import com.sugar.demo.bean.gank.GirlsData;
+import com.sugar.demo.router.RouterPageContant;
 import com.sugar.demo.ui.mvp.gank.GankContract;
 import com.sugar.demo.ui.mvp.gank.GankPresenter;
 import com.sugar.sugarlibrary.base.BaseActivity;
@@ -38,6 +40,7 @@ import java.util.List;
  * @date 2019-05-21
  * desc :
  */
+@Route(path = RouterPageContant.GANK_HOME)
 @CreatePresenter(presenter = GankPresenter.class)
 public class GankActivity extends BaseActivity<GankPresenter> implements GankContract.IView {
 

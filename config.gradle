@@ -31,6 +31,8 @@
                 "design-x"                 : "com.google.android.material:material:${version["xNormalVersion"]}",
                 "recyclerview-x"           : "androidx.recyclerview:recyclerview:${version["xNormalVersion"]}",
                 "multidex-x"               : "androidx.multidex:multidex:2.0.0",
+                "constraint-x"             : "androidx.constraintlayout:constraintlayout:2.0.0-alpha3",
+
 
                 //support
                 "appcompat-v7"             : "com.android.support:appcompat-v7:${version["androidSupportSdkVersion"]}",
@@ -116,7 +118,7 @@
                 //cache
                 "disklru"                  : 'com.jakewharton:disklrucache:2.0.2',
                 //sugar
-                "sugar"                    : 'com.github.wobiancao:sugar:1.0.1.2'
+                "sugar"                    : 'com.github.wobiancao:sugar:1.0.1.3'
 
 
 

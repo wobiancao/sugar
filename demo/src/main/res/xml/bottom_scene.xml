@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <Transition
+        app:constraintSetEnd="@id/slideup_end"
+        app:constraintSetStart="@id/slideup_start"
+        app:duration="500"
+        app:interpolator="linear">
+        <OnSwipe
+            app:dragDirection="dragUp"
+            app:maxAcceleration="500"
+            app:touchAnchorSide="top"
+            app:touchAnchorId="@id/content"
+           />
+        <KeyFrameSet>
+
+            <KeyAttribute
+                android:alpha="0"
+                app:framePosition="45"
+                app:target="@id/sugar_title" />
+
+            <KeyAttribute
+                android:alpha="1"
+                app:framePosition="80"
+                app:target="@id/sugar_title" />
+            <KeyAttribute
+                android:alpha="0"
+                app:framePosition="45"
+                app:target="@id/sugar_title" />
+            <KeyAttribute
+                android:scaleX="1"
+                android:scaleY="1"
+                app:framePosition="80"
+                app:target="@id/content" />
+
+            <KeyPosition
+                app:framePosition="80"
+                app:keyPositionType="pathRelative"
+                app:percentX="0"
+                app:percentY="0"
+                app:target="@id/sugar_title" />
+
+            <KeyAttribute
+                app:framePosition="85"
+                app:target="@id/black_backgroundView">
+                <CustomAttribute
+                    app:attributeName="backgroundColor"
+                    app:customColorValue="@color/colorWhite" />
+            </KeyAttribute>
+            <KeyAttribute
+                app:framePosition="10"
+                app:target="@id/black_backgroundView">
+                <CustomAttribute
+                    app:attributeName="backgroundColor"
+                    app:customColorValue="@android:color/transparent" />
+            </KeyAttribute>
+
+        </KeyFrameSet>
+    </Transition>
+    <ConstraintSet android:id="@+id/slideup_start">
+
+        <Constraint
+            android:id="@id/black_backgroundView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <CustomAttribute
+                app:attributeName="backgroundColor"
+                app:customColorValue="@android:color/transparent" />
+        </Constraint>
+        <Constraint
+            android:id="@id/content"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/bottomView"
+            android:scaleX="0.9"
+            android:scaleY="0.9"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@id/sugar_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/titleHeight"
+            android:alpha="0"
+            app:layout_constraintBottom_toTopOf="parent" />
+
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/slideup_end">
+
+        <Constraint
+            android:id="@id/black_backgroundView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <CustomAttribute
+                app:attributeName="backgroundColor"
+                app:customColorValue="@color/colorWhite" />
+        </Constraint>
+        <Constraint
+            android:id="@+id/content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleX="1"
+            android:scaleY="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sugar_title" />
+
+        <Constraint
+            android:id="@id/sugar_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/titleHeight"
+            android:alpha="1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </ConstraintSet>
+
+</MotionScene>
