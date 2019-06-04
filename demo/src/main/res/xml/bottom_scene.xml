@@ -4,12 +4,13 @@
     <Transition
         app:constraintSetEnd="@id/slideup_end"
         app:constraintSetStart="@id/slideup_start"
-        app:duration="500"
-        app:interpolator="linear">
+        app:duration="100"
+        app:interpolator="anticipate">
         <OnSwipe
             app:dragDirection="dragUp"
-            app:maxAcceleration="500"
+            app:maxAcceleration="100"
             app:touchAnchorSide="top"
+            app:moveWhenScrollAtTop="true"
             app:touchAnchorId="@id/content"
            />
         <KeyFrameSet>
@@ -21,7 +22,7 @@
 
             <KeyAttribute
                 android:alpha="1"
-                app:framePosition="80"
+                app:framePosition="90"
                 app:target="@id/sugar_title" />
             <KeyAttribute
                 android:alpha="0"
@@ -30,25 +31,25 @@
             <KeyAttribute
                 android:scaleX="1"
                 android:scaleY="1"
-                app:framePosition="80"
+                app:framePosition="90"
                 app:target="@id/content" />
 
             <KeyPosition
-                app:framePosition="80"
+                app:framePosition="90"
                 app:keyPositionType="pathRelative"
                 app:percentX="0"
                 app:percentY="0"
                 app:target="@id/sugar_title" />
 
             <KeyAttribute
-                app:framePosition="85"
+                app:framePosition="95"
                 app:target="@id/black_backgroundView">
                 <CustomAttribute
                     app:attributeName="backgroundColor"
                     app:customColorValue="@color/colorWhite" />
             </KeyAttribute>
             <KeyAttribute
-                app:framePosition="10"
+                app:framePosition="40"
                 app:target="@id/black_backgroundView">
                 <CustomAttribute
                     app:attributeName="backgroundColor"

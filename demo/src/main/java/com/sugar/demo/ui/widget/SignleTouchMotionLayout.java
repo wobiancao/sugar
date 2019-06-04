@@ -2,6 +2,7 @@ package com.sugar.demo.ui.widget;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,7 +29,6 @@ public class SignleTouchMotionLayout extends MotionLayout {
      * 有没有中间间断
      */
     private boolean hasMiddle;
-    private ProgressDelegate mProgressDelegate;
 
     public SignleTouchMotionLayout(Context context) {
         super(context);
@@ -40,10 +40,6 @@ public class SignleTouchMotionLayout extends MotionLayout {
     }
 
 
-
-    public void setProgressDelegate(ProgressDelegate progressDelegate) {
-        mProgressDelegate = progressDelegate;
-    }
 
     public void setHasMiddle(boolean hasMiddle) {
         this.hasMiddle = hasMiddle;
@@ -74,25 +70,26 @@ public class SignleTouchMotionLayout extends MotionLayout {
                     if ((endY - startY) > 0){
                         if (progress >= PROGRESS_TOP){
                             mTouchStared = false;
-                            setProgress(PROGRESS_END);
+                            handleProgress(PROGRESS_END);
+
                         }
                         if (progress < PROGRESS_TOP && progress >= PROGRESS_MIDDLE){
-                            setProgress(PROGRESS_MIDDLE);
+                            handleProgress(PROGRESS_MIDDLE);
                         }
                         if (progress < PROGRESS_MIDDLE){
-                            setProgress(PROGRESS_START);
+                            handleProgress(PROGRESS_START);
                         }
                         //手势向上
                     } else {
                         if (progress <= PROGRESS_BOTTOM){
-                            setProgress(PROGRESS_START);
+                            handleProgress(PROGRESS_START);
                         }
                         if (progress > PROGRESS_BOTTOM && progress <= PROGRESS_MIDDLE){
-                            setProgress(PROGRESS_MIDDLE);
+                            handleProgress(PROGRESS_MIDDLE);
                         }
                         if (progress > PROGRESS_MIDDLE){
                             mTouchStared = false;
-                            setProgress(PROGRESS_END);
+                            handleProgress(PROGRESS_END);
                         }
                     }
                     return  mTouchStared;
@@ -107,15 +104,14 @@ public class SignleTouchMotionLayout extends MotionLayout {
 
     }
 
-    public interface ProgressDelegate{
-        void changeProgress(float progress);
+    private void handleProgress(float progress) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setProgress(progress);
+            }
+        }, 0);
     }
 
-    @Override
-    public void setProgress(float pos) {
-        super.setProgress(pos);
-        if (mProgressDelegate != null){
-            mProgressDelegate.changeProgress(pos);
-        }
-    }
+
 }

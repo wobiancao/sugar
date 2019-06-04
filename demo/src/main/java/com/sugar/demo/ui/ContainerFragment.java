@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import androidx.constraintlayout.motion.widget.MotionLayout;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.sugar.demo.R;
 import com.sugar.demo.ui.widget.SignleTouchMotionLayout;
@@ -27,7 +28,8 @@ public class ContainerFragment extends BaseFragment {
     @Override
     public void initImmersionBar() {
         ImmersionBar.with(this)
-                .statusBarColor(R.color.colorPrimary)
+                .transparentStatusBar()
+                .statusBarDarkFont(true, 0.2f)
                 .init();
     }
 
@@ -41,14 +43,22 @@ public class ContainerFragment extends BaseFragment {
                 ((MainActivity)getActivity()).changeBottom();
             }
         });
-        mTouchMotionLayout.setProgressDelegate(new SignleTouchMotionLayout.ProgressDelegate() {
+        mTouchMotionLayout.setTransitionListener(new MotionLayout.TransitionListener() {
             @Override
-            public void changeProgress(float progress) {
+            public void onTransitionStarted(MotionLayout motionLayout, int i, int i1) {
+
+            }
+
+            @Override
+            public void onTransitionChange(MotionLayout motionLayout, int i, int i1, float v) {
+                float progress = Math.abs(v);
+                LogUtils.d("prgress---" + progress);
                 if (progress > SignleTouchMotionLayout.PROGRESS_BOTTOM){
                     mCloseView.setVisibility(View.INVISIBLE);
                 }else {
                     mCloseView.setVisibility(View.VISIBLE);
                 }
+
                 if (progress >= SignleTouchMotionLayout.PROGRESS_TOP){
                     ((MainActivity)getActivity()).changeView(MainActivity.TYPE_TOP);
                 }
@@ -59,7 +69,18 @@ public class ContainerFragment extends BaseFragment {
                     ((MainActivity)getActivity()).changeView(MainActivity.TYPE_BOTTOM);
                 }
             }
+
+            @Override
+            public void onTransitionCompleted(MotionLayout motionLayout, int i) {
+
+            }
+
+            @Override
+            public void onTransitionTrigger(MotionLayout motionLayout, int i, boolean b, float v) {
+
+            }
         });
+
 
     }
 

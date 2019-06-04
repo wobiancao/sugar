@@ -5,7 +5,10 @@ import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ConvertUtils;
 import com.gyf.immersionbar.ImmersionBar;
@@ -23,7 +26,8 @@ public class MainActivity extends BaseActivity {
     final int mLayoutId = R.id.main_frame_layout;
     FrameLayout mBoxLayout;
     ContainerFragment mContainerFragment;
-    ImageView mLogoView;
+    LinearLayout mCenterLayout;
+    LottieAnimationView mAnimationView;
     @Override
     protected int getContentView() {
         return R.layout.activity_main;
@@ -41,7 +45,8 @@ public class MainActivity extends BaseActivity {
     @Override
     public void init(Bundle savedInstanceState) {
         mBoxLayout = findViewById(R.id.main_frame_layout);
-        mLogoView = findViewById(R.id.main_logo);
+        mCenterLayout = findViewById(R.id.main_center_layout);
+        mAnimationView = findViewById(R.id.animation_view);
         showAnimation.setDuration(500);
         hideAnimation.setDuration(500);
         mContainerFragment = new ContainerFragment();
@@ -100,19 +105,29 @@ public class MainActivity extends BaseActivity {
         if (mType != type){
             switch (type){
                 case TYPE_BOTTOM:
-                    mLogoView.setScaleX(1f);
-                    mLogoView.setScaleY(1f);
-                    mLogoView.setTranslationY(0);
+                    mCenterLayout.setScaleX(1f);
+                    mCenterLayout.setScaleY(1f);
+                    mCenterLayout.setTranslationY(0);
+                    mAnimationView.setScaleX(1f);
+                    mAnimationView.setScaleY(1f);
+                    mAnimationView.setTranslationY(0);
                     break;
                 case TYPE_MIDDLE:
-                    mLogoView.setScaleX(0.7f);
-                    mLogoView.setScaleY(0.7f);
-                    mLogoView.setTranslationY(-ConvertUtils.dp2px(30));
+                    mCenterLayout.setScaleX(0.7f);
+                    mCenterLayout.setScaleY(0.7f);
+                    mCenterLayout.setTranslationY(-ConvertUtils.dp2px(40));
+                    mAnimationView.setScaleX(0.7f);
+                    mAnimationView.setScaleY(0.7f);
+                    mAnimationView.setTranslationY(ConvertUtils.dp2px(10));
+
                     break;
                 case TYPE_TOP:
-                    mLogoView.setScaleX(0.5f);
-                    mLogoView.setScaleY(0.5f);
-                    mLogoView.setTranslationY(-ConvertUtils.dp2px(60));
+                    mCenterLayout.setScaleX(0.5f);
+                    mCenterLayout.setScaleY(0.5f);
+                    mCenterLayout.setTranslationY(-ConvertUtils.dp2px(60));
+                    mAnimationView.setScaleX(0.5f);
+                    mAnimationView.setScaleY(0.5f);
+                    mAnimationView.setTranslationY(ConvertUtils.dp2px(30));
                     break;
             }
             mType = type;
