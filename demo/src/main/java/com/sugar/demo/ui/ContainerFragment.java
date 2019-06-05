@@ -6,7 +6,6 @@ import android.widget.ImageView;
 
 import androidx.constraintlayout.motion.widget.MotionLayout;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.sugar.demo.R;
 import com.sugar.demo.ui.widget.SignleTouchMotionLayout;

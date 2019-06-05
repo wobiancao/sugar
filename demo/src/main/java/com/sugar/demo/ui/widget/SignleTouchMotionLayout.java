@@ -26,11 +26,25 @@ import io.reactivex.schedulers.Schedulers;
  * desc :
  */
 public class SignleTouchMotionLayout extends MotionLayout {
-
+    /**
+     * 初始位置
+     */
     public final static float PROGRESS_START = 0f;
+    /**
+     * 顶部阀值
+     */
     public final static float PROGRESS_TOP = 0.9f;
+    /**
+     * 低部阀值
+     */
     public final static float PROGRESS_BOTTOM = 0.1f;
+    /**
+     * 中间位置
+     */
     public final static float PROGRESS_MIDDLE = 0.6f;
+    /**
+     * 结束位置
+     */
     public final static float PROGRESS_END = 1.0f;
     private float startY = 0;
     private boolean mTouchStared = false;
@@ -116,10 +130,13 @@ public class SignleTouchMotionLayout extends MotionLayout {
     }
 
     private void handleProgress(float progress) {
+        //如果需要设置的进度和当前进度相同不做处理
         if (progress == getProgress()){
             return;
         }
+        //动画播放时间底值
         long time = 200;
+        //进度间隔 >0 说明上拉 < 0说明下滑
         float interval = progress - getProgress();
         long startTime, endTime;
         if (interval > 0) {
@@ -132,6 +149,7 @@ public class SignleTouchMotionLayout extends MotionLayout {
         if (timeDisposable != null){
             timeDisposable.dispose();
         }
+        //startTime 初始时间 endTime - startTime为次数 0为延迟时间 3为间隔 单位TimeUnit.MILLISECONDS 毫秒
         timeDisposable = Observable.intervalRange(startTime, endTime - startTime, 0, 3, TimeUnit.MILLISECONDS)
                 .observeOn(Schedulers.io())
                 .compose(((BaseActivity) getContext()).getProvider().bindToLifecycle())
@@ -139,6 +157,7 @@ public class SignleTouchMotionLayout extends MotionLayout {
                 .map(new Function<Long, Long>() {
                     @Override
                     public Long apply(Long aLong) throws Exception {
+                        //下滑需要反向
                         if (interval < 0) {
                             long interStart = aLong - startTime;
                             return endTime - interStart;
