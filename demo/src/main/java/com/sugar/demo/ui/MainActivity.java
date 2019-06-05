@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -19,15 +17,12 @@ import com.sugar.sugarlibrary.router.ARouterUtils;
 
 @Route(path = RouterPageContant.MAIN_PAGE)
 public class MainActivity extends BaseActivity {
-    public static final int TYPE_BOTTOM = 0;
-    public static final int TYPE_MIDDLE = 1;
-    public static final int TYPE_TOP = 2;
-
     final int mLayoutId = R.id.main_frame_layout;
     FrameLayout mBoxLayout;
     ContainerFragment mContainerFragment;
     LinearLayout mCenterLayout;
     LottieAnimationView mAnimationView;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_main;
@@ -56,7 +51,6 @@ public class MainActivity extends BaseActivity {
     }
 
 
-
     @Override
     public void loadData() {
 
@@ -71,12 +65,11 @@ public class MainActivity extends BaseActivity {
     }
 
 
-
-    public void changeBottom(){
-        if (mBoxLayout.getVisibility() == View.VISIBLE){
+    public void changeBottom() {
+        if (mBoxLayout.getVisibility() == View.VISIBLE) {
             mBoxLayout.setVisibility(View.INVISIBLE);
             mBoxLayout.startAnimation(hideAnimation);
-        }else {
+        } else {
             mBoxLayout.setVisibility(View.VISIBLE);
             mBoxLayout.startAnimation(showAnimation);
         }
@@ -100,41 +93,23 @@ public class MainActivity extends BaseActivity {
         changeBottom();
     }
 
-    private int mType = TYPE_BOTTOM;
-    public void changeView(int type){
-        if (mType != type){
-            switch (type){
-                case TYPE_BOTTOM:
-                    mCenterLayout.setScaleX(1f);
-                    mCenterLayout.setScaleY(1f);
-                    mCenterLayout.setTranslationY(0);
-                    mAnimationView.setScaleX(1f);
-                    mAnimationView.setScaleY(1f);
-                    mAnimationView.setTranslationY(0);
-                    break;
-                case TYPE_MIDDLE:
-                    mCenterLayout.setScaleX(0.7f);
-                    mCenterLayout.setScaleY(0.7f);
-                    mCenterLayout.setTranslationY(-ConvertUtils.dp2px(40));
-                    mAnimationView.setScaleX(0.7f);
-                    mAnimationView.setScaleY(0.7f);
-                    mAnimationView.setTranslationY(ConvertUtils.dp2px(10));
 
-                    break;
-                case TYPE_TOP:
-                    mCenterLayout.setScaleX(0.5f);
-                    mCenterLayout.setScaleY(0.5f);
-                    mCenterLayout.setTranslationY(-ConvertUtils.dp2px(60));
-                    mAnimationView.setScaleX(0.5f);
-                    mAnimationView.setScaleY(0.5f);
-                    mAnimationView.setTranslationY(ConvertUtils.dp2px(30));
-                    break;
-            }
-            mType = type;
+    public void changeView(float progress) {
+        if (progress >= 0 && progress < 0.5f) {
+            mCenterLayout.setScaleX(1f);
+            mCenterLayout.setScaleY(1f);
+            mCenterLayout.setTranslationY(0);
+            mAnimationView.setScaleX(1f);
+            mAnimationView.setScaleY(1f);
+            mAnimationView.setTranslationY(0);
+        } else {
+            mCenterLayout.setScaleX(1 - progress);
+            mCenterLayout.setScaleY(1 - progress);
+            mCenterLayout.setTranslationY(-ConvertUtils.dp2px((1 - progress) * 100));
+            mAnimationView.setScaleX(progress);
+            mAnimationView.setScaleY(progress);
+            mAnimationView.setTranslationY(ConvertUtils.dp2px((1 - progress) * 100));
         }
-
-
-
 
     }
 }

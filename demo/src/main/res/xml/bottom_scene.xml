@@ -4,13 +4,12 @@
     <Transition
         app:constraintSetEnd="@id/slideup_end"
         app:constraintSetStart="@id/slideup_start"
-        app:duration="100"
-        app:interpolator="anticipate">
+        app:duration="600"
+        app:interpolator="easeIn">
         <OnSwipe
             app:dragDirection="dragUp"
-            app:maxAcceleration="100"
+            app:maxAcceleration="600"
             app:touchAnchorSide="top"
-            app:moveWhenScrollAtTop="true"
             app:touchAnchorId="@id/content"
            />
         <KeyFrameSet>

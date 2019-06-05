@@ -52,22 +52,12 @@ public class ContainerFragment extends BaseFragment {
             @Override
             public void onTransitionChange(MotionLayout motionLayout, int i, int i1, float v) {
                 float progress = Math.abs(v);
-                LogUtils.d("prgress---" + progress);
                 if (progress > SignleTouchMotionLayout.PROGRESS_BOTTOM){
                     mCloseView.setVisibility(View.INVISIBLE);
                 }else {
                     mCloseView.setVisibility(View.VISIBLE);
                 }
-
-                if (progress >= SignleTouchMotionLayout.PROGRESS_TOP){
-                    ((MainActivity)getActivity()).changeView(MainActivity.TYPE_TOP);
-                }
-                if (progress < SignleTouchMotionLayout.PROGRESS_TOP && progress >= SignleTouchMotionLayout.PROGRESS_MIDDLE){
-                    ((MainActivity)getActivity()).changeView(MainActivity.TYPE_MIDDLE);
-                }
-                if (progress < SignleTouchMotionLayout.PROGRESS_MIDDLE){
-                    ((MainActivity)getActivity()).changeView(MainActivity.TYPE_BOTTOM);
-                }
+                ((MainActivity)getActivity()).changeView(progress);
             }
 
             @Override
