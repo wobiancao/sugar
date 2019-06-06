@@ -94,7 +94,6 @@ public class SignleTouchMotionLayout extends MotionLayout {
                     //手势向下
                     if ((endY - startY) > 0) {
                         if (progress >= PROGRESS_TOP) {
-                            mTouchStared = false;
                             handleProgress(PROGRESS_END);
 
                         }
@@ -102,18 +101,19 @@ public class SignleTouchMotionLayout extends MotionLayout {
                             handleProgress(PROGRESS_MIDDLE);
                         }
                         if (progress < PROGRESS_MIDDLE) {
+                            mTouchStared = false;
                             handleProgress(PROGRESS_START);
                         }
                         //手势向上
                     } else {
                         if (progress <= PROGRESS_BOTTOM) {
+                            mTouchStared = false;
                             handleProgress(PROGRESS_START);
                         }
                         if (progress > PROGRESS_BOTTOM && progress <= PROGRESS_MIDDLE) {
                             handleProgress(PROGRESS_MIDDLE);
                         }
                         if (progress > PROGRESS_MIDDLE) {
-                            mTouchStared = false;
                             handleProgress(PROGRESS_END);
                         }
                     }
