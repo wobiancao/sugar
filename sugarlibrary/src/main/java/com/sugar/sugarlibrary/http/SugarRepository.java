@@ -17,11 +17,13 @@ package com.sugar.sugarlibrary.http;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.sugar.sugarlibrary.base.BaseIView;
+import com.sugar.sugarlibrary.base.config.AppConfig;
+import com.sugar.sugarlibrary.rx.errorhandler.RetryWithDelay;
+import com.sugar.sugarlibrary.rx.errorhandler.RxErrorHandler;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
 
 /**
  * @author wobiancao
@@ -45,7 +47,9 @@ public class SugarRepository {
 
     public SugarRepository(BaseIView IView) {
         mIView = IView;
+        rxErrorHandler = AppConfig.INSTANCE.getRxErrorHandler();
     }
+    protected RxErrorHandler rxErrorHandler;
 
     protected Observable addObservable(Observable observable) {
         if (mIView == null) {
@@ -83,7 +87,6 @@ public class SugarRepository {
                     }
                 })
                 .doOnNext(o -> {
-                    LogUtils.i("doOnNext------" + o);
                     if (mIView != null) {
                         mIView.showLoadSuccess();
                     }
@@ -93,6 +96,10 @@ public class SugarRepository {
                     if (mIView != null) {
                         mIView.showLoadFailed();
                     }
+                    if (rxErrorHandler != null){
+                        rxErrorHandler.getHandlerFactory().handleError((Throwable) throwable);
+                    }
+
                 });
     }
 }

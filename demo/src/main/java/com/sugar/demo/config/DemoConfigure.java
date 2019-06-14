@@ -27,8 +27,8 @@ import com.sugar.demo.http.api.Wan;
 import com.sugar.demo.ui.widget.ToastStyle;
 import com.sugar.sugarlibrary.base.config.AppHttpSetting;
 import com.sugar.sugarlibrary.base.config.SugarConfigure;
+import com.sugar.sugarlibrary.rx.errorhandler.ResponseErrorListener;
 
-import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 
 /**
  * @author wobiancao

@@ -48,7 +48,6 @@ dependencies{
     api(rootProject.ext.dependencies['rxandroid2']){
         exclude module: 'rxjava'
     }
-    api rootProject.ext.dependencies["rxerrorhandler2"]//异常统一处理
     api rootProject.ext.dependencies['timber']//日志打印
     api rootProject.ext.dependencies['utilcode']//好用的工具库
     api rootProject.ext.dependencies['multidex-x']

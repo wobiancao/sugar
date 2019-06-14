@@ -5,12 +5,13 @@ android {
 
     defaultConfig {
         applicationId "com.sugar.demo"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
-                includeCompileClasspath true
-            }
-        }
+//        纯java用这种模式
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [AROUTER_MODULE_NAME: project.getName()]
+//                includeCompileClasspath true
+//            }
+//        }
     }
     buildTypes {
         release {
@@ -18,14 +19,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    //kotlin和java混编使用apt
+    kapt {
+        arguments {
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
+        generateStubs = true
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
     api rootProject.ext.dependencies["constraint-x"]
-//    implementation project(':sugarlibrary')
-    api rootProject.ext.dependencies["sugar"]
+    implementation project(':sugarlibrary')
+//    api rootProject.ext.dependencies["sugar"]
     api rootProject.ext.dependencies["gson"]
 }

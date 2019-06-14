@@ -18,10 +18,10 @@ package com.sugar.demo.ui.mvp.gank;
 import com.sugar.demo.bean.gank.GirlsData;
 import com.sugar.demo.http.repository.GankRepository;
 import com.sugar.sugarlibrary.base.presenter.BasePresenter;
+import com.sugar.sugarlibrary.rx.SugarHandleSubscriber;
 
 import java.util.List;
 
-import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 
 /**
  * @author wobiancao
@@ -39,13 +39,12 @@ public class GankPresenter extends BasePresenter<GankContract.IView, GankReposit
     public void getFuliDataRepository(String size, String index) {
 
         mModel.getFuliDataRepository(size, index)
-                .subscribe(new ErrorHandleSubscriber<List<GirlsData>>(rxErrorHandler) {
+                .subscribe(new SugarHandleSubscriber<List<GirlsData>>() {
                     @Override
-                    public void onNext(List<GirlsData> girlsResults) {
-                        mView.bindData(girlsResults);
+                    public void onNext(List<GirlsData> girlsData) {
+                        mView.bindData(girlsData);
                     }
-                })
-                ;
+                });
     }
 
 

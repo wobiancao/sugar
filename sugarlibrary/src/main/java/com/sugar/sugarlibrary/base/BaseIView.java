@@ -26,14 +26,60 @@ import com.trello.rxlifecycle3.LifecycleProvider;
  * desc :
  */
 public interface BaseIView {
+    /**
+     * loading page
+     */
     void showLoading();
+
+    /**
+     * success page
+     */
     void showLoadSuccess();
+
+    /**
+     * failed page
+     */
     void showLoadFailed();
+
+    /**
+     * empty page
+     */
     void showEmpty();
+
+    /**
+     * Retry page
+     */
     void onLoadRetry();
+
+    /**
+     * default dialog loading
+     */
     void showDialogLoading();
+
+    /**
+     * msg dialog loading
+     * @param msg
+     */
     void showDialogLoading(String msg);
+
+    /**
+     * hide dialog loading
+     */
     void hideDialogLoading();
+
+    /**
+     * network error page
+     */
     void showNetWorkError();
+
+    /**
+     * life provider
+     * @return
+     */
     LifecycleProvider<Lifecycle.Event> getProvider();
+
+    /**
+     * init loading status
+     */
+    void initLoadingStatusViewIfNeed();
 }

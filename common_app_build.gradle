@@ -1,5 +1,6 @@
-//def componentName = project.getName().startsWith("module_") ? project.getName().substring(0, "module_".length()) :
-
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
 
@@ -46,6 +47,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    annotationProcessor rootProject.ext.dependencies['arouter-compiler']
+    kapt rootProject.ext.dependencies['arouter-compiler']
 
 }

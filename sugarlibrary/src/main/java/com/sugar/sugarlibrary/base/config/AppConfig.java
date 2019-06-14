@@ -26,9 +26,9 @@ import com.facebook.stetho.Stetho;
 import com.hjq.toast.ToastUtils;
 import com.sugar.sugarlibrary.BuildConfig;
 import com.sugar.sugarlibrary.core.ActivityLifecycleCallback;
+import com.sugar.sugarlibrary.rx.errorhandler.RxErrorHandler;
 import com.sugar.sugarlibrary.util.CrashReportingTree;
 
-import me.jessyan.rxerrorhandler.core.RxErrorHandler;
 import timber.log.Timber;
 
 /**

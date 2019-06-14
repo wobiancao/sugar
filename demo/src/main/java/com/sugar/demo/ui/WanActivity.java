@@ -40,7 +40,7 @@ import com.sugar.sugarlibrary.base.anno.PresenterVariable;
  */
 @Route(path = RouterPageContant.WAN_HOME)
 @CreatePresenter(presenter = WanPresenter.class)
-public class WanActivity extends BaseActivity<WanPresenter> implements WanContract.IView {
+public class WanActivity extends BaseActivity implements WanContract.IView {
     @PresenterVariable
     WanPresenter mPresenter;
     TextView mInfoView;

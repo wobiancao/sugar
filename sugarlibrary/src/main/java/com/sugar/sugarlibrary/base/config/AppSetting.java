@@ -18,9 +18,9 @@ package com.sugar.sugarlibrary.base.config;
 import android.app.Application;
 
 import com.billy.android.loading.Gloading;
+import com.sugar.sugarlibrary.rx.errorhandler.ResponseErrorListener;
 import com.sugar.sugarlibrary.widget.BaseLoadingDialog;
 
-import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 
 /**
  * @author wobiancao

@@ -18,8 +18,7 @@ package com.sugar.demo.ui.mvp.wan;
 import com.sugar.demo.bean.wan.WanData;
 import com.sugar.demo.http.repository.WanRepository;
 import com.sugar.sugarlibrary.base.presenter.BasePresenter;
-
-import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
+import com.sugar.sugarlibrary.rx.SugarHandleSubscriber;
 
 /**
  * @author wobiancao
@@ -35,8 +34,9 @@ public class WanPresenter extends BasePresenter<WanContract.IView, WanRepository
 
     @Override
     public void getWanArticleList(String index) {
+
         mModel.getWanArticleList(index)
-                .subscribe(new ErrorHandleSubscriber<WanData>(rxErrorHandler) {
+                .subscribe(new SugarHandleSubscriber<WanData>() {
                     @Override
                     public void onNext(WanData wanData) {
                         mView.bindData(wanData);

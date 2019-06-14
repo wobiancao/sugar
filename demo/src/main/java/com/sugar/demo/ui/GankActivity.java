@@ -42,7 +42,7 @@ import java.util.List;
  */
 @Route(path = RouterPageContant.GANK_HOME)
 @CreatePresenter(presenter = GankPresenter.class)
-public class GankActivity extends BaseActivity<GankPresenter> implements GankContract.IView {
+public class GankActivity extends BaseActivity implements GankContract.IView {
 
     @PresenterVariable
     GankPresenter mPresenter;

@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
 
@@ -29,5 +31,9 @@ android {
         targetCompatibility = '1.8'
     }
 
+    dependencies{
+        api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+        api "org.jetbrains.anko:anko-common:$anko_version"
+    }
 
 }

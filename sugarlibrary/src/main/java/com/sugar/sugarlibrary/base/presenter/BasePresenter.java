@@ -15,19 +15,11 @@
  */
 package com.sugar.sugarlibrary.base.presenter;
 
-import android.os.Bundle;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.sugar.sugarlibrary.base.BaseIView;
-import com.sugar.sugarlibrary.base.config.AppConfig;
+import com.sugar.sugarlibrary.base.sugar.BaseSugarPresenter;
 import com.sugar.sugarlibrary.http.SugarRepository;
-import com.sugar.sugarlibrary.rx.RxEventBus;
-import com.tbruyelle.rxpermissions2.RxPermissions;
-
-import me.jessyan.rxerrorhandler.core.RxErrorHandler;
-import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
 
 
 /**
@@ -35,74 +27,39 @@ import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
  * @date 2019/5/13
  * desc :
  */
-public abstract class BasePresenter <V extends BaseIView, M extends SugarRepository>{
-    protected RxErrorHandler rxErrorHandler;
-    protected AppCompatActivity mContext;
+public abstract class BasePresenter <V extends BaseIView, M extends SugarRepository> extends BaseSugarPresenter {
     protected V mView;
     protected M mModel;
-    private RxPermissions mRxPermissions;
-    protected void attachView(AppCompatActivity activity, V view) {
-        this.mContext = activity;
-        this.mView = view;
+
+    @Override
+    public void attachView(AppCompatActivity activity, BaseIView view) {
+        super.attachView(activity, view);
+        this.mView = (V) view;
         mModel = (M) new SugarRepository(mView);
-        rxErrorHandler = AppConfig.INSTANCE.getRxErrorHandler();
-        mRxPermissions = new RxPermissions(activity);
         initRepository();
-        handleEvent();
     }
 
-    public RxPermissions getRxPermissions() {
-        return mRxPermissions;
-    }
+
+
+
+
 
     /**
      * 初始化相关数据仓库
      */
     protected abstract void initRepository();
 
-    protected void detachView() {
+    @Override
+    public void detachView() {
         this.mView = null;
     }
 
-    protected boolean isAttachView() {
+    @Override
+    public boolean isAttachView() {
         return this.mView != null;
     }
 
-    protected void handleEvent(){
-
-    }
 
 
-    protected void subscribeEvent(final Class<?> eventType, ErrorHandleSubscriber subscriber){
-        if (mView == null) {return;}
-        RxEventBus.getInstance().toObservable(eventType)
-                .compose(mView.getProvider().bindToLifecycle())
-                .subscribe(subscriber);
-    }
-
-
-    protected void subscribeStickyEvent(final Class<?> eventType, ErrorHandleSubscriber subscriber){
-        if (mView == null) {return;}
-        RxEventBus.getInstance().toObservableSticky(eventType)
-                .compose(mView.getProvider().bindToLifecycle())
-                .subscribe(subscriber);
-    }
-
-    protected void onCleared() {
-
-    }
-
-    protected void onCreatePresenter(@Nullable Bundle savedState) {
-
-    }
-
-    protected void onSaveInstanceState(Bundle outState) {
-
-    }
-
-    protected void onDestroyPresenter() {
-        this.mContext = null;
-        detachView();
-    }
 
 }

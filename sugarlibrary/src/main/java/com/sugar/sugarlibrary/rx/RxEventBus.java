@@ -19,6 +19,7 @@ package com.sugar.sugarlibrary.rx;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
+import com.sugar.sugarlibrary.base.config.AppConfig;
 import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
 import com.trello.rxlifecycle3.LifecycleProvider;
 
@@ -88,7 +89,8 @@ public class RxEventBus {
         return mBus.ofType(eventType)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError(throwable -> AppConfig.INSTANCE.getRxErrorHandler().getHandlerFactory().handleError(throwable));
     }
 
     /**
@@ -154,7 +156,8 @@ public class RxEventBus {
             Observable<T> observable = mBus.ofType(eventType)
                     .subscribeOn(Schedulers.io())
                     .unsubscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread());
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnError(throwable -> AppConfig.INSTANCE.getRxErrorHandler().getHandlerFactory().handleError(throwable));
             final Object event = mStickyEventMap.get(eventType);
 
             if (event != null) {

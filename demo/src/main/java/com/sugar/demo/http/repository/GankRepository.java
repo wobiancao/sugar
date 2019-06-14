@@ -61,7 +61,9 @@ public class GankRepository extends SugarRepository implements RepositoryContrac
                     } else {
                         return Observable.error(new HttpException("接口异常"));
                     }
-                });
+                })
+
+                ;
 
     }
 

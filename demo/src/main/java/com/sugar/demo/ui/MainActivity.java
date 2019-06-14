@@ -56,13 +56,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    public void Gank(View view) {
-        ARouterUtils.navigation(RouterPageContant.GANK_HOME);
-    }
 
-    public void Wan(View view) {
-        ARouterUtils.navigation(RouterPageContant.WAN_HOME);
-    }
 
 
     public void changeBottom() {
@@ -111,5 +105,23 @@ public class MainActivity extends BaseActivity {
             mAnimationView.setTranslationY(ConvertUtils.dp2px((1 - progress) * 100));
         }
 
+    }
+
+
+
+    public void Gank(View view) {
+        ARouterUtils.navigation(RouterPageContant.GANK_HOME);
+    }
+
+    public void Wan(View view) {
+        ARouterUtils.navigation(RouterPageContant.WAN_HOME);
+    }
+
+    public void KtGank(View view) {
+        ARouterUtils.navigation(RouterPageContant.KT_GANK);
+    }
+
+    public void KtFragmentGank(View view) {
+        ARouterUtils.navigation(RouterPageContant.KT_CONTAINER);
     }
 }
