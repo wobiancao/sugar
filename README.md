@@ -15,6 +15,7 @@
 
 更新日志
 -------
+- 2019-06-14 更新 kotlin接入啦，还有一些好用的方法更新，后续更新文档
 - 2019-06-05 更新 不务正业之[`使用MotionLayout实现高德地图bottomSheets效果`](https://github.com/wobiancao/sugar/blob/master/demo/README.md)
 - 2019-05-31 更新 1.0.1.3升级到androidx
 - 2019-05-29 最新，新鲜temeple出炉，请拉到最后看效果
@@ -23,7 +24,9 @@
 
 To do
 --------
-- kotlin 全面支持
+- anko
+- kotlin-mvp temeple
+- kotlin 全面支持 ✔️
 - 图片加载库更换策略，或者为了方便使用直接用一套写好的放入
 - 常用控件（刷新，标题等等）
 - more...
