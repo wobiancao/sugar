@@ -30,6 +30,64 @@ To do
 - 常用控件（刷新，标题等等）
 - more...
 
+最新修改
+-------
+
+1. `SugarHandleSubscriber`  用于接口请求时候仅处理`onNext()`,因为在`SugarRepository`里面的`customObservable(Observable observable)`函数里面统一处理了错误异常抓取，一般情况下不需要再处理`OnError`当然可以重载函数的时候做处理
+```
+ .doOnError(throwable -> {
+                    LogUtils.i("doOnError------" + throwable);
+                    if (mIView != null) {
+                        mIView.showLoadFailed();
+                    }
+                    if (rxErrorHandler != null){
+                       //统一异常抓取
+                       rxErrorHandler.getHandlerFactory().handleError((Throwable) throwable);
+                    }
+
+                });
+```
+2. 使用`SugarHandleSubscriber`
+- java :
+```
+@Override
+    public void getFuliDataRepository(String size, String index) {
+
+        mModel.getFuliDataRepository(size, index)
+                .subscribe(new SugarHandleSubscriber<List<GirlsData>>() {
+                    @Override
+                    public void onNext(List<GirlsData> girlsData) {
+                        mView.bindData(girlsData);
+                    }
+                });
+    }
+```
+- kotlin
+```
+   mModel.getFuliDataRepository(size, index)
+                .subscribe({
+                    mView.bindData(it)
+                })
+```
+
+3. `1.0.1.4`版本之后 `Presenter`不支持在`Activity/Fragment`后写泛型，只支持注解
+- java:
+```
+@CreatePresenter(presenter = GankPresenter.class)
+public class GankActivity extends BaseActivity implements GankContract.IView{
+    @PresenterVariable
+    GankPresenter mPresenter;
+}
+```
+- kotlin
+```
+@CreatePresenter(presenter = [GankPresenter::class])
+class KtGankActivity : BaseActivity(), GankContract.IView{
+    @PresenterVariable
+    internal var mPresenter: GankPresenter? = null
+}
+```
+
 ### 实用到的库(排名不分先后)
 [`Retrofit你懂的`](https://github.com/square/retrofit)
 
