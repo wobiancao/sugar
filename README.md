@@ -14,6 +14,7 @@
 
 更新日志
 -------
+- 2019-06-24 更新 1.0.1.5 anko ui注解初始化+自定义ConverterFactory
 - 2019-06-17 更新 kotlin-mvp temeple
 - 2019-06-14 更新 kotlin接入
 - 2019-06-05 更新 不务正业之[`使用MotionLayout实现高德地图bottomSheets效果`](https://github.com/wobiancao/sugar/blob/master/demo/README.md)
@@ -24,7 +25,8 @@
 
 To do
 --------
-- anko
+- anko temeple
+- anko ✔️
 - kotlin-mvp temeple ✔️
 - kotlin 全面支持 ✔️
 - 图片加载库更换策略，或者为了方便使用直接用一套写好的放入
