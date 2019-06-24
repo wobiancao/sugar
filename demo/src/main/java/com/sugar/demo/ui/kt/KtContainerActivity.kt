@@ -22,6 +22,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.gyf.immersionbar.ImmersionBar
 import com.sugar.demo.R
 import com.sugar.demo.router.RouterPageContant
+import com.sugar.demo.ui.kt.anko.GankAnkoFragment
 import com.sugar.sugarlibrary.base.BaseActivity
 
 /**
@@ -47,9 +48,9 @@ class KtContainerActivity : BaseActivity(){
         mToolbar = findViewById(R.id.toolbar)
         setSupportActionBar(mToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "KtContainerActivity"
+        supportActionBar?.title = "AnkoContainerActivity"
         supportFragmentManager.beginTransaction()
-                .add(mLayoutId, KtGankFragment())
+                .add(mLayoutId, GankAnkoFragment())
                 .commit()
 
     }

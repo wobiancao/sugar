@@ -36,5 +36,12 @@ dependencies {
     api rootProject.ext.dependencies["constraint-x"]
     implementation project(':sugarlibrary')
 //    api rootProject.ext.dependencies["sugar"]
-    api rootProject.ext.dependencies["gson"]
+//    api rootProject.ext.dependencies["gson"]
+    //fastjson converter
+    implementation(rootProject.ext.dependencies["retrofit-converter-fastj"]) {
+        exclude module: 'gson'
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+        exclude module: 'retrofit'
+    }
 }

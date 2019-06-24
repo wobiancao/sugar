@@ -29,6 +29,8 @@ import com.sugar.sugarlibrary.base.config.AppHttpSetting;
 import com.sugar.sugarlibrary.base.config.SugarConfigure;
 import com.sugar.sugarlibrary.rx.errorhandler.ResponseErrorListener;
 
+import retrofit2.converter.fastjson.FastJsonConverterFactory;
+
 
 /**
  * @author wobiancao
@@ -92,6 +94,8 @@ public class DemoConfigure extends SugarConfigure {
 //                .cache(xx)
                 //甚至另外写一套自己的okhttp builder 也行
 //                .setOkHttpBuilder(xxx)
+                //自定义ConverterFactory
+                .addConverterFactory(FastJsonConverterFactory.create())
                 .build();
     }
 

@@ -54,14 +54,14 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
                 android:onClick="KtGank"
-                android:text="Kotlin-Gank.io" />
+                android:text="Anko-fragment" />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:onClick="KtFragmentGank"
-                android:text="Kotlin-Fragment-Gank.io" />
+                android:onClick="Anko"
+                android:text="Kotlin-Anko" />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

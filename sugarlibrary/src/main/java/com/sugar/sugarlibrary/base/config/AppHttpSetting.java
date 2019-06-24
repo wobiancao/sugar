@@ -34,6 +34,8 @@ import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Converter;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @author wobiancao
@@ -46,12 +48,14 @@ public class AppHttpSetting {
     private boolean httpLog;
     private String baseUrl;
     private OkHttpClient.Builder okHttpBuilder;
+    private Converter.Factory httpConverter;
     public AppHttpSetting(Builder builder) {
         this.httpMonitor = builder.httpMonitor;
         this.httpLog = builder.httpLog;
         this.baseUrl = builder.baseUrl;
         this.cacheTime = builder.cacheTime;
         this.okHttpBuilder = builder.okHttpBuilder;
+        this.httpConverter = builder.httpConverter;
     }
 
     public OkHttpClient.Builder getOkHttpBuilder() {
@@ -72,6 +76,13 @@ public class AppHttpSetting {
     }
 
 
+    public Converter.Factory getHttpConverter() {
+        if (httpConverter == null){
+            return GsonConverterFactory.create();
+        }else {
+            return httpConverter;
+        }
+    }
 
     public String getBaseUrl() {
         return baseUrl;
@@ -87,6 +98,7 @@ public class AppHttpSetting {
         boolean httpMonitor;
         OkHttpClient.Builder okHttpBuilder;
         boolean httpLog;
+        Converter.Factory httpConverter;
         private Builder() {
             okHttpBuilder = RetrofitUrlManager.getInstance().with(new OkHttpClient.Builder());
             okHttpBuilder.connectTimeout(20, TimeUnit.SECONDS);
@@ -263,6 +275,11 @@ public class AppHttpSetting {
 
         public AppHttpSetting build() {
             return new AppHttpSetting(this);
+        }
+
+        public AppHttpSetting.Builder addConverterFactory(Converter.Factory factory) {
+            this.httpConverter = factory;
+            return this;
         }
 
     }

@@ -33,7 +33,9 @@ android {
 
     dependencies{
         api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+        api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
         api "org.jetbrains.anko:anko-common:$anko_version"
+
     }
 
 }

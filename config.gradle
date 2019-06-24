@@ -5,8 +5,8 @@ ext {
             buildToolsVersion: "28.0.3",
             minSdkVersion    : 17,
             targetSdkVersion : 28,
-            versionCode      : 24,
-            versionName      : "1.0.1.4"    //必须是int或者float，否则影响线上升级
+            versionCode      : 25,
+            versionName      : "1.0.1.5"    //必须是int或者float，否则影响线上升级
     ]
     version = [
             androidSupportSdkVersion: "28.0.0",
@@ -24,6 +24,9 @@ ext {
     dependencies = [
             //kotlin
             "anko"                      : "org.jetbrains.anko:anko-common:${version["ankoVersion"]}",
+            "anko-sdk"                  : "org.jetbrains.anko:anko-sdk25:${version["ankoVersion"]}",
+            "anko-design"               : "org.jetbrains.anko:anko-design:${version["ankoVersion"]}",
+            "anko-v4"                   : "org.jetbrains.anko:anko-support-v4:${version["ankoVersion"]}",
             "rxlifecycle3-ktx"          : "com.trello.rxlifecycle3:rxlifecycle-kotlin:${version["rxlifecycle3"]}",
             "rxlifecycle3-ktx-life"     : "com.trello.rxlifecycle3:rxlifecycle-kotlin:${version["rxlifecycle3"]}",
 
@@ -65,6 +68,7 @@ ext {
             "stetho"                    : 'com.facebook.stetho:stetho:1.5.0',
             "stetho-okhttp3"            : 'com.facebook.stetho:stetho-okhttp3:1.5.0',
             "retorfitUrlManager"        : 'me.jessyan:retrofit-url-manager:1.4.0',
+            "retrofit-converter-fastj"  : 'org.ligboy.retrofit2:converter-fastjson-android:2.1.0',
             //rx2
             "rxandroid2"                : "io.reactivex.rxjava2:rxandroid:2.1.0",
             "rxjava2"                   : "io.reactivex.rxjava2:rxjava:2.2.3",
@@ -125,7 +129,7 @@ ext {
             //cache
             "disklru"                   : 'com.jakewharton:disklrucache:2.0.2',
             //sugar
-            "sugar"                     : 'com.github.wobiancao:sugar:1.0.1.3'
+            "sugar"                     : 'com.github.wobiancao:sugar:1.0.1.4'
 
 
     ]

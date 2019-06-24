@@ -94,4 +94,8 @@ dependencies{
     api rootProject.ext.dependencies["retorfitUrlManager"]
     api rootProject.ext.dependencies["lottie"]
     api rootProject.ext.dependencies["toast"]
+    api rootProject.ext.dependencies["anko"]
+    api rootProject.ext.dependencies["anko-sdk"]
+    api rootProject.ext.dependencies["anko-design"]
+    api rootProject.ext.dependencies["anko-v4"]
 }

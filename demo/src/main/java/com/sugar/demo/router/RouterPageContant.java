@@ -13,4 +13,5 @@ public interface RouterPageContant {
     String WAN_HOME = ACTIVITY + "/wan_home";
     String KT_GANK = ACTIVITY + "/kt_gank";
     String KT_CONTAINER = ACTIVITY + "/kt_container";
+    String KT_ANKO = ACTIVITY + "/kt_anko";
 }

@@ -50,7 +50,7 @@ public class AppHttpClient {
         this.mOkHttpClient  = httpSetting.getOkHttpBuilder().build();
         this.mRetrofit = new Retrofit.Builder()
                 .baseUrl(httpSetting.getBaseUrl())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(httpSetting.getHttpConverter())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(mOkHttpClient)
                 .build();

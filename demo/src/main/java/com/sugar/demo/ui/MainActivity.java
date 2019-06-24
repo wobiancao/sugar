@@ -118,10 +118,10 @@ public class MainActivity extends BaseActivity {
     }
 
     public void KtGank(View view) {
-        ARouterUtils.navigation(RouterPageContant.KT_GANK);
+        ARouterUtils.navigation(RouterPageContant.KT_CONTAINER);
     }
 
-    public void KtFragmentGank(View view) {
-        ARouterUtils.navigation(RouterPageContant.KT_CONTAINER);
+    public void Anko(View view) {
+        ARouterUtils.navigation(RouterPageContant.KT_ANKO);
     }
 }
