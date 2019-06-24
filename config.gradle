@@ -129,7 +129,7 @@ ext {
             //cache
             "disklru"                   : 'com.jakewharton:disklrucache:2.0.2',
             //sugar
-            "sugar"                     : 'com.github.wobiancao:sugar:1.0.1.4'
+            "sugar"                     : 'com.github.wobiancao:sugar:1.0.1.5'
 
 
     ]

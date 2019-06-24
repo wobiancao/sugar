@@ -1,6 +1,6 @@
 apply from:"../common_libary_build.gradle"
 apply from: '../bintray_publish.gradle'
-
+apply plugin: 'org.jetbrains.dokka'
 android{
     lintOptions {
         checkReleaseBuilds false
@@ -98,4 +98,25 @@ dependencies{
     api rootProject.ext.dependencies["anko-sdk"]
     api rootProject.ext.dependencies["anko-design"]
     api rootProject.ext.dependencies["anko-v4"]
+}
+
+//同时添加三个方法 for kotlin
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'javadoc'
+    outputDirectory = javadoc.destinationDir
+}
+task generateJavadoc(type: Jar, dependsOn: dokkaJavadoc) {
+    group = 'jar'
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+task generateSourcesJar(type: Jar) {
+    group = 'jar'
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+artifacts{
+    archives generateJavadoc //javadocJar
+    archives generateSourcesJar //sourcesJar
 }

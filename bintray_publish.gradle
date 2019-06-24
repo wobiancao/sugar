@@ -34,36 +34,27 @@ install{
     }
 }
 
-task sourcesJar(type: Jar){
+task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
 }
 
-task javadoc(type: Javadoc){
-    options.encoding = "UTF-8"
+task javadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc){
+task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
+task copyDoc(type: Copy) {
+    from "${buildDir}/docs/"
+    into "docs"
 }
 
-tasks.withType(Javadoc) {
-    options.addStringOption('Xdoclint:none', '-quiet')
-    options.addStringOption('encoding', 'UTF-8')
-    options.addStringOption('charSet', 'UTF-8')
-}
 
-artifacts{
-    archives javadocJar
-    archives sourcesJar
-}
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
