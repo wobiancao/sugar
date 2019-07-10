@@ -18,6 +18,7 @@ package com.sugar.sugarlibrary.base.config;
 import android.app.Application;
 
 import com.billy.android.loading.Gloading;
+import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.IToastStyle;
 import com.sugar.sugarlibrary.http.interceptor.SugarCustomHeaderInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarExceptionInterceptor;
@@ -79,12 +80,6 @@ public interface AppConfigureDelegate {
 
 
     /**
-     * 设置状态栏颜色
-     * @return
-     */
-    int getStatusColor();
-
-    /**
      * 获取全局的application
      * @return
      */
@@ -94,4 +89,9 @@ public interface AppConfigureDelegate {
      * toast样式 https://github.com/getActivity/ToastUtils
      */
     IToastStyle getToastStyle();
+
+    /**
+     * 统一配置状态栏，直接提出来用
+     */
+    ImmersionBar getImmersionBar();
 }

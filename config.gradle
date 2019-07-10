@@ -5,8 +5,8 @@ ext {
             buildToolsVersion: "28.0.3",
             minSdkVersion    : 17,
             targetSdkVersion : 28,
-            versionCode      : 25,
-            versionName      : "1.0.1.5"    //必须是int或者float，否则影响线上升级
+            versionCode      : 26,
+            versionName      : "1.0.1.6"    //必须是int或者float，否则影响线上升级
     ]
     version = [
             androidSupportSdkVersion: "28.0.0",
