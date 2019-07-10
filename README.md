@@ -36,6 +36,99 @@ To do
 最新修改
 -------
 
+`1.0.1.5`
+-------
+`主要新增anko支持,通过注解解耦使用AnkoUi,不需要手动初始化，直接使用ankoUi`
+- 顶部TYPE注解 
+```
+@AnkoInject(ui = xxAnkoUi::class) 
+```
+- 变量FIELD注解
+```
+    @AnkoVariable
+    internal var ui : xxAnkoUi? = null
+```
+然后可直接使用`ui`这个变量，如下:
+
+1. `GankAnkoActivity`
+```
+@AnkoInject(ui = GankActivityUi::class)
+@Route(path = RouterPageContant.KT_ANKO)
+@CreatePresenter(presenter = [GankPresenter::class])
+class GankAnkoActivity : BaseAnkoActivity(), GankContract.IView {
+
+    @PresenterVariable
+    internal var mPresenter: GankPresenter? = null
+    @AnkoVariable
+    internal var ui : GankActivityUi? = null
+
+    @SuppressLint("NewApi")
+    override fun init(savedInstanceState: Bundle?) {
+        setSupportActionBar(ui?.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "KtGankActivity"
+    }
+
+    override fun loadData() {
+        mPresenter?.getFuliDataRepository("20", "1")
+    }
+
+    override fun bindData(data: MutableList<GirlsData>?) {
+        val jsonStr = JSON.toJSONString(data)
+        ui?.textInfo?.text = jsonStr
+    }
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+}
+```
+2. `GankAnkoFragment`
+```
+@AnkoInject(ui = GankFragmentUi::class)
+@CreatePresenter(presenter = [TestGankPresenter::class])
+class GankAnkoFragment: BaseAnkoFragment(),  GankContract.IView {
+
+    @PresenterVariable
+    internal var mPresenter: TestGankPresenter? = null
+    @AnkoVariable
+    internal var ui : GankFragmentUi? = null
+
+    override fun init(savedInstanceState: Bundle?) {
+
+    }
+
+    override fun initImmersionBar() {
+        ImmersionBar.with(this)
+                .transparentStatusBar()
+                .fitsSystemWindows(true)
+                .statusBarColor(R.color.colorPrimary)
+                .statusBarDarkFont(true, 0.2f)
+                .init()
+    }
+
+
+
+    override fun loadData() {
+        mPresenter?.getFuliDataRepository("10", "1")
+    }
+
+    override fun bindData(data: MutableList<GirlsData>?) {
+        val jsonStr = JSON.toJSONString(data)
+        ui?.textInfo?.text = jsonStr
+    }
+}
+```
+
+`1.0.1.4`
+-------
+
 1. `SugarHandleSubscriber`  用于接口请求时候仅处理`onNext()`,因为在`SugarRepository`里面的`customObservable(Observable observable)`函数里面统一处理了错误异常抓取，一般情况下不需要再处理`OnError`当然可以重载函数的时候做处理
 ```
  .doOnError(throwable -> {
