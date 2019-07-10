@@ -33,59 +33,70 @@ import org.jetbrains.anko.support.v4.ctx
  * @date 2019-06-24
  * desc :
  */
+class AnkoInjectTools {
+    companion object {
+        /**
+         * 注解activity
+         */
+        @SuppressWarnings("unchecked")
+        fun autoInjectAnkoUi(activity: BaseAnkoActivity) {
+            var clazz = activity.javaClass
+            var ankoInject = clazz.getAnnotation(AnkoInject::class.java)
+            var classes = ankoInject?.ui
+            for (field in clazz.declaredFields) {
+                var anns = field.declaredAnnotations
+                if (anns.size < 1) {
+                    continue
+                }
+                if (anns[0] is AnkoVariable) {
 
-/**
- * 注解activity
- */
-inline fun autoInjectAnkoUi(activity: BaseAnkoActivity) {
-    var clazz = activity.javaClass
-    var ankoInject = clazz.getAnnotation(AnkoInject::class.java)
-    var classes = ankoInject.ui
-    for (field in clazz.declaredFields) {
-        var anns = field.declaredAnnotations
-        if (anns.size < 1) {
-            continue
+                    var uiInstance = classes?.java?.newInstance()
+                    field.isAccessible = true
+                    field.set(activity, uiInstance)
+                    uiInstance as AnkoComponent<Context>?
+                    if (uiInstance != null) {
+                        uiInstance.setContentView(activity)
+                    }
+
+                }
+
+
+            }
         }
-        if (anns[0] is AnkoVariable) {
+        /**
+         * 注解 fragment
+         */
+        @SuppressWarnings("unchecked")
+        fun autoInjectAnkoUi(fragment: BaseAnkoFragment): View {
+            var view: View = LinearLayout(fragment.context)
+            var clazz = fragment.javaClass
+            var ankoInject = clazz.getAnnotation(AnkoInject::class.java)
+            var classes = ankoInject?.ui
+            for (field in clazz.declaredFields) {
+                var anns = field.declaredAnnotations
+                if (anns.size < 1) {
+                    continue
+                }
+                if (anns[0] is AnkoVariable) {
 
-            var uiInstance = classes.java.newInstance()
-            field.isAccessible = true
-            field.set(activity, uiInstance)
-            uiInstance as AnkoComponent<Context>
-            uiInstance.setContentView(activity)
+                    var uiInstance = classes?.java?.newInstance()
+                    field.isAccessible = true
+                    field.set(fragment, uiInstance)
+                    uiInstance as AnkoComponent<Context>?
+                    if (uiInstance != null) {
+                        view = uiInstance.createView(AnkoContext.Companion.create(fragment.ctx, fragment.ctx))
+                    }
+                    return view
 
-        }
+                }
 
 
-    }
-}
-
-/**
- * 注解 fragment
- */
-inline fun autoInjectAnkoUi(fragment: BaseAnkoFragment) : View {
-    var view: View = LinearLayout(fragment.context)
-    var clazz = fragment.javaClass
-    var ankoInject = clazz.getAnnotation(AnkoInject::class.java)
-    var classes = ankoInject.ui
-    for (field in clazz.declaredFields) {
-        var anns = field.declaredAnnotations
-        if (anns.size < 1) {
-            continue
-        }
-        if (anns[0] is AnkoVariable) {
-
-            var uiInstance = classes.java.newInstance()
-            field.isAccessible = true
-            field.set(fragment, uiInstance)
-            uiInstance as AnkoComponent<Context>
-            view = uiInstance.createView(AnkoContext.Companion.create(fragment.ctx, fragment.ctx))
+            }
             return view
-
         }
-
-
     }
-    return view
+
+
+
 
 }

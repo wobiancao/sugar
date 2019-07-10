@@ -93,5 +93,5 @@ public interface AppConfigureDelegate {
     /**
      * 统一配置状态栏，直接提出来用
      */
-    ImmersionBar getImmersionBar();
+    ImmersionBar getImmersionBar(ImmersionBar bar);
 }

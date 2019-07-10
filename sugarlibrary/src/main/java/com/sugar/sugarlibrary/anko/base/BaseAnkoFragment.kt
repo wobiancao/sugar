@@ -16,7 +16,7 @@
 package com.sugar.sugarlibrary.anko.base
 
 import android.view.View
-import com.sugar.sugarlibrary.anko.inject.autoInjectAnkoUi
+import com.sugar.sugarlibrary.anko.inject.AnkoInjectTools
 import com.sugar.sugarlibrary.base.BaseFragment
 import com.sugar.sugarlibrary.util.Constant.USE_SELEF_VIEW
 
@@ -35,7 +35,7 @@ abstract class BaseAnkoFragment: BaseFragment() {
     }
 
     override fun getPageView(): View {
-        return autoInjectAnkoUi(this)
+        return AnkoInjectTools.autoInjectAnkoUi(this)
     }
 
 }

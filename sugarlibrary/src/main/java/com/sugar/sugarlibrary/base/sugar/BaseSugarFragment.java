@@ -126,7 +126,7 @@ public abstract class BaseSugarFragment extends ImmersionFragment implements Bas
     @Override
     public void initImmersionBar() {
         AppConfig.INSTANCE.getSugarConfigure()
-                .getImmersionBar()
+                .getImmersionBar(ImmersionBar.with(this))
                 .init();
     }
 

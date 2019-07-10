@@ -15,7 +15,7 @@
  */
 package com.sugar.sugarlibrary.anko.base
 
-import com.sugar.sugarlibrary.anko.inject.autoInjectAnkoUi
+import com.sugar.sugarlibrary.anko.inject.AnkoInjectTools
 import com.sugar.sugarlibrary.base.BaseActivity
 import com.sugar.sugarlibrary.util.Constant.USE_SELEF_VIEW
 
@@ -27,7 +27,7 @@ import com.sugar.sugarlibrary.util.Constant.USE_SELEF_VIEW
 abstract class BaseAnkoActivity : BaseActivity(){
 
     override fun getContentView(): Int {
-        autoInjectAnkoUi(this)
+        AnkoInjectTools.autoInjectAnkoUi(this)
         return USE_SELEF_VIEW
     }
 

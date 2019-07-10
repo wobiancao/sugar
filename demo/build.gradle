@@ -34,8 +34,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
     api rootProject.ext.dependencies["constraint-x"]
-//    implementation project(':sugarlibrary')
-    api rootProject.ext.dependencies["sugar"]
+    implementation project(':sugarlibrary')
+//    api rootProject.ext.dependencies["sugar"]
 //    api rootProject.ext.dependencies["gson"]
     //fastjson converter
     implementation(rootProject.ext.dependencies["retrofit-converter-fastj"]) {

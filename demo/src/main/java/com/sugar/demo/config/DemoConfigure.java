@@ -19,6 +19,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.IToastStyle;
 import com.hjq.toast.ToastUtils;
 import com.sugar.demo.R;
@@ -55,10 +56,6 @@ public class DemoConfigure extends SugarConfigure {
         };
     }
 
-    @Override
-    public int getStatusColor() {
-        return R.color.colorPrimary;
-    }
 
     @Override
     public AppHttpSetting getHttpSetting() {
@@ -102,5 +99,14 @@ public class DemoConfigure extends SugarConfigure {
     @Override
     public IToastStyle getToastStyle() {
         return new ToastStyle();
+    }
+
+    @Override
+    public ImmersionBar getImmersionBar(ImmersionBar bar) {
+        return bar
+                .fitsSystemWindows(true)
+                .keyboardEnable(true)
+                .statusBarColor(R.color.colorPrimary)
+                ;
     }
 }

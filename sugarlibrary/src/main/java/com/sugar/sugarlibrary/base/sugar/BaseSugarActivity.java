@@ -94,7 +94,7 @@ public abstract class BaseSugarActivity extends AppCompatActivity implements Bas
      */
     protected void initImmersionBar(){
         AppConfig.INSTANCE.getSugarConfigure()
-                .getImmersionBar()
+                .getImmersionBar(ImmersionBar.with(this))
                 .init();
     }
 
