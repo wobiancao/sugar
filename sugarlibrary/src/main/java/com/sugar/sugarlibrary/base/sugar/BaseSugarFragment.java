@@ -125,11 +125,8 @@ public abstract class BaseSugarFragment extends ImmersionFragment implements Bas
 
     @Override
     public void initImmersionBar() {
-        ImmersionBar.with(this)
-                .fitsSystemWindows(true)
-                .keyboardEnable(true)
-                .fitsSystemWindows(true)
-                .statusBarColor(AppConfig.INSTANCE.getSugarConfigure().getStatusColor())
+        AppConfig.INSTANCE.getSugarConfigure()
+                .getImmersionBar()
                 .init();
     }
 
