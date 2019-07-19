@@ -11,6 +11,12 @@
 最近公司事情多，所以to do会稍后进行☺️ 有想要加的模块或计划，大家可以提到issues，我会关注的，并且会回复，希望把这个弄好
 -------
 
+预告
+------
+- 接入 CC[`CC业界首个支持渐进式组件化改造的Android组件化框架，支持跨进程调用`](https://qibilly.com/CC-website)
+- 接入 [`AgentWeb`](https://github.com/Justson/AgentWeb)，一键调用
+- 接入社会化分享和支付，一键调用
+- more
 
 更新日志
 -------
