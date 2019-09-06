@@ -23,18 +23,33 @@
 
 - ...
 
-To do
---------
-- anko temeple
-- anko ✔️
-- kotlin-mvp temeple ✔️
-- kotlin 全面支持 ✔️
-- 图片加载库更换策略，或者为了方便使用直接用一套写好的放入
-- 常用控件（刷新，标题等等）
-- more...
+
 
 最新修改
 -------
+`1.0.1.7`
+-------
+`主要新增，图片加载库`[`图片加载，任意选择加载引擎  打造统一的图片加载框架，融合Glide（4.x），Fresco,不侵入业务代码，一套API兼容两种加载库`](https://github.com/ladingwu/ImageLoaderFramework)
+
+```
+ @Override
+    public AppSetting getAppSetting() {
+        return getAppSettingBuilder()
+                .isDebug(true)
+                .build();
+    }
+
+    @Override
+    public AppImageLoadSetting getImageLoadSetting() {
+        return AppImageLoadSetting
+                .builder()
+                .imageLoaderConfig(getImageLoaderConfig())
+                .isCrossFade(true)
+                .errorholder(R.mipmap.ic_launcher_round)
+                .placeholder(R.mipmap.ic_logo)
+                .build();
+    }
+```
 
 `1.0.1.5`
 -------
