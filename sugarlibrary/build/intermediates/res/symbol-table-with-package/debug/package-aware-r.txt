@@ -16,6 +16,8 @@ anim design_bottom_sheet_slide_out
 anim design_snackbar_in
 anim design_snackbar_out
 anim lib_dialog_load_animation
+anim tooltip_enter
+anim tooltip_exit
 animator design_appbar_state_list_animator
 animator design_fab_hide_motion_spec
 animator design_fab_show_motion_spec
@@ -61,6 +63,9 @@ attr actionOverflowMenuStyle
 attr actionProviderClass
 attr actionViewClass
 attr activityChooserViewStyle
+attr actualImageResource
+attr actualImageScaleType
+attr actualImageUri
 attr alertDialogButtonGroupStyle
 attr alertDialogCenterButtons
 attr alertDialogStyle
@@ -77,6 +82,7 @@ attr autoSizePresetSizes
 attr autoSizeStepGranularity
 attr autoSizeTextType
 attr background
+attr backgroundImage
 attr backgroundSplit
 attr backgroundStacked
 attr backgroundTint
@@ -232,6 +238,9 @@ attr fabCradleRoundedCornerRadius
 attr fabCradleVerticalOffset
 attr fabCustomSize
 attr fabSize
+attr fadeDuration
+attr failureImage
+attr failureImageScaleType
 attr fastScrollEnabled
 attr fastScrollHorizontalThumbDrawable
 attr fastScrollHorizontalTrackDrawable
@@ -353,6 +362,7 @@ attr navigationMode
 attr navigationViewStyle
 attr numericModifiers
 attr overlapAnchor
+attr overlayImage
 attr paddingBottomNoButtons
 attr paddingEnd
 attr paddingStart
@@ -366,11 +376,17 @@ attr passwordToggleEnabled
 attr passwordToggleTint
 attr passwordToggleTintMode
 attr path
+attr placeholderImage
+attr placeholderImageScaleType
 attr popupMenuStyle
 attr popupTheme
 attr popupWindowStyle
 attr preserveIconSpacing
+attr pressedStateOverlayImage
 attr pressedTranslationZ
+attr progressBarAutoRotateInterval
+attr progressBarImage
+attr progressBarImageScaleType
 attr progressBarPadding
 attr progressBarStyle
 attr queryBackground
@@ -379,8 +395,24 @@ attr radioButtonStyle
 attr ratingBarStyle
 attr ratingBarStyleIndicator
 attr ratingBarStyleSmall
+attr retryImage
+attr retryImageScaleType
 attr reverseLayout
 attr rippleColor
+attr roundAsCircle
+attr roundBottomEnd
+attr roundBottomLeft
+attr roundBottomRight
+attr roundBottomStart
+attr roundTopEnd
+attr roundTopLeft
+attr roundTopRight
+attr roundTopStart
+attr roundWithOverlayColor
+attr roundedCornerRadius
+attr roundingBorderColor
+attr roundingBorderPadding
+attr roundingBorderWidth
 attr scrimAnimationDuration
 attr scrimBackground
 attr scrimVisibleHeightTrigger
@@ -514,6 +546,7 @@ attr trackTint
 attr trackTintMode
 attr ttcIndex
 attr useCompatPadding
+attr viewAspectRatio
 attr viewInflaterClass
 attr voiceIcon
 attr windowActionBar
@@ -1052,6 +1085,8 @@ id bottom
 id buttonPanel
 id cancel_action
 id center
+id centerCrop
+id centerInside
 id checkbox
 id chronometer
 id collapseActionView
@@ -1077,8 +1112,15 @@ id expand_activities_button
 id expanded_menu
 id fill
 id filled
+id fitBottomStart
+id fitCenter
+id fitEnd
+id fitStart
+id fitXY
 id fixed
+id focusCrop
 id forever
+id fresco_drawee
 id ghost_view
 id group_divider
 id home
@@ -1290,6 +1332,7 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
+layout tooltip
 mipmap lib_loading
 string abc_action_bar_home_description
 string abc_action_bar_home_description_format
@@ -1451,6 +1494,7 @@ style Base_Theme_MaterialComponents_Light_DialogWhenLarge
 style Base_Theme_MaterialComponents_Light_Dialog_Alert
 style Base_Theme_MaterialComponents_Light_Dialog_FixedSize
 style Base_Theme_MaterialComponents_Light_Dialog_MinWidth
+style Base_V11_ThemeOverlay_AppCompat_Dialog
 style Base_V11_Theme_AppCompat_Dialog
 style Base_V11_Theme_AppCompat_Light_Dialog
 style Base_V12_Widget_AppCompat_AutoCompleteTextView
@@ -1611,6 +1655,16 @@ style TextAppearance_AppCompat_Light_Widget_PopupMenu_Small
 style TextAppearance_AppCompat_Medium
 style TextAppearance_AppCompat_Medium_Inverse
 style TextAppearance_AppCompat_Menu
+style TextAppearance_AppCompat_Notification
+style TextAppearance_AppCompat_Notification_Info
+style TextAppearance_AppCompat_Notification_Info_Media
+style TextAppearance_AppCompat_Notification_Line2
+style TextAppearance_AppCompat_Notification_Line2_Media
+style TextAppearance_AppCompat_Notification_Media
+style TextAppearance_AppCompat_Notification_Time
+style TextAppearance_AppCompat_Notification_Time_Media
+style TextAppearance_AppCompat_Notification_Title
+style TextAppearance_AppCompat_Notification_Title_Media
 style TextAppearance_AppCompat_SearchResult_Subtitle
 style TextAppearance_AppCompat_SearchResult_Title
 style TextAppearance_AppCompat_Small
@@ -1909,6 +1963,7 @@ styleable FlowLayout itemSpacing lineSpacing
 styleable FontFamily fontProviderAuthority fontProviderCerts fontProviderFetchStrategy fontProviderFetchTimeout fontProviderPackage fontProviderQuery
 styleable FontFamilyFont android_font android_fontStyle android_fontVariationSettings android_fontWeight android_ttcIndex font fontStyle fontVariationSettings fontWeight ttcIndex
 styleable ForegroundLinearLayout android_foreground android_foregroundGravity foregroundInsidePadding
+styleable GenericDraweeHierarchy actualImageScaleType backgroundImage fadeDuration failureImage failureImageScaleType overlayImage placeholderImage placeholderImageScaleType pressedStateOverlayImage progressBarAutoRotateInterval progressBarImage progressBarImageScaleType retryImage retryImageScaleType roundAsCircle roundBottomEnd roundBottomLeft roundBottomRight roundBottomStart roundTopEnd roundTopLeft roundTopRight roundTopStart roundWithOverlayColor roundedCornerRadius roundingBorderColor roundingBorderPadding roundingBorderWidth viewAspectRatio
 styleable GradientColor android_centerColor android_centerX android_centerY android_endColor android_endX android_endY android_gradientRadius android_startColor android_startX android_startY android_tileMode android_type
 styleable GradientColorItem android_color android_offset
 styleable LinearLayoutCompat android_baselineAligned android_baselineAlignedChildIndex android_gravity android_orientation android_weightSum divider dividerPadding measureWithLargestChild showDividers
@@ -1930,6 +1985,7 @@ styleable RecyclerView android_descendantFocusability android_orientation fastSc
 styleable ScrimInsetsFrameLayout insetForeground
 styleable ScrollingViewBehavior_Layout behavior_overlapTop
 styleable SearchView android_focusable android_imeOptions android_inputType android_maxWidth closeIcon commitIcon defaultQueryHint goIcon iconifiedByDefault layout queryBackground queryHint searchHintIcon searchIcon submitBackground suggestionRowLayout voiceIcon
+styleable SimpleDraweeView actualImageResource actualImageScaleType actualImageUri backgroundImage fadeDuration failureImage failureImageScaleType overlayImage placeholderImage placeholderImageScaleType pressedStateOverlayImage progressBarAutoRotateInterval progressBarImage progressBarImageScaleType retryImage retryImageScaleType roundAsCircle roundBottomEnd roundBottomLeft roundBottomRight roundBottomStart roundTopEnd roundTopLeft roundTopRight roundTopStart roundWithOverlayColor roundedCornerRadius roundingBorderColor roundingBorderPadding roundingBorderWidth viewAspectRatio
 styleable Snackbar snackbarButtonStyle snackbarStyle
 styleable SnackbarLayout android_maxWidth elevation maxActionInlineWidth
 styleable Spinner android_dropDownWidth android_entries android_popupBackground android_prompt popupTheme

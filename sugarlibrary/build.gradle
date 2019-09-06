@@ -98,6 +98,8 @@ dependencies{
     api rootProject.ext.dependencies["anko-sdk"]
     api rootProject.ext.dependencies["anko-design"]
     api rootProject.ext.dependencies["anko-v4"]
+    api rootProject.ext.dependencies["imageloader-frame"]
+    api rootProject.ext.dependencies["imageloader-fresco"]
 }
 
 //同时添加三个方法 for kotlin

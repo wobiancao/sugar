@@ -24,10 +24,14 @@ import com.billy.android.loading.Gloading;
 import com.blankj.utilcode.util.Utils;
 import com.facebook.stetho.Stetho;
 import com.hjq.toast.ToastUtils;
+import com.ladingwu.frescolibrary.FrescoImageLoader;
+import com.lasingwu.baselibrary.ImageLoaderManager;
 import com.sugar.sugarlibrary.BuildConfig;
 import com.sugar.sugarlibrary.core.ActivityLifecycleCallback;
 import com.sugar.sugarlibrary.rx.errorhandler.RxErrorHandler;
 import com.sugar.sugarlibrary.util.CrashReportingTree;
+
+import java.util.Objects;
 
 import timber.log.Timber;
 
@@ -56,10 +60,10 @@ public enum AppConfig {
         //toast初始化
         ToastUtils.init(sugarConfigure.mApplication);
         //toast样式设置
-        if (sugarConfigure.getToastStyle() != null){
+        if (null != sugarConfigure.getToastStyle()){
             ToastUtils.initStyle(sugarConfigure.getToastStyle());
         }
-        if (BuildConfig.DEBUG) {
+        if (this.getAppSetting().isDebug()) {
             //debug版本
             Timber.plant(new Timber.DebugTree());
         } else {//release版本
@@ -67,13 +71,19 @@ public enum AppConfig {
             Timber.plant(new CrashReportingTree());
         }
         //多状态页切换
-        if (mAppSetting.getAdapter() != null){
+        if (null != getAppSetting().getAdapter()){
             Gloading.debug(BuildConfig.DEBUG);
-            Gloading.initDefault(mAppSetting.getAdapter());
+            Gloading.initDefault(getAppSetting().getAdapter());
         }
         //是否使用facebook网络监控
         if (getAppSetting().getHttpSetting().isHttpMonitor()){
             Stetho.initializeWithDefaults(getApplication());
+        }
+
+
+        //图片加载库初始化配置
+        if (null != getAppSetting().getAppImageLoadSetting()){
+            ImageLoaderManager.getInstance().init(getAppSetting().getApplication(), Objects.requireNonNull(getAppSetting().getAppImageLoadSetting().getImageLoaderConfig()));
         }
     }
 
@@ -90,7 +100,7 @@ public enum AppConfig {
      * @return
      */
     public Dialog getLoadingDialog(Context context, String msg) {
-        if (getAppSetting() == null || getAppSetting().getBaseLoadingDialog() == null){
+        if (null == getAppSetting()  || null == getAppSetting().getBaseLoadingDialog()){
             return null;
         }
         return getAppSetting().getBaseLoadingDialog().createLoadingDialog(context, msg);
@@ -113,7 +123,7 @@ public enum AppConfig {
      * 路由
      */
     private void initARouter(Application application) {
-        if (BuildConfig.DEBUG) {
+        if (this.getAppSetting().isDebug()) {
             //打印日志
             ARouter.openLog();
             //开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)

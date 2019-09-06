@@ -124,4 +124,8 @@ public class MainActivity extends BaseActivity {
     public void Anko(View view) {
         ARouterUtils.navigation(RouterPageContant.KT_ANKO);
     }
+
+    public void ImageLoade(View view){
+        ARouterUtils.navigation(RouterPageContant.KT_IMAGE);
+    }
 }

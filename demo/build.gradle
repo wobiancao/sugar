@@ -28,6 +28,7 @@ android {
         }
         generateStubs = true
     }
+
 }
 
 dependencies {
@@ -44,4 +45,5 @@ dependencies {
         exclude module: 'okio'
         exclude module: 'retrofit'
     }
+    api rootProject.ext.dependencies["bottom-tab"]
 }
