@@ -28,6 +28,7 @@
         <activity android:name=".ui.kt.KtGankActivity" />
         <activity android:name=".ui.kt.KtContainerActivity" />
         <activity android:name=".ui.kt.anko.GankAnkoActivity" />
+        <activity android:name=".ui.kt.image.ImageLoadActivity" />
     </application>
 
 </manifest>

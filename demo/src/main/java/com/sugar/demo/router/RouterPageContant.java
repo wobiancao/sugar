@@ -14,4 +14,5 @@ public interface RouterPageContant {
     String KT_GANK = ACTIVITY + "/kt_gank";
     String KT_CONTAINER = ACTIVITY + "/kt_container";
     String KT_ANKO = ACTIVITY + "/kt_anko";
+    String KT_IMAGE = ACTIVITY + "/kt_image";
 }

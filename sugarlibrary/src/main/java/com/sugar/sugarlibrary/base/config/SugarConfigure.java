@@ -19,6 +19,9 @@ import android.app.Application;
 
 import com.billy.android.loading.Gloading;
 import com.hjq.toast.IToastStyle;
+import com.ladingwu.frescolibrary.FrescoImageLoader;
+import com.lasingwu.baselibrary.ImageLoaderConfig;
+import com.lasingwu.baselibrary.LoaderEnum;
 import com.sugar.sugarlibrary.http.interceptor.SugarCustomHeaderInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarExceptionInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarHeaderInterceptor;
@@ -93,9 +96,8 @@ public abstract class SugarConfigure implements AppConfigureDelegate {
     }
 
 
-
     @Override
-    public AppSetting getAppSetting() {
+    public AppSetting.Builder getAppSettingBuilder() {
         return AppSetting
                 .builder()
                 .with(mApplication)
@@ -107,6 +109,16 @@ public abstract class SugarConfigure implements AppConfigureDelegate {
                 .setGloadingAdapter(getGloadingAdapter())
                 //统一弹窗loading
                 .setLoadingDialog(getLoadingDialog())
+                //1.0.1.7新增
+                .setImageLoadSetting(getImageLoadSetting())
+                //是否打印log
+                .isDebug(false)
+                ;
+    }
+
+    @Override
+    public AppSetting getAppSetting() {
+        return getAppSettingBuilder()
                 .build();
     }
 
@@ -126,5 +138,22 @@ public abstract class SugarConfigure implements AppConfigureDelegate {
     @Override
     public IToastStyle getToastStyle() {
         return null;
+    }
+
+    @Override
+    public AppImageLoadSetting getImageLoadSetting() {
+        return AppImageLoadSetting
+                .builder()
+                .imageLoaderConfig(getImageLoaderConfig())
+                .isCrossFade(true)
+                .build();
+    }
+
+    @Override
+    public ImageLoaderConfig getImageLoaderConfig() {
+        return new ImageLoaderConfig
+                .Builder(LoaderEnum.FRESCO, new FrescoImageLoader())
+                .maxMemory(40*1024*1024L)
+                .build();
     }
 }

@@ -5,8 +5,8 @@ ext {
             buildToolsVersion: "28.0.3",
             minSdkVersion    : 17,
             targetSdkVersion : 28,
-            versionCode      : 26,
-            versionName      : "1.0.1.6"    //必须是int或者float，否则影响线上升级
+            versionCode      : 27,
+            versionName      : "1.0.1.7"    //必须是int或者float，否则影响线上升级
     ]
     version = [
             androidSupportSdkVersion: "28.0.0",
@@ -109,6 +109,10 @@ ext {
             "smartHeader"               : 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14',
             "basePopup"                 : 'com.github.razerdp:BasePopup:2.1.9',
             "loadingBall"               : 'com.github.glomadrian:loadingballs:1.1@aar',
+            //imageload
+            "imageloader-frame"         : "com.ladingwu.library:imageloader-framework:0.0.9",
+            "imageloader-fresco"        : "com.ladingwu.library:fresco:0.0.9",
+            "imageloader-glide"         : "com.ladingwu.library:glide:0.0.9",
             //immersionbar
             "immersionbar-base"         : 'com.gyf.immersionbar:immersionbar:3.0.0-beta01',
             "immersionbar-components"   : 'com.gyf.immersionbar:immersionbar-components:3.0.0-beta01',

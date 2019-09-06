@@ -18,6 +18,7 @@ package com.sugar.sugarlibrary.base.config;
 import android.app.Application;
 
 import com.billy.android.loading.Gloading;
+import com.lasingwu.baselibrary.ImageLoaderConfig;
 import com.sugar.sugarlibrary.rx.errorhandler.ResponseErrorListener;
 import com.sugar.sugarlibrary.widget.BaseLoadingDialog;
 
@@ -33,16 +34,28 @@ public class AppSetting {
     private Gloading.Adapter adapter;
     private AppHttpSetting mAppHttpSetting;
     private Application application;
+    private AppImageLoadSetting mAppImageLoadSetting;
+    private boolean isDebug;
     public AppSetting(Builder builder) {
         this.responseErrorListener = builder.responseErrorListener;
         this.mBaseLoadingDialog = builder.mBaseLoadingDialog;
         this.adapter = builder.adapter;
         this.mAppHttpSetting = builder.mAppHttpSetting;
         this.application = builder.application;
+        this.isDebug = builder.isDebug;
+        this.mAppImageLoadSetting = builder.mAppImageLoadSetting;
     }
 
     public Application getApplication() {
         return application;
+    }
+
+    public boolean isDebug() {
+        return isDebug;
+    }
+
+    public AppImageLoadSetting getAppImageLoadSetting() {
+        return mAppImageLoadSetting;
     }
 
     /**
@@ -76,6 +89,8 @@ public class AppSetting {
         ResponseErrorListener responseErrorListener;
         Gloading.Adapter adapter;
         AppHttpSetting mAppHttpSetting;
+        boolean isDebug;
+        AppImageLoadSetting mAppImageLoadSetting;
         private Builder() {
         }
         public Builder with(Application application) {
@@ -123,6 +138,24 @@ public class AppSetting {
             return this;
         }
 
+        /**
+         * 全局控制是否是debug
+         * @return
+         */
+        public Builder isDebug(boolean isDebug){
+            this.isDebug = isDebug;
+            return this;
+        }
+
+        /**
+         * 图片加载配置
+         * @return
+         */
+        public Builder setImageLoadSetting(AppImageLoadSetting mAppImageLoadSetting){
+            this.mAppImageLoadSetting = mAppImageLoadSetting;
+            return this;
+        }
+
         public AppSetting build() {
             if (null == application){
                 throw new IllegalStateException("application is required");
@@ -133,6 +166,7 @@ public class AppSetting {
             if (null == mAppHttpSetting){
                 throw new IllegalStateException("AppHttpSetting is required");
             }
+
             return new AppSetting(this);
         }
 

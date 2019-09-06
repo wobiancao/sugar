@@ -27,6 +27,8 @@ import com.sugar.demo.http.api.Gank;
 import com.sugar.demo.http.api.Wan;
 import com.sugar.demo.ui.widget.ToastStyle;
 import com.sugar.sugarlibrary.base.config.AppHttpSetting;
+import com.sugar.sugarlibrary.base.config.AppImageLoadSetting;
+import com.sugar.sugarlibrary.base.config.AppSetting;
 import com.sugar.sugarlibrary.base.config.SugarConfigure;
 import com.sugar.sugarlibrary.rx.errorhandler.ResponseErrorListener;
 
@@ -109,4 +111,23 @@ public class DemoConfigure extends SugarConfigure {
                 .statusBarColor(R.color.colorPrimary)
                 ;
     }
+
+    @Override
+    public AppSetting getAppSetting() {
+        return getAppSettingBuilder()
+                .isDebug(true)
+                .build();
+    }
+
+    @Override
+    public AppImageLoadSetting getImageLoadSetting() {
+        return AppImageLoadSetting
+                .builder()
+                .imageLoaderConfig(getImageLoaderConfig())
+                .isCrossFade(true)
+                .errorholder(R.mipmap.ic_launcher_round)
+                .placeholder(R.mipmap.ic_logo)
+                .build();
+    }
+
 }

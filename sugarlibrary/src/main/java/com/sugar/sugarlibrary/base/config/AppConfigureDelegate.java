@@ -20,6 +20,7 @@ import android.app.Application;
 import com.billy.android.loading.Gloading;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.IToastStyle;
+import com.lasingwu.baselibrary.ImageLoaderConfig;
 import com.sugar.sugarlibrary.http.interceptor.SugarCustomHeaderInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarExceptionInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarHeaderInterceptor;
@@ -94,4 +95,21 @@ public interface AppConfigureDelegate {
      * 统一配置状态栏，直接提出来用
      */
     ImmersionBar getImmersionBar(ImmersionBar bar);
+
+    //===============1.0.1.7新增===============
+    /**
+     * app配置Buidler
+     */
+    AppSetting.Builder getAppSettingBuilder();
+
+    /**
+     * imageloader 配置
+     */
+    AppImageLoadSetting getImageLoadSetting();
+
+    /**
+     * ImageLoaderConfig 默认加载为Fresco
+     */
+    ImageLoaderConfig getImageLoaderConfig();
+
 }
