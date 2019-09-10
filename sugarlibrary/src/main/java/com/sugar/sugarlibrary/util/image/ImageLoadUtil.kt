@@ -16,9 +16,9 @@
 package com.sugar.sugarlibrary.util.image
 
 import android.widget.ImageView
-import com.lasingwu.baselibrary.ImageLoaderManager
-import com.lasingwu.baselibrary.ImageLoaderOptions
 import com.sugar.sugarlibrary.base.config.AppConfig
+import com.sugar.sugarlibrary.imageload.framework.ImageLoaderManager
+import com.sugar.sugarlibrary.imageload.framework.ImageLoaderOptions
 
 /**
  * @author wobiancao
@@ -39,6 +39,13 @@ class ImageLoadUtil {
          */
         fun loadImage(image: ImageView, url: String, raduisDp: Int) {
             ImageLoaderManager.getInstance().showImage(raduisOptions(image, url, raduisDp))
+        }
+
+        /**
+         * 部分圆角
+         */
+        fun loadImage(image: ImageView, url: String, tlRaduis: Int, trRaduis: Int, blRaduis: Int, brRaduis: Int) {
+            ImageLoaderManager.getInstance().showImage(raduisOptions(image, url, tlRaduis, trRaduis, blRaduis, brRaduis))
         }
 
         fun loadImageCircle(image: ImageView, url: String) {
@@ -77,6 +84,21 @@ class ImageLoadUtil {
                     .error(loadSetting.errorholder)
                     .isCrossFade(loadSetting.isCrossFade)
                     .imageRadiusDp(raduisDp)
+                    .build()
+        }
+
+        /**
+         * 带圆角
+         */
+        private fun raduisOptions(image: ImageView, url: String, tlRaduis: Int, trRaduis: Int, blRaduis: Int, brRaduis: Int): ImageLoaderOptions {
+            val loadSetting = AppConfig.INSTANCE.appSetting.appImageLoadSetting
+            return ImageLoaderOptions.Builder(image, url)
+                    .placeholder(loadSetting.placeholder)
+                    .error(loadSetting.errorholder)
+                    .isCrossFade(loadSetting.isCrossFade)
+                    .imageRadiusDp(tlRaduis)
+                    .isAllRadius(false)
+                    .setRadiusDp(tlRaduis, trRaduis, blRaduis, brRaduis)
                     .build()
         }
 

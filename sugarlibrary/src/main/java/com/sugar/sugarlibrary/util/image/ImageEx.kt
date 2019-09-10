@@ -38,6 +38,13 @@ fun ImageView.load(url: String, raduisDp: Int){
 }
 
 /**
+ * 加载部分圆角
+ */
+fun ImageView.load(url: String, tlRaduis: Int, trRaduis: Int, blRaduis: Int, brRaduis: Int){
+    ImageLoadUtil.loadImage(this, url, tlRaduis, trRaduis, blRaduis, brRaduis)
+}
+
+/**
  * 加载圆形
  */
 fun ImageView.loadAsCircle(url: String){

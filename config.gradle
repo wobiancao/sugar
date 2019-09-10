@@ -113,6 +113,7 @@ ext {
             "imageloader-frame"         : "com.ladingwu.library:imageloader-framework:0.0.9",
             "imageloader-fresco"        : "com.ladingwu.library:fresco:0.0.9",
             "imageloader-glide"         : "com.ladingwu.library:glide:0.0.9",
+            "fresco"                    : "com.facebook.fresco:fresco:0.12.0",
             //immersionbar
             "immersionbar-base"         : 'com.gyf.immersionbar:immersionbar:3.0.0-beta01',
             "immersionbar-components"   : 'com.gyf.immersionbar:immersionbar-components:3.0.0-beta01',
