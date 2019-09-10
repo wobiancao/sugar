@@ -2,7 +2,8 @@ package com.sugar.sugarlibrary.base.config;
 
 import androidx.annotation.DrawableRes;
 
-import com.lasingwu.baselibrary.ImageLoaderConfig;
+import com.sugar.sugarlibrary.imageload.framework.ImageLoaderConfig;
+
 
 /**
  * @author wobiancao

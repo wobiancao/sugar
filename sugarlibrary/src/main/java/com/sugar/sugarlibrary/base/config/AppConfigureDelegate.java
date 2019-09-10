@@ -20,10 +20,10 @@ import android.app.Application;
 import com.billy.android.loading.Gloading;
 import com.gyf.immersionbar.ImmersionBar;
 import com.hjq.toast.IToastStyle;
-import com.lasingwu.baselibrary.ImageLoaderConfig;
 import com.sugar.sugarlibrary.http.interceptor.SugarCustomHeaderInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarExceptionInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarHeaderInterceptor;
+import com.sugar.sugarlibrary.imageload.framework.ImageLoaderConfig;
 import com.sugar.sugarlibrary.rx.errorhandler.ResponseErrorListener;
 import com.sugar.sugarlibrary.widget.BaseLoadingDialog;
 

@@ -18,7 +18,6 @@ package com.sugar.sugarlibrary.base.config;
 import android.app.Application;
 
 import com.billy.android.loading.Gloading;
-import com.lasingwu.baselibrary.ImageLoaderConfig;
 import com.sugar.sugarlibrary.rx.errorhandler.ResponseErrorListener;
 import com.sugar.sugarlibrary.widget.BaseLoadingDialog;
 

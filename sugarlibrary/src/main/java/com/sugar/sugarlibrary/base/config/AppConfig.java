@@ -24,10 +24,9 @@ import com.billy.android.loading.Gloading;
 import com.blankj.utilcode.util.Utils;
 import com.facebook.stetho.Stetho;
 import com.hjq.toast.ToastUtils;
-import com.ladingwu.frescolibrary.FrescoImageLoader;
-import com.lasingwu.baselibrary.ImageLoaderManager;
 import com.sugar.sugarlibrary.BuildConfig;
 import com.sugar.sugarlibrary.core.ActivityLifecycleCallback;
+import com.sugar.sugarlibrary.imageload.framework.ImageLoaderManager;
 import com.sugar.sugarlibrary.rx.errorhandler.RxErrorHandler;
 import com.sugar.sugarlibrary.util.CrashReportingTree;
 

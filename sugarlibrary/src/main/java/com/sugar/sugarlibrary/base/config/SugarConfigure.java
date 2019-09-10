@@ -19,12 +19,12 @@ import android.app.Application;
 
 import com.billy.android.loading.Gloading;
 import com.hjq.toast.IToastStyle;
-import com.ladingwu.frescolibrary.FrescoImageLoader;
-import com.lasingwu.baselibrary.ImageLoaderConfig;
-import com.lasingwu.baselibrary.LoaderEnum;
 import com.sugar.sugarlibrary.http.interceptor.SugarCustomHeaderInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarExceptionInterceptor;
 import com.sugar.sugarlibrary.http.interceptor.SugarHeaderInterceptor;
+import com.sugar.sugarlibrary.imageload.framework.ImageLoaderConfig;
+import com.sugar.sugarlibrary.imageload.framework.LoaderEnum;
+import com.sugar.sugarlibrary.imageload.fresco.FrescoImageLoader;
 import com.sugar.sugarlibrary.widget.BaseLoadingDialog;
 import com.sugar.sugarlibrary.widget.gloading.SugarGloadAdapter;
 
