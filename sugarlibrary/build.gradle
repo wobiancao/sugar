@@ -99,6 +99,8 @@ dependencies{
     api rootProject.ext.dependencies["anko-design"]
     api rootProject.ext.dependencies["anko-v4"]
     implementation rootProject.ext.dependencies["fresco"]
+    implementation rootProject.ext.dependencies["fresco-gif"]
+    implementation rootProject.ext.dependencies["fresco-ok3"]
 }
 
 //同时添加三个方法 for kotlin

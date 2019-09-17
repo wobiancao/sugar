@@ -21,6 +21,8 @@ import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
 import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.DraweeHolder;
+import com.facebook.imagepipeline.backends.okhttp3.OkHttpImagePipelineConfigFactory;
+import com.facebook.imagepipeline.backends.okhttp3.OkHttpNetworkFetcher;
 import com.facebook.imagepipeline.common.ImageDecodeOptions;
 import com.facebook.imagepipeline.common.ResizeOptions;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
@@ -28,11 +30,15 @@ import com.facebook.imagepipeline.image.ImageInfo;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.sugar.sugarlibrary.R;
+import com.sugar.sugarlibrary.base.config.AppConfig;
+import com.sugar.sugarlibrary.base.config.AppHttpSetting;
 import com.sugar.sugarlibrary.imageload.framework.IImageLoaderstrategy;
 import com.sugar.sugarlibrary.imageload.framework.ImageLoaderConfig;
 import com.sugar.sugarlibrary.imageload.framework.ImageLoaderOptions;
 import com.sugar.sugarlibrary.imageload.framework.LoaderResultCallBack;
 
+
+import okhttp3.OkHttpClient;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -262,8 +268,11 @@ public class FrescoImageLoader implements IImageLoaderstrategy {
                 .setMaxCacheSize(config.getMaxMemory())
                 .setMaxCacheSizeOnLowDiskSpace(config.getMaxMemory()/5)
                 .build();
-
-        return ImagePipelineConfig.newBuilder(context)
+//        OkHttpClient okHttpClient; // build on your own
+//        ImagePipelineConfig config = new OkHttpImagePipelineConfigFactory
+//                .newBuilder(context, okHttpClient)
+//            .build();
+        return OkHttpImagePipelineConfigFactory.newBuilder(context, new OkHttpClient())
                 .setDownsampleEnabled(true)
                 // 设置缓存
                 .setMainDiskCacheConfig(diskCacheConfig)
