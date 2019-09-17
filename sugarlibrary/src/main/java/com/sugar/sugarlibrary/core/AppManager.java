@@ -32,7 +32,7 @@ public class AppManager {
     protected static Stack<Activity> activityStack;
     protected volatile static AppManager instance;
 
-    private AppManager() {
+    protected AppManager() {
 
     }
 
@@ -201,10 +201,15 @@ public class AppManager {
      **/
     public void finishActivityExcept(Class<?> cls) {
         for (Activity activity : activityStack) {
-            if (activity != null && !activity.getClass().equals(cls)){
+            if (activity != null && !getLastName(activity.getClass().toString()).equals(getLastName(cls.toString()))){
                finishActivity(activity);
             }
         }
+    }
+
+    protected String getLastName(String cls){
+        String[] temp = cls.split(".");
+        return temp[temp.length - 1];
     }
 
 }
