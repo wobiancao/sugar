@@ -98,7 +98,6 @@ public class AppManager {
         if (activity != null && !activity.isFinishing()) {
             activityStack.remove(activity);
             activity.finish();
-            activity = null;
         }
     }
 
@@ -196,4 +195,16 @@ public class AppManager {
         }
 
     }
+
+    /**
+     * 除了cls都关闭
+     **/
+    public void finishActivityExcept(Class<?> cls) {
+        for (Activity activity : activityStack) {
+            if (activity != null && !activity.getClass().equals(cls)){
+               finishActivity(activity);
+            }
+        }
+    }
+
 }
