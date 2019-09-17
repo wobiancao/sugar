@@ -29,8 +29,8 @@ public class AppManager {
     /**
      * 栈：也就是stack
      */
-    private static Stack<Activity> activityStack;
-    private volatile static AppManager instance;
+    protected static Stack<Activity> activityStack;
+    protected volatile static AppManager instance;
 
     private AppManager() {
 
