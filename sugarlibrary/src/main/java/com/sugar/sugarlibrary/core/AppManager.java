@@ -29,10 +29,10 @@ public class AppManager {
     /**
      * 栈：也就是stack
      */
-    protected static Stack<Activity> activityStack;
-    protected volatile static AppManager instance;
+    private static Stack<Activity> activityStack;
+    private volatile static AppManager instance;
 
-    protected AppManager() {
+    private AppManager() {
 
     }
 
@@ -96,7 +96,6 @@ public class AppManager {
             return;
         }
         if (activity != null && !activity.isFinishing()) {
-            activityStack.remove(activity);
             activity.finish();
         }
     }
@@ -110,7 +109,13 @@ public class AppManager {
             return;
         }
         if (activity != null) {
-            activityStack.remove(activity);
+            for (Activity act : activityStack) {
+                if (act.getClass().equals(activity)) {
+                    activityStack.remove(activity);
+                    return;
+                }
+            }
+
         }
     }
 
@@ -201,15 +206,20 @@ public class AppManager {
      **/
     public void finishActivityExcept(Class<?> cls) {
         for (Activity activity : activityStack) {
-            if (activity != null && !getLastName(activity.getClass().toString()).equals(getLastName(cls.toString()))){
-               finishActivity(activity);
+            if (activity != null && !activity.getClass().equals(cls)){
+                finishActivity(activity);
             }
         }
     }
 
-    protected String getLastName(String cls){
-        String[] temp = cls.split(".");
-        return temp[temp.length - 1];
+    private String getLastName(String cls){
+        String[] temp = cls.split("\\.");
+        if (temp.length > 0){
+            return temp[temp.length - 1];
+        }else {
+            return "";
+        }
+
     }
 
 }
