@@ -272,7 +272,7 @@ public class FrescoImageLoader implements IImageLoaderstrategy {
 //        ImagePipelineConfig config = new OkHttpImagePipelineConfigFactory
 //                .newBuilder(context, okHttpClient)
 //            .build();
-        return OkHttpImagePipelineConfigFactory.newBuilder(context, new OkHttpClient())
+        return OkHttpImagePipelineConfigFactory.newBuilder(context, AppConfig.INSTANCE.getAppSetting().getHttpSetting().getOkHttpBuilder().build())
                 .setDownsampleEnabled(true)
                 // 设置缓存
                 .setMainDiskCacheConfig(diskCacheConfig)

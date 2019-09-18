@@ -1121,6 +1121,7 @@ id icon
 id icon_group
 id ifRoom
 id image
+id immersion_fits_layout_overlap
 id immersion_navigation_bar_view
 id immersion_status_bar_view
 id info
