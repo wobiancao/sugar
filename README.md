@@ -13,6 +13,8 @@
 
 更新日志
 -------
+- 2019-11-04 更新 1.0.2.2 大图预览
+...
 - 2019-09-06 更新 1.0.1.7 图片加载，ImageView扩展，fragment懒加载
 - 2019-06-24 更新 1.0.1.5 anko ui注解初始化+自定义ConverterFactory
 - 2019-06-17 更新 kotlin-mvp temeple
@@ -26,6 +28,21 @@
 
 
 最新修改
+-------
+`1.0.2.1点击看大图`
+-------
+
+```
+
+                PhotoX.with(mContext)
+                        .setPhotoList(photos)
+                        .setCurrentPosition(0)
+                        .enabledAnimation(false)
+                        .enabledDragClose(true)
+                        .start()
+
+```
+
 -------
 `1.0.1.7`
 -------
