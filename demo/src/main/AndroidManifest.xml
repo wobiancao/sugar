@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.StartActivity"
             android:theme="@style/Appwelcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity android:name=".ui.MainActivity" />-->
+        <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.GankActivity" />
         <activity android:name=".ui.WanActivity" />
         <activity android:name=".ui.kt.KtGankActivity" />

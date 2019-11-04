@@ -101,6 +101,9 @@ dependencies{
     implementation rootProject.ext.dependencies["fresco"]
     implementation rootProject.ext.dependencies["fresco-gif"]
     implementation rootProject.ext.dependencies["fresco-ok3"]
+    implementation rootProject.ext.dependencies["fresco-anim-base"]
+    api rootProject.ext.dependencies["image-scale"]
+
 }
 
 //同时添加三个方法 for kotlin

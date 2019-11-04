@@ -11,7 +11,13 @@
     <color name="ball3">#FF06CB7E</color>
     <color name="ball4">#FFF55122</color>
     <color name="libColorGray">#FF999999</color>
+    <color name="libColorProgress">#eb9d3e</color>
+    <color name="libColorProgressStroke">#eb9d3e</color>
+    <color name="libColorProgressText">#333333</color>
+    <color name="libColorTrans">@android:color/transparent</color>
     <color name="libColorTransparent">#00000000</color>
+    <color name="libColorWhite">#FFFFFF</color>
+    <drawable name="libDrawableTrans">#00000000</drawable>
     <item name="fresco_drawee" type="id"/>
     <string name="app_name">SugarLibrary</string>
     <style name="lib_loading_dialog" parent="android:style/Theme.Dialog">
@@ -40,5 +46,27 @@
         <attr format="dimension" name="min_ball_size"/>
         <attr format="dimension" name="max_ball_size"/>
         <attr format="string" name="path"/>
+    </declare-styleable>
+    <declare-styleable name="lib_LoadingProgressBarView">
+        <attr name="android:text"/>
+        <attr name="android:textSize"/>
+        <attr name="android:textColor"/>
+        <attr format="integer" name="ppvProgress"/>
+        <attr format="integer" name="ppvMax"/>
+        <attr format="integer" name="ppvStartAngle"/>
+        <attr format="boolean" name="ppvInverted"/>
+        <attr format="boolean" name="ppvCounterclockwise"/>
+        <attr format="dimension" name="ppvStrokeWidth"/>
+        <attr format="reference|color" name="ppvBackgroundColor"/>
+        <attr format="reference|color" name="ppvProgressColor"/>
+        <attr format="reference|color" name="ppvStrokeColor"/>
+        <attr format="boolean" name="ppvShowStroke"/>
+        <attr format="boolean" name="ppvShowText"/>
+        <attr format="string" name="ppvTypeface"/>
+        <attr format="reference" name="ppvImage"/>
+        <attr format="enum" name="ppvProgress_FillType">
+            <enum name="radial" value="0"/>
+            <enum name="center" value="1"/>
+        </attr>
     </declare-styleable>
 </resources>

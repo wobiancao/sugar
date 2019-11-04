@@ -88,8 +88,8 @@ public class AppHttpSetting {
         return baseUrl;
     }
 
-    public static AppHttpSetting.Builder builder() {
-        return new AppHttpSetting.Builder();
+    public static Builder builder() {
+        return new Builder();
     }
 
     public static final class Builder {
@@ -115,7 +115,7 @@ public class AppHttpSetting {
             });
         }
 
-        public AppHttpSetting.Builder with(Application application) {
+        public Builder with(Application application) {
             final File httpCacheDirectory = new File(application.getCacheDir(), "sugarHttpCache");
             //设置缓存 10M
             int cacheSize = 10 * 1024 * 1024;
@@ -138,7 +138,7 @@ public class AppHttpSetting {
          * @param cache
          * @return
          */
-        public AppHttpSetting.Builder cache(Cache cache){
+        public Builder cache(Cache cache){
             this.okHttpBuilder.cache(cache);
             return this;
         }
@@ -147,7 +147,7 @@ public class AppHttpSetting {
          * @param networkInterceptor
          * @return
          */
-        public AppHttpSetting.Builder addNetworkInterceptor(Interceptor networkInterceptor){
+        public Builder addNetworkInterceptor(Interceptor networkInterceptor){
             this.okHttpBuilder.addNetworkInterceptor(networkInterceptor);
             return this;
         }
@@ -156,7 +156,7 @@ public class AppHttpSetting {
          * @param interceptor
          * @return
          */
-        public AppHttpSetting.Builder addInterceptor(Interceptor interceptor){
+        public Builder addInterceptor(Interceptor interceptor){
             this.okHttpBuilder.addInterceptor(interceptor);
             return this;
         }
@@ -165,7 +165,7 @@ public class AppHttpSetting {
          * @param customHeaderInterceptor
          * @return
          */
-        public AppHttpSetting.Builder addCustomHeaderInterceptor(SugarCustomHeaderInterceptor customHeaderInterceptor){
+        public Builder addCustomHeaderInterceptor(SugarCustomHeaderInterceptor customHeaderInterceptor){
             this.okHttpBuilder.addInterceptor(customHeaderInterceptor);
             return this;
         }
@@ -174,7 +174,7 @@ public class AppHttpSetting {
          * @param exceptionInterceptor
          * @return
          */
-        public AppHttpSetting.Builder addExceptionInterceptor(SugarExceptionInterceptor exceptionInterceptor){
+        public Builder addExceptionInterceptor(SugarExceptionInterceptor exceptionInterceptor){
             this.okHttpBuilder.addInterceptor(exceptionInterceptor);
             return this;
         }
@@ -183,7 +183,7 @@ public class AppHttpSetting {
          * @param headerInterceptor
          * @return
          */
-        public AppHttpSetting.Builder addHeaderInterceptor(SugarHeaderInterceptor headerInterceptor){
+        public Builder addHeaderInterceptor(SugarHeaderInterceptor headerInterceptor){
             this.okHttpBuilder.addInterceptor(headerInterceptor);
             return this;
         }
@@ -192,7 +192,7 @@ public class AppHttpSetting {
          * @param httpLog
          * @return
          */
-        public AppHttpSetting.Builder setHttpLog(boolean httpLog){
+        public Builder setHttpLog(boolean httpLog){
             this.httpLog = httpLog;
             if (httpLog) {
                 HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
@@ -207,7 +207,7 @@ public class AppHttpSetting {
          * @param httpMonitor
          * @return
          */
-        public AppHttpSetting.Builder setHttpMoniter(boolean httpMonitor){
+        public Builder setHttpMoniter(boolean httpMonitor){
             //是否可以监听网络使用facebook库
             if (httpMonitor){
                 okHttpBuilder.addNetworkInterceptor(new StethoInterceptor());
@@ -219,7 +219,7 @@ public class AppHttpSetting {
          * @param cacheTime
          * @return
          */
-        public AppHttpSetting.Builder setCacheMaxTime(int cacheTime){
+        public Builder setCacheMaxTime(int cacheTime){
             this.cacheTime = cacheTime;
             return this;
         }
@@ -228,7 +228,7 @@ public class AppHttpSetting {
          * @param writeTimeout
          * @return
          */
-        public AppHttpSetting.Builder writeTimeout(int writeTimeout){
+        public Builder writeTimeout(int writeTimeout){
             okHttpBuilder.writeTimeout(writeTimeout, TimeUnit.SECONDS);
             return this;
         }
@@ -237,7 +237,7 @@ public class AppHttpSetting {
          * @param connectTimeout
          * @return
          */
-        public AppHttpSetting.Builder connectTimeout(int connectTimeout){
+        public Builder connectTimeout(int connectTimeout){
             okHttpBuilder.connectTimeout(connectTimeout, TimeUnit.SECONDS);
             return this;
         }
@@ -247,7 +247,7 @@ public class AppHttpSetting {
          * @param readTimeout
          * @return
          */
-        public AppHttpSetting.Builder readTimeout(int readTimeout){
+        public Builder readTimeout(int readTimeout){
             okHttpBuilder.readTimeout(readTimeout, TimeUnit.SECONDS);
             return this;
         }
@@ -257,7 +257,7 @@ public class AppHttpSetting {
          * @param baseUrl
          * @return
          */
-        public AppHttpSetting.Builder setBaseUrl(String baseUrl){
+        public Builder setBaseUrl(String baseUrl){
             this.baseUrl = baseUrl;
             return this;
         }
@@ -268,7 +268,7 @@ public class AppHttpSetting {
          * @param domanHost
          * @return
          */
-        public AppHttpSetting.Builder putDomain(String domanName, String domanHost){
+        public Builder putDomain(String domanName, String domanHost){
             RetrofitUrlManager.getInstance().putDomain(domanName, domanHost);
             return this;
         }
@@ -277,7 +277,7 @@ public class AppHttpSetting {
             return new AppHttpSetting(this);
         }
 
-        public AppHttpSetting.Builder addConverterFactory(Converter.Factory factory) {
+        public Builder addConverterFactory(Converter.Factory factory) {
             this.httpConverter = factory;
             return this;
         }

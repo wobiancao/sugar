@@ -40,8 +40,8 @@ public class AppImageLoadSetting {
         return isCrossFade;
     }
 
-    public static AppImageLoadSetting.Builder builder() {
-        return new AppImageLoadSetting.Builder();
+    public static Builder builder() {
+        return new Builder();
     }
     public static class Builder{
         int placeholder;

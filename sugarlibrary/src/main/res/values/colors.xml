@@ -2,4 +2,10 @@
 <resources>T
     <color name="libColorTransparent">#00000000</color>
     <color name="libColorGray">#FF999999</color>
+    <color name="libColorWhite">#FFFFFF</color>
+    <color name="libColorTrans">@android:color/transparent</color>
+    <color name="libColorProgress">#eb9d3e</color>
+    <color name="libColorProgressStroke">#eb9d3e</color>
+    <color name="libColorProgressText">#333333</color>
+    <drawable name="libDrawableTrans">#00000000</drawable>
 </resources>

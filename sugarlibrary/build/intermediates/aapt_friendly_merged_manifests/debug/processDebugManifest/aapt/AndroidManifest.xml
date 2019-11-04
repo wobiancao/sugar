@@ -26,6 +26,11 @@
         <meta-data
             android:name="notch.config"
             android:value="portrait" />
+
+        <activity
+            android:name="com.sugar.sugarlibrary.image.photoview.PictureBrowseActivity"
+            android:launchMode="singleInstance" >
+        </activity>
     </application>
 
 </manifest>

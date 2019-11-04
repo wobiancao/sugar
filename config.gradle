@@ -113,9 +113,11 @@ ext {
             "imageloader-frame"         : "com.ladingwu.library:imageloader-framework:0.0.9",
             "imageloader-fresco"        : "com.ladingwu.library:fresco:0.0.9",
             "imageloader-glide"         : "com.ladingwu.library:glide:0.0.9",
-            "fresco"                    : "com.facebook.fresco:fresco:0.12.0",
-            "fresco-gif"                : "com.facebook.fresco:animated-gif:0.12.0",
+            "fresco"                    : "com.facebook.fresco:fresco:2.0.0",
+            "fresco-gif"                : "com.facebook.fresco:animated-gif:2.0.0",
+            "fresco-anim-base"          : "com.facebook.fresco:animated-base:2.0.0",
             "fresco-ok3"                : "com.facebook.fresco:imagepipeline-okhttp3:0.12.0+",
+            "image-scale"               : "com.davemorrissey.labs:subsampling-scale-image-view:3.10.0",
             //immersionbar
             "immersionbar-base"         : 'com.gyf.immersionbar:immersionbar:3.0.0',
             "immersionbar-components"   : 'com.gyf.immersionbar:immersionbar-components:3.0.0',
