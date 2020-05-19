@@ -15,6 +15,7 @@
  */
 package com.sugar.sugarlibrary.http;
 
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory;
 import com.sugar.sugarlibrary.base.config.AppConfig;
 import com.sugar.sugarlibrary.base.config.AppHttpSetting;
 
@@ -52,6 +53,7 @@ public class AppHttpClient {
                 .baseUrl(httpSetting.getBaseUrl())
                 .addConverterFactory(httpSetting.getHttpConverter())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(CoroutineCallAdapterFactory.create())
                 .client(mOkHttpClient)
                 .build();
     }
